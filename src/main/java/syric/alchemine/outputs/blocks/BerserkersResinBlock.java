@@ -166,7 +166,7 @@ public class BerserkersResinBlock extends AbstractImmersionBlock  {
     private void unCharge(BlockState state, Level level, BlockPos pos, int directness) {
         boolean wasCharged = state.getValue(CHARGED);
         if (wasCharged) {
-            level.scheduleTick(pos, this, 600);
+            level.scheduleTick(pos, this, 400);
 //            level.scheduleTick(pos, this, 3600);
             level.setBlockAndUpdate(pos, state.setValue(CHARGED, false));
         }

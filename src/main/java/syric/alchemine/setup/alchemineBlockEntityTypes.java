@@ -7,9 +7,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import syric.alchemine.Alchemine;
 import syric.alchemine.brewing.cauldron.AlchemicalCauldronBlockEntity;
-import syric.alchemine.brewing.laboratory.AlchemicalAlembicBlock;
-import syric.alchemine.brewing.laboratory.AlchemicalCrucibleBlock;
-import syric.alchemine.brewing.laboratory.AlchemicalGrinderBlockEntity;
+import syric.alchemine.brewing.laboratory.*;
 
 public final class alchemineBlockEntityTypes {
 
@@ -20,8 +18,8 @@ public final class alchemineBlockEntityTypes {
 
     //Lab Blocks
     public static final RegistryObject<BlockEntityType<AlchemicalGrinderBlockEntity>> GRINDER = BLOCK_ENTITIES.register("alchemical_grinder", () -> BlockEntityType.Builder.of(AlchemicalGrinderBlockEntity::new, alchemineBlocks.ALCHEMICAL_GRINDER.get()).build(null));
-//    public static final RegistryObject<BlockEntityType<AlchemicalCrucibleBlockEntity>> CRUCIBLE = BLOCK_ENTITIES.register("alchemical_crucible", () -> BlockEntityType.Builder.of(AlchemicalCrucibleBlockEntity::new, alchemineBlocks.ALCHEMICAL_CRUCIBLE.get()).build(null));
-//    public static final RegistryObject<BlockEntityType<AlchemicalAlembicBlockEntity>> ALEMBIC = BLOCK_ENTITIES.register("alchemical_alembic", () -> BlockEntityType.Builder.of(AlchemicalAlembicBlockEntity::new, alchemineBlocks.ALCHEMICAL_ALEMBIC.get()).build(null));
+    public static final RegistryObject<BlockEntityType<AlchemicalCrucibleBlockEntity>> CRUCIBLE = BLOCK_ENTITIES.register("alchemical_crucible", () -> BlockEntityType.Builder.of(AlchemicalCrucibleBlockEntity::new, alchemineBlocks.ALCHEMICAL_CRUCIBLE.get()).build(null));
+    public static final RegistryObject<BlockEntityType<AlchemicalAlembicBlockEntity>> ALEMBIC = BLOCK_ENTITIES.register("alchemical_alembic", () -> BlockEntityType.Builder.of(AlchemicalAlembicBlockEntity::new, alchemineBlocks.ALCHEMICAL_ALEMBIC.get()).build(null));
 
 
     static void register(IEventBus bus) {
