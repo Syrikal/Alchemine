@@ -2,11 +2,10 @@ package syric.alchemine;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.minecraftforge.client.gui.OverlayRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -21,7 +20,7 @@ import org.slf4j.Logger;
 import syric.alchemine.client.FogEffects;
 import syric.alchemine.client.VitaSlimeOverlay;
 import syric.alchemine.setup.BlockRendering;
-import syric.alchemine.setup.alchemineBlocks;
+import syric.alchemine.setup.alchemineOverlays;
 import syric.alchemine.setup.registry;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -32,15 +31,7 @@ public class Alchemine
     public static final String MODID = "alchemine";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
-    // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
-//    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
-    // Create a Deferred Register to hold Items which will all be registered under the "examplemod" namespace
-//    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
-    // Creates a new Block with the id "examplemod:example_block", combining the namespace and path
-//    public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE)));
-    // Creates a new BlockItem with the id "examplemod:example_block", combining the namespace and path
-//    public static final RegistryObject<Item> EXAMPLE_BLOCK_ITEM = ITEMS.register("example_block", () -> new BlockItem(EXAMPLE_BLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
 
     public Alchemine()
     {
@@ -96,7 +87,10 @@ public class Alchemine
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
 
-            BlockRendering.registerOverlayTypes();
+            BlockRendering.registerBlockRenderTypes();
+            alchemineOverlays.register();
+
+//            OverlayRegistry.registerOverlayAbove(ForgeIngameGui.FROSTBITE_ELEMENT,"vita_slime_overlay", new VitaSlimeOverlay());
 
 //            OverlayRegistry.registerOverlayTop("vita_slime_overlay", (gui, poseStack, partialTick, screenWidth, screenHeight) -> {
 //                gui.setupOverlayRenderState(true, false);

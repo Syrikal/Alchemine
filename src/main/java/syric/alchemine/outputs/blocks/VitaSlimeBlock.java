@@ -142,6 +142,7 @@ public class VitaSlimeBlock extends AbstractImmersionBlock {
         //Extinguishes fire
         if (!level.isClientSide) {
             entity.setSharedFlagOnFire(false);
+            entity.clearFire();
         }
 
     }
@@ -165,7 +166,7 @@ public class VitaSlimeBlock extends AbstractImmersionBlock {
                 double d1 = (double)j + rand2;
                 double d2 = (double)k + rand3;
 
-                level.addParticle(ParticleTypes.HAPPY_VILLAGER, d0, d1, d2, 1000,0,1000);
+                level.addParticle(ParticleTypes.HAPPY_VILLAGER, d0, d1, d2, 0,0,0);
             }
         }
     }

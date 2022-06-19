@@ -6,11 +6,10 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.minecraftforge.client.gui.IIngameOverlay;
-import net.minecraftforge.client.gui.OverlayRegistry;
 
-public class VitaSlimeOverlay implements IIngameOverlay {
-    protected static final ResourceLocation VITA_SLIME_LOCATION = new ResourceLocation("alchemine:textures/misc/vita_slime_outline.png");
-    protected static final Float opacity = 0.7F;
+public class BerserkersResinOverlay implements IIngameOverlay {
+    protected static final ResourceLocation BERSERKERS_RESIN_LOCATION = new ResourceLocation("alchemine:textures/misc/berserkers_resin_outline.png");
+    protected static final Float opacity = 0.9F;
 
 //    public static final IIngameOverlay VITA_ELEMENT = OverlayRegistry.registerOverlayAbove(ForgeIngameGui.FROSTBITE_ELEMENT, "vita_slime_overlay", new VitaSlimeOverlay());
 
@@ -20,7 +19,7 @@ public class VitaSlimeOverlay implements IIngameOverlay {
         RenderSystem.defaultBlendFunc();
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, opacity);
-        RenderSystem.setShaderTexture(0, VITA_SLIME_LOCATION);
+        RenderSystem.setShaderTexture(0, BERSERKERS_RESIN_LOCATION);
         Tesselator tesselator = Tesselator.getInstance();
         BufferBuilder bufferbuilder = tesselator.getBuilder();
         bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);

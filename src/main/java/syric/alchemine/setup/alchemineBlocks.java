@@ -78,7 +78,7 @@ public class alchemineBlocks {
 
     public static final RegistryObject<Block> BERSERKERS_RESIN = register("berserkers_resin",
             () -> new BerserkersResinBlock(BlockBehaviour.Properties.of(Material.POWDER_SNOW, MaterialColor.COLOR_ORANGE)
-                    .friction(.8F).sound(SoundType.SLIME_BLOCK).noOcclusion().dynamicShape()),
+                    .friction(.8F).sound(SoundType.SLIME_BLOCK).noOcclusion().dynamicShape().strength(1.0F)),
             alchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> RED_SLIME = register("red_slime",

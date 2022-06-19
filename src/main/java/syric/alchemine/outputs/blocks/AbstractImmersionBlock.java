@@ -59,17 +59,17 @@ public class AbstractImmersionBlock extends Block {
                 if (entity.fallDistance > 2.5F) {
                     return FALLING_COLLISION_SHAPE;
                 }
+                if (entity instanceof FallingBlockEntity) {
+                    return Shapes.block();
+                }
 
-                boolean flag = entity instanceof FallingBlockEntity;
-                if (flag || entity.isShiftKeyDown() && context.isAbove(Shapes.block(), pos, false) && !context.isDescending()) {
-//                if (flag && context.isAbove(Shapes.block(), pos, false) && !context.isDescending()) {
-
-                    return super.getCollisionShape(state, getter, pos, context);
+                if (entity.isShiftKeyDown() && context.isAbove(Shapes.block(), pos, false) && !(entity.getFeetBlockState().getBlock() instanceof AbstractImmersionBlock)) {
+                    return Shapes.block();
                 }
             }
         }
-
         return Shapes.empty();
+//        return Shapes.block();
     }
 
 }

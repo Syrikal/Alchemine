@@ -56,18 +56,17 @@ public class AlchemicalCauldronBlock extends Block implements EntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
 //        return EntityBlock.super.getTicker(level, state, type);
-        return level.isClientSide ? null : (level0, pos, state2, blockEntity) -> ((AlchemicalAlembicBlockEntity) blockEntity).tick();
+        return level.isClientSide ? null : (level0, pos, state2, blockEntity) -> ((AlchemicalCauldronBlockEntity) blockEntity).tick();
     }
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        BlockEntity blockentity = level.getBlockEntity(pos);
-        boolean success = false;
-        if (blockentity instanceof AlchemicalCauldronBlockEntity alchemicalCauldronBlockEntity) {
-            if (!level.isClientSide && !player.isShiftKeyDown()) {
-                success = true;
-                chatPrint("block detected use", player);
-                alchemicalCauldronBlockEntity.speak(player);
+        final var blockentity = (AlchemicalCauldronBlockEntity) level.getBlockEntity(pos);
+        final var success = blockentity != null;
+        if (!level.isClientSide && !player.isShiftKeyDown()) {
+            chatPrint("block detected use", player);
+            if (success) {
+                blockentity.speak(player);
                 BlockState blockstate;
                 if (state.getValue(LEVEL) == 3) {
                     blockstate = state.setValue(LEVEL, 0);
@@ -82,25 +81,6 @@ public class AlchemicalCauldronBlock extends Block implements EntityBlock {
         return success ? InteractionResult.SUCCESS : InteractionResult.FAIL;
 
     }
-
-
-//
-//    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-//        BlockEntity blockentity = level.getBlockEntity(pos);
-//        if (blockentity instanceof AlchemicalCauldronBlockEntity alchemicalCauldronBlockEntity) {
-//            alchemicalCauldronBlockEntity.speak(player);
-//        }
-//
-//        if (state.getValue(LEVEL) == 3) {
-//            state.setValue(LEVEL, 0);
-//        } else {
-//            state.setValue(LEVEL, state.getValue(LEVEL)+1);
-////            BlockState blockstate = state.setValue(LEVEL, state.getValue(LEVEL) + 1);
-////            level.setBlockAndUpdate(pos, blockstate);
-//        }
-//
-//        return InteractionResult.PASS;
-//    }
 
 
 

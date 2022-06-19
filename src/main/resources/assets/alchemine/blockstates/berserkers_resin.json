@@ -1,15 +1,27 @@
 {
     "variants": {
-        "charged=true,primed=false": {
+        "charged=true,waiting=true,sealed=true": {
+            "model": "alchemine:block/berserkers_resin_sealed"
+        },
+        "charged=false,waiting=true,sealed=true": {
+            "model": "alchemine:block/berserkers_resin_sealed"
+        },
+        "charged=true,waiting=false,sealed=true": {
+            "model": "alchemine:block/berserkers_resin_sealed"
+        },
+        "charged=false,waiting=false,sealed=true": {
+            "model": "alchemine:block/berserkers_resin_sealed"
+        },
+        "charged=true,waiting=true,sealed=false": {
             "model": "alchemine:block/berserkers_resin"
         },
-        "charged=false,primed=false": {
+        "charged=false,waiting=true,sealed=false": {
             "model": "alchemine:block/berserkers_resin"
         },
-        "charged=true,primed=true": {
+        "charged=true,waiting=false,sealed=false": {
             "model": "alchemine:block/berserkers_resin"
         },
-        "charged=false,primed=true": {
+        "charged=false,waiting=false,sealed=false": {
             "model": "alchemine:block/berserkers_resin"
         }
     }
