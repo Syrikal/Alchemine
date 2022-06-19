@@ -1,14 +1,9 @@
 package syric.alchemine.client;
 
-import net.minecraft.client.Camera;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FogType;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.gui.IIngameOverlay;
 import net.minecraftforge.client.gui.OverlayRegistry;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 import syric.alchemine.setup.alchemineBlocks;
 import syric.alchemine.setup.alchemineOverlays;
 

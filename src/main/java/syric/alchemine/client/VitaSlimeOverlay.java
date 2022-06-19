@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.minecraftforge.client.gui.IIngameOverlay;
-import net.minecraftforge.client.gui.OverlayRegistry;
 
 public class VitaSlimeOverlay implements IIngameOverlay {
     protected static final ResourceLocation VITA_SLIME_LOCATION = new ResourceLocation("alchemine:textures/misc/vita_slime_outline.png");
