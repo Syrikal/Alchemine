@@ -3,14 +3,14 @@ package syric.alchemine.brewing.cauldron;
 import java.util.*;
 
 public class AspectSet {
-    private final Map<Aspect,int> aspectMap = new HashMap<Aspect, int>();
+    private final Map<Aspect,Integer> aspectMap = new HashMap<Aspect, Integer>();
 
     //Constructor
     public AspectSet() {}
 
 
     //Getters
-    public Map<Aspect, int> getMap() {
+    public Map<Aspect, Integer> getMap() {
         return this.aspectMap;
     }
 
@@ -20,7 +20,7 @@ public class AspectSet {
 
     public int totalPoints() {
         int acc = 0;
-        for (Map.Entry<Aspect, int> entry : aspectMap.entrySet()) {
+        for (Map.Entry<Aspect, Integer> entry : aspectMap.entrySet()) {
             acc += entry.getValue();
         }
         return acc;
@@ -29,12 +29,12 @@ public class AspectSet {
     public List<Aspect> getMaxAspects() {
         int max = 0;
         List<Aspect> output = new ArrayList<>();
-        for (Map.Entry<Aspect, int> entry : aspectMap.entrySet()) {
+        for (Map.Entry<Aspect, Integer> entry : aspectMap.entrySet()) {
             if (entry.getValue() > max) {
                 max = entry.getValue();
             }
         }
-        for (Map.Entry<Aspect, int> entry : aspectMap.entrySet()) {
+        for (Map.Entry<Aspect, Integer> entry : aspectMap.entrySet()) {
             if (entry.getValue() == max) {
                 output.add(entry.getKey());
             }
@@ -55,7 +55,7 @@ public class AspectSet {
         Random rand = new Random();
         int index = rand.nextInt(total);
 
-        for (Map.Entry<Aspect, int> entry : aspectMap.entrySet()) {
+        for (Map.Entry<Aspect, Integer> entry : aspectMap.entrySet()) {
             if (index <= entry.getValue() - 1) {
                 return entry.getKey();
             } else {
@@ -70,8 +70,8 @@ public class AspectSet {
     //Counts reactions to a new AspectSet being added. Doesn't add the set.
     public int countReactions(AspectSet input) {
         int count = 0;
-        for (Map.Entry<Aspect, int> inputEntry : input.getMap().entrySet()) {
-            for (Map.Entry<Aspect, int> existingEntry : aspectMap.entrySet()) {
+        for (Map.Entry<Aspect, Integer> inputEntry : input.getMap().entrySet()) {
+            for (Map.Entry<Aspect, Integer> existingEntry : aspectMap.entrySet()) {
                 if (existingEntry.getKey().reacts(inputEntry.getKey())) {
                     count += existingEntry.getValue() * inputEntry.getValue();
                 }
@@ -83,8 +83,8 @@ public class AspectSet {
     //Counts stabilizations with a new AspectSet being added. Doesn't add the set.
     public int countStabilizations(AspectSet input) {
         int count = 0;
-        for (Map.Entry<Aspect, int> inputEntry : input.getMap().entrySet()) {
-            for (Map.Entry<Aspect, int> existingEntry : aspectMap.entrySet()) {
+        for (Map.Entry<Aspect, Integer> inputEntry : input.getMap().entrySet()) {
+            for (Map.Entry<Aspect, Integer> existingEntry : aspectMap.entrySet()) {
                 if (existingEntry.getKey().stabilizes(inputEntry.getKey())) {
                     count += existingEntry.getValue() * inputEntry.getValue();
                 }
@@ -95,7 +95,7 @@ public class AspectSet {
 
     public int thermophilicPoints() {
         int count = 0;
-        for (Map.Entry<Aspect, int> entry : aspectMap.entrySet()) {
+        for (Map.Entry<Aspect, Integer> entry : aspectMap.entrySet()) {
             if (entry.getKey().isThermophilic()) {
                 count += entry.getValue();
             }
@@ -105,7 +105,7 @@ public class AspectSet {
 
     public int cryophilicPoints() {
         int count = 0;
-        for (Map.Entry<Aspect, int> entry : aspectMap.entrySet()) {
+        for (Map.Entry<Aspect, Integer> entry : aspectMap.entrySet()) {
             if (entry.getKey().isCryophilic()) {
                 count += entry.getValue();
             }
@@ -124,7 +124,7 @@ public class AspectSet {
     }
 
     public void add(AspectSet inputSet) {
-        for (Map.Entry<Aspect, int> entry : inputSet.aspectMap.entrySet()) {
+        for (Map.Entry<Aspect, Integer> entry : inputSet.aspectMap.entrySet()) {
             add(entry.getKey(), entry.getValue());
         }
     }
@@ -144,7 +144,7 @@ public class AspectSet {
 
     //Builder class
     public static class ASBuilder {
-        private final Map<Aspect, int> buildSet = new HashMap<Aspect, int>();
+        private final Map<Aspect, Integer> buildSet = new HashMap<Aspect, Integer>();
 
         public ASBuilder() {}
 
@@ -163,7 +163,7 @@ public class AspectSet {
 
         public AspectSet build() {
             AspectSet output = new AspectSet();
-            for (Map.Entry<Aspect, int> entry : buildSet.entrySet()) {
+            for (Map.Entry<Aspect, Integer> entry : buildSet.entrySet()) {
                 output.add(entry.getKey(), entry.getValue());
             }
             return output;
