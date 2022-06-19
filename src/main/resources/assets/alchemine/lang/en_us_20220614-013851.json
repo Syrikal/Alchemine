@@ -1,0 +1,19 @@
+{
+    "itemGroup.alchemy": "Alchemy",
+    "itemGroup.alchemycreations": "Alchemical Creations",
+
+    "block.alchemine.alchemical_cauldron": "Alchemical Cauldron",
+    "item.alchemine.alchemical_flask": "Alchemical Flask",
+    "item.alchemine.alchemical_flask_full": "Full Alchemical Flask",
+
+
+    "block.alchemine.crash_pad": "Crash Pad",
+    "block.alchemine.cushioning_slime": "Cushioning Slime",
+    "block.alchemine.launch_pad": "Launch Pad",
+    "block.alchemine.bounce_slime": "Bounce Slime",
+
+    "block.alchemine.morb_block": "Morbium",
+
+    "item.alchemine.salt": "Salt",
+    "item.alchemine.ground_nether_star": "Ground Nether Star"
+}

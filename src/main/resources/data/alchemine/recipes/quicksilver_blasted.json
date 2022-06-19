@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "group": "alchemy",
+  "ingredient": {
+    "item": "alchemine:cinnabar"
+  },
+  "result": "alchemine:quicksilver",
+  "experience": 2
+}

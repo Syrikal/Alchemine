@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "group": "alchemy",
+  "ingredient": {
+    "item": "minecraft:soul_sand"
+  },
+  "result": "alchemine:soul_ash",
+  "experience": 0.1
+}

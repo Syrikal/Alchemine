@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "group": "alchemy",
+  "ingredient": {
+    "item": "minecraft:charcoal"
+  },
+  "result": "alchemine:ash",
+  "experience": 0.1
+}

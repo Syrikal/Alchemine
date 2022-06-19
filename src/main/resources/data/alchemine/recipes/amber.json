@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "group": "alchemy",
+  "ingredient": {
+    "item": "alchemine:gum_arabic"
+  },
+  "result": "alchemine:amber",
+  "experience": 2
+}

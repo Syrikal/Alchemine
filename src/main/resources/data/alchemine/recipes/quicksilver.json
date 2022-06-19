@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "group": "alchemy",
+  "ingredient": {
+    "item": "alchemine:cinnabar"
+  },
+  "result": "alchemine:quicksilver",
+  "experience": 2
+}

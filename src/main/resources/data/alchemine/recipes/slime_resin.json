@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "group": "alchemy",
+  "ingredient": {
+    "item": "minecraft:slime_ball"
+  },
+  "result": "alchemine:slime_resin",
+  "experience": 0.1
+}

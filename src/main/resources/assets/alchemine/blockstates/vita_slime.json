@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "charged=true": {
+            "model": "alchemine:block/vita_slime"
+        },
+        "charged=false": {
+            "model": "alchemine:block/vita_slime"
+        }
+    }
+}

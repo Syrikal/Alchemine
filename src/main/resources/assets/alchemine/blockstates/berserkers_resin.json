@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "charged=true,primed=false": {
+            "model": "alchemine:block/berserkers_resin"
+        },
+        "charged=false,primed=false": {
+            "model": "alchemine:block/berserkers_resin"
+        },
+        "charged=true,primed=true": {
+            "model": "alchemine:block/berserkers_resin"
+        },
+        "charged=false,primed=true": {
+            "model": "alchemine:block/berserkers_resin"
+        }
+    }
+}

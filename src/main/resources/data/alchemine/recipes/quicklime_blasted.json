@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "group": "alchemy",
+  "ingredient": {
+    "item": "alchemine:chalk"
+  },
+  "result": "alchemine:quicklime",
+  "experience": 1
+}
