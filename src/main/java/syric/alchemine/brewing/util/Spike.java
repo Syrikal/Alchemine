@@ -1,5 +1,7 @@
 package syric.alchemine.brewing.util;
 
+import org.apache.commons.lang3.tuple.MutablePair;
+
 public class Spike {
     private int ticks;
     private double peak;
@@ -7,20 +9,23 @@ public class Spike {
 
     public Spike(int ticks, double peak, double rate) {}
 
-    public double tick() {
+    //First of the pair is added to the energy, second is added to the lingering.
+    public MutablePair<Double, Double> tick() {
         double v = (1-rate) * peak / 8;
-        double output = 0;
+        double energyOutput = 0;
+        double lingerOutput = 0;
         if (ticks <= 0) {
-            output = 0;
+            energyOutput = 0;
         } else if (ticks <= 100-20*rate) {
-            output = -(peak/160)*ticks + peak/2;
+            energyOutput = -(peak/160)*ticks + peak/2;
+            lingerOutput = (rate * peak) / (100-20 * rate);
         } else if (ticks <= 400) {
-            output = (v/(300+20*rate))*ticks - (5*v*rate)/(4*peak-2*v);
+            energyOutput = (v/(300+20*rate))*ticks - (5*v*rate)/(4*peak-2*v);
         } else {
-            output = 0;
+            energyOutput = 0;
         }
         ticks++;
-        return output;
+        return new MutablePair<Double, Double>(energyOutput, lingerOutput);
     }
 
     public boolean isDone() {

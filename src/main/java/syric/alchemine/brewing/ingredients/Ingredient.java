@@ -12,6 +12,7 @@ public class Ingredient {
     private int volatility = 0;
     private int stability = 0;
     private int crash = 0;
+    private boolean contradictory = false;
     private boolean metapotion = false;
     private double lingerMultiplier = 1.0D;
 
@@ -37,6 +38,10 @@ public class Ingredient {
         this.crash = crashes;
         return this;
     }
+    public Ingredient setContradictory() {
+        this.contradictory = true;
+        return this;
+    }
     public Ingredient setMetapotion() {
         this.metapotion = true;
         return this;
@@ -47,20 +52,23 @@ public class Ingredient {
     }
 
     //Getters
-    public AspectSet aspects() {
+    public AspectSet getAspects() {
         return aspects;
     }
-    public List<Aspect> maxAspects() { return aspects.getMaxAspects(); }
-    public double energy() {
+    public List<Aspect> getMaxAspects() { return aspects.getMaxAspects(); }
+    public double getEnergynergy() {
         return energy;
     }
-    public double linger() {
+    public double getLinger() {
         return linger;
     }
-    public int volatility() { return volatility; }
-    public int stability() { return stability; }
-    public int crash() { return crash; }
-    public boolean metapotion() { return metapotion; }
-    public double lingerMultiplier() { return lingerMultiplier; }
+    public int getVolatility() { return volatility; }
+    public int getStability() { return stability; }
+    public int getCrash() { return crash; }
+    public boolean isContradictory() {
+        return contradictory;
+    }
+    public boolean getMetapotion() { return metapotion; }
+    public double getLingerMultiplier() { return lingerMultiplier; }
 
 }

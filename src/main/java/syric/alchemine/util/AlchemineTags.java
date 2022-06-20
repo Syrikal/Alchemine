@@ -27,6 +27,12 @@ public class AlchemineTags {
     public static class Items {
         public static final TagKey<Item> CAULDRON_EXTRACTORS = tag("cauldron_extractors");
 
+        public static final TagKey<Item> CAULDRON_STIRRERS = tag("cauldron_stirrers");
+
+        public static final TagKey<Item> CATALYSTS = tag("catalysts");
+
+        public static final TagKey<Item> INGREDIENTS = tag("ingredients");
+
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(Alchemine.MODID, name));
         }

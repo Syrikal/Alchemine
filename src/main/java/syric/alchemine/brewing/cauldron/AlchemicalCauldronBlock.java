@@ -52,25 +52,14 @@ public class AlchemicalCauldronBlock extends Block implements EntityBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        final var blockentity = (AlchemicalCauldronBlockEntity) level.getBlockEntity(pos);
-        final var success = blockentity != null;
+        final AlchemicalCauldronBlockEntity blockentity = (AlchemicalCauldronBlockEntity) level.getBlockEntity(pos);
+        if (blockentity == null) { return InteractionResult.FAIL; }
+        InteractionResult outputResult = InteractionResult.PASS;
         if (!level.isClientSide && !player.isShiftKeyDown()) {
             chatPrint("block detected use", player);
-            if (success) {
-                blockentity.speak(player);
-                BlockState blockstate;
-                if (state.getValue(LEVEL) == 3) {
-                    blockstate = state.setValue(LEVEL, 0);
-                    level.setBlockAndUpdate(pos, blockstate);
-                } else {
-                    blockstate = state.setValue(LEVEL, state.getValue(LEVEL) + 1);
-                    level.setBlockAndUpdate(pos, blockstate);
-                }
-            }
+            outputResult = blockentity.use(state, level, pos, player, hand, result);
         }
-
-        return success ? InteractionResult.SUCCESS : InteractionResult.FAIL;
-
+        return outputResult;
     }
 
 

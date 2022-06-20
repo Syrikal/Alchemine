@@ -13,8 +13,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.NewRegistryEvent;
 import org.slf4j.Logger;
 import syric.alchemine.client.FogEffects;
+import syric.alchemine.setup.AlchemineRegistries;
 import syric.alchemine.setup.BlockRendering;
 import syric.alchemine.setup.AlchemineOverlays;
 import syric.alchemine.setup.registry;
@@ -29,8 +31,7 @@ public class Alchemine
     private static final Logger LOGGER = LogUtils.getLogger();
 
 
-    public Alchemine()
-    {
+    public Alchemine() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
@@ -40,10 +41,7 @@ public class Alchemine
         forgeEventBus.addListener(this::handleFogColor);
 
         registry.register();
-        // Register the Deferred Register to the mod event bus so blocks get registered
-//        BLOCKS.register(modEventBus);
-        // Register the Deferred Register to the mod event bus so items get registered
-//        ITEMS.register(modEventBus);
+
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -85,13 +83,6 @@ public class Alchemine
 
             BlockRendering.registerBlockRenderTypes();
             AlchemineOverlays.register();
-
-//            OverlayRegistry.registerOverlayAbove(ForgeIngameGui.FROSTBITE_ELEMENT,"vita_slime_overlay", new VitaSlimeOverlay());
-
-//            OverlayRegistry.registerOverlayTop("vita_slime_overlay", (gui, poseStack, partialTick, screenWidth, screenHeight) -> {
-//                gui.setupOverlayRenderState(true, false);
-//                VitaSlimeOverlay.render(gui, poseStack, partialTick, screenWidth, screenHeight);
-//            });
 
 
         }
