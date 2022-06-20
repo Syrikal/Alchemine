@@ -27,7 +27,7 @@ public class AlchemineBlocks {
     //Fancy
     public static final RegistryObject<Block> ALCHEMICAL_CAULDRON = register("alchemical_cauldron",
             () -> new AlchemicalCauldronBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.STONE)
-                    .requiresCorrectToolForDrops().strength(2.0F).noOcclusion()),
+                    .requiresCorrectToolForDrops().strength(2.0F)),
             AlchemineCreativeTabs.ALCHEMY);
 
     public static final RegistryObject<Block> ALCHEMICAL_GRINDER = register("alchemical_grinder",
@@ -72,7 +72,7 @@ public class AlchemineBlocks {
 
     public static final RegistryObject<Block> VITA_SLIME = register("vita_slime",
             () -> new VitaSlimeBlock(BlockBehaviour.Properties.of(Material.POWDER_SNOW, MaterialColor.GRASS)
-                    .friction(.8F).sound(SoundType.SLIME_BLOCK).noOcclusion().dynamicShape()),
+                    .friction(.8F).sound(SoundType.SLIME_BLOCK).noOcclusion().dynamicShape().strength(0.5F)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> BERSERKERS_RESIN = register("berserkers_resin",

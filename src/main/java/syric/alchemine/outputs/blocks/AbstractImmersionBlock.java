@@ -58,4 +58,14 @@ public class AbstractImmersionBlock extends Block {
 //        return Shapes.block();
     }
 
+//    @Override
+//    public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
+//        if (context instanceof EntityCollisionContext entityCollisionContext) {
+//            if (entityCollisionContext.getEntity().getFeetBlockState().getBlock() instanceof AbstractImmersionBlock) {
+//                return Shapes.empty();
+//            }
+//        }
+//        return super.getShape(state, getter, pos, context);
+//    }
+
 }

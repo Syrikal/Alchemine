@@ -113,6 +113,17 @@ public class AspectSet {
         return count;
     }
 
+    public boolean checkContradictions() {
+        for (Aspect i : aspectMap.keySet()) {
+            for (Aspect j : aspectMap.keySet()) {
+                if (i.reacts(j)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 
     //Setters
     public void add(Aspect aspect, int val) {

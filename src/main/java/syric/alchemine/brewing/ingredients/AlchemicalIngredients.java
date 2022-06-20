@@ -1,5 +1,6 @@
 package syric.alchemine.brewing.ingredients;
 
+import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -20,7 +21,7 @@ public class AlchemicalIngredients {
 
     private static boolean isInitialized = false;
 
-    public static final DeferredRegister<Ingredient> INGREDIENTS = DeferredRegister.create(new ResourceLocation(Alchemine.MODID, "Ingredients"), Alchemine.MODID);
+    public static final DeferredRegister<Ingredient> INGREDIENTS = DeferredRegister.create(new ResourceLocation(Alchemine.MODID, "ingredients"), Alchemine.MODID);
 
     public static final HashMap<Item, Ingredient> INGREDIENTS_MAP = new HashMap<>();
 
@@ -31,12 +32,12 @@ public class AlchemicalIngredients {
         INGREDIENTS.makeRegistry(RegistryBuilder::new);
         INGREDIENTS.register(modEventBus);
         isInitialized = true;
-        LogManager.getLogManager().getLogger(Alchemine.MODID).info("Registered ingredients");
+        LogUtils.getLogger().info("Ingredients initialized");
     }
 
-    private static <T extends Ingredient> RegistryObject<T> register(String name, Supplier<T> ingredient, Item item) {
+    private static <T extends Ingredient> RegistryObject<T> register(String name, Supplier<T> ingredient) {
         RegistryObject<T> ret = INGREDIENTS.register(name, ingredient);
-        INGREDIENTS_MAP.put(item, ingredient.get());
+        INGREDIENTS_MAP.put(ingredient.get().getItem(), ingredient.get());
         return ret;
     }
 }

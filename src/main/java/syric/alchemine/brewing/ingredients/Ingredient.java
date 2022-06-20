@@ -1,11 +1,13 @@
 package syric.alchemine.brewing.ingredients;
 
+import net.minecraft.world.item.Item;
 import syric.alchemine.brewing.util.Aspect;
 import syric.alchemine.brewing.util.AspectSet;
 
 import java.util.List;
 
 public class Ingredient {
+    private Item item;
     private AspectSet aspects;
     private final double energy;
     private final double linger;
@@ -17,13 +19,15 @@ public class Ingredient {
     private double lingerMultiplier = 1.0D;
 
     //Constructor and builders
-    public Ingredient(double energy, double linger) {
+    public Ingredient(Item item, double energy, double linger) {
+        this.item = item;
         this.energy = energy;
         this.linger = linger;
     }
 
     public Ingredient addAspect(Aspect aspect, int value) {
         aspects.add(aspect, value);
+        this.contradictory = aspects.checkContradictions();
         return this;
     }
     public Ingredient setVolatile(int volatility) {
@@ -52,6 +56,7 @@ public class Ingredient {
     }
 
     //Getters
+    public Item getItem() { return item; }
     public AspectSet getAspects() {
         return aspects;
     }

@@ -3,6 +3,7 @@ package syric.alchemine.setup;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import syric.alchemine.brewing.ingredients.AlchemicalIngredients;
+import syric.alchemine.brewing.util.AlchemicalRecipes;
 
 public class registry {
 
@@ -14,6 +15,7 @@ public class registry {
         AlchemineItems.register(modEventBus);
         AlchemineBlockEntityTypes.register(modEventBus);
         AlchemicalIngredients.register(modEventBus);
+        AlchemicalRecipes.register(modEventBus);
     }
 
 }

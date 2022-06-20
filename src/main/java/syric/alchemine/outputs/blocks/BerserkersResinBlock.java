@@ -253,6 +253,14 @@ public class BerserkersResinBlock extends AbstractImmersionBlock  {
         else return super.getCollisionShape(state, getter, pos, context);
     }
 
+//    @Override
+//    public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
+//        if (state.getValue(SEALED)) {
+//            return Shapes.block();
+//        }
+//        else return super.getShape(state, getter, pos, context);
+//    }
+
 
 //    private void unCharge(BlockState state, Level level, BlockPos pos, int directness) {
 //        boolean wasCharged = state.getValue(CHARGED);
