@@ -1,4 +1,4 @@
-package syric.alchemine.brewing.cauldron;
+package syric.alchemine.brewing.util;
 
 public class Reaction {
     private int ticks;

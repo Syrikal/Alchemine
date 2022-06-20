@@ -1,7 +1,7 @@
 package syric.alchemine.brewing.ingredients;
 
-import syric.alchemine.brewing.cauldron.Aspect;
-import syric.alchemine.brewing.cauldron.AspectSet;
+import syric.alchemine.brewing.util.Aspect;
+import syric.alchemine.brewing.util.AspectSet;
 
 import java.util.List;
 

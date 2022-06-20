@@ -6,7 +6,7 @@ import net.minecraft.world.Clearable;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import syric.alchemine.setup.alchemineBlockEntityTypes;
+import syric.alchemine.setup.AlchemineBlockEntityTypes;
 
 import static syric.alchemine.util.ChatPrint.chatPrint;
 
@@ -14,7 +14,7 @@ public class AlchemicalCauldronBlockEntity extends BlockEntity implements Cleara
 
 
     public AlchemicalCauldronBlockEntity(BlockPos pos, BlockState state) {
-        super(alchemineBlockEntityTypes.ALCHEMICAL_CAULDRON.get(), pos, state);
+        super(AlchemineBlockEntityTypes.ALCHEMICAL_CAULDRON.get(), pos, state);
     }
 
     @Override

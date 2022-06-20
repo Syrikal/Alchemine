@@ -5,7 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import syric.alchemine.setup.alchemineBlockEntityTypes;
+import syric.alchemine.setup.AlchemineBlockEntityTypes;
 
 import static syric.alchemine.util.ChatPrint.chatPrint;
 
@@ -13,7 +13,7 @@ public class AlchemicalAlembicBlockEntity  extends BlockEntity {
 
 
     public AlchemicalAlembicBlockEntity(BlockPos pos, BlockState state) {
-        super(alchemineBlockEntityTypes.ALEMBIC.get(), pos, state);
+        super(AlchemineBlockEntityTypes.ALEMBIC.get(), pos, state);
     }
 
     @Override

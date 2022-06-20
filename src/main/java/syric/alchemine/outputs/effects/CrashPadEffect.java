@@ -6,7 +6,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.PushReaction;
-import syric.alchemine.setup.alchemineBlocks;
+import syric.alchemine.setup.AlchemineBlocks;
 
 public class CrashPadEffect implements AlchemicalEffect {
 
@@ -20,7 +20,7 @@ public class CrashPadEffect implements AlchemicalEffect {
         BlockPos.betweenClosedStream(pos1, pos2)
                 .filter(c -> distance(pos, c) < 6)
                 .filter(c -> replaceable(level.getBlockState(c)))
-                .forEach(c -> level.setBlockAndUpdate(c, alchemineBlocks.CRASH_PAD.get().defaultBlockState()));
+                .forEach(c -> level.setBlockAndUpdate(c, AlchemineBlocks.CRASH_PAD.get().defaultBlockState()));
     }
     private static double distance(BlockPos pos, BlockPos other) {
         double xdist = Math.pow(pos.getX() - other.getX(), 2);

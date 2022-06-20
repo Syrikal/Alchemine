@@ -7,7 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import syric.alchemine.outputs.effects.AlchemicalEffect;
 import syric.alchemine.outputs.effects.registerEffects;
-import syric.alchemine.setup.alchemineItems;
+import syric.alchemine.setup.AlchemineItems;
 
 public class FullFlaskItem extends Item {
 
@@ -21,7 +21,7 @@ public FullFlaskItem(Properties properties) {super(properties);}
         Player player = context.getPlayer();
         if (player != null && !player.isCreative()) {
             context.getItemInHand().setCount(0);
-            player.getInventory().add(new ItemStack(alchemineItems.ALCHEMICAL_FLASK.get(), 1));
+            player.getInventory().add(new ItemStack(AlchemineItems.ALCHEMICAL_FLASK.get(), 1));
         }
 
         return InteractionResult.sidedSuccess(context.getLevel().isClientSide());

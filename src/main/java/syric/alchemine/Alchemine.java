@@ -16,7 +16,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 import syric.alchemine.client.FogEffects;
 import syric.alchemine.setup.BlockRendering;
-import syric.alchemine.setup.alchemineOverlays;
+import syric.alchemine.setup.AlchemineOverlays;
 import syric.alchemine.setup.registry;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -84,7 +84,7 @@ public class Alchemine
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
 
             BlockRendering.registerBlockRenderTypes();
-            alchemineOverlays.register();
+            AlchemineOverlays.register();
 
 //            OverlayRegistry.registerOverlayAbove(ForgeIngameGui.FROSTBITE_ELEMENT,"vita_slime_overlay", new VitaSlimeOverlay());
 

@@ -10,9 +10,9 @@ public class registry {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
 
-        alchemineBlocks.register(modEventBus);
-        alchemineItems.register(modEventBus);
-        alchemineBlockEntityTypes.register(modEventBus);
+        AlchemineBlocks.register(modEventBus);
+        AlchemineItems.register(modEventBus);
+        AlchemineBlockEntityTypes.register(modEventBus);
     }
 
 }

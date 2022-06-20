@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import syric.alchemine.setup.alchemineBlocks;
+import syric.alchemine.setup.AlchemineBlocks;
 
 public class CushioningSlimeBlock extends HalfTransparentBlock {
 
@@ -33,7 +33,7 @@ public class CushioningSlimeBlock extends HalfTransparentBlock {
             BlockPos pos2 = new BlockPos(pos.getX()+4, pos.getY(), pos.getZ()+4);
             BlockPos.betweenClosedStream(pos1, pos2)
                     .filter(c -> distance(pos, c) < 21)
-                    .filter(c -> level.getBlockState(c).getBlock().equals(alchemineBlocks.CRASH_PAD.get()))
+                    .filter(c -> level.getBlockState(c).getBlock().equals(AlchemineBlocks.CRASH_PAD.get()))
                     .forEach(c -> level.destroyBlock(c, false));
         }
     }

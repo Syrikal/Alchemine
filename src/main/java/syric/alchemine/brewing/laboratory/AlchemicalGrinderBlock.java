@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
-import syric.alchemine.setup.alchemineBlockEntityTypes;
+import syric.alchemine.setup.AlchemineBlockEntityTypes;
 
 import static syric.alchemine.util.ChatPrint.chatPrint;
 
@@ -28,7 +28,7 @@ public class AlchemicalGrinderBlock extends Block implements EntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return alchemineBlockEntityTypes.GRINDER.get().create(pos, state);
+        return AlchemineBlockEntityTypes.GRINDER.get().create(pos, state);
     }
 
     @Nullable

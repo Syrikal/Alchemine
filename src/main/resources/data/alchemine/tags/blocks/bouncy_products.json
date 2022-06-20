@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "alchemine:berserkers_resin",
+    "alchemine:vita_slime",
+    "alchemine:red_slime",
+    "alchemine:launch_pad",
+    "alchemine:bounce_slime",
+    "alchemine:crash_pad",
+    "alchemine:cushioning_slime"
+  ]
+}

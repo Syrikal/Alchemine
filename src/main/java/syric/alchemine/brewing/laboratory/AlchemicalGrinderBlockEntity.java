@@ -5,7 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import syric.alchemine.setup.alchemineBlockEntityTypes;
+import syric.alchemine.setup.AlchemineBlockEntityTypes;
 
 import static syric.alchemine.util.ChatPrint.chatPrint;
 
@@ -13,7 +13,7 @@ public class AlchemicalGrinderBlockEntity extends BlockEntity {
 
 
     public AlchemicalGrinderBlockEntity(BlockPos pos, BlockState state) {
-        super(alchemineBlockEntityTypes.GRINDER.get(), pos, state);
+        super(AlchemineBlockEntityTypes.GRINDER.get(), pos, state);
     }
 
     @Override

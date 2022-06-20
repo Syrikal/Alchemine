@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.Vec3;
-import syric.alchemine.setup.alchemineBlocks;
+import syric.alchemine.setup.AlchemineBlocks;
 
 public class VitaSlimeBlock extends AbstractImmersionBlock {
 
@@ -203,7 +203,7 @@ public class VitaSlimeBlock extends AbstractImmersionBlock {
         BlockPos pos1 = new BlockPos(pos.getX()-1, pos.getY()-1,pos.getZ()-1);
         BlockPos pos2 = new BlockPos(pos.getX()+1, pos.getY()+1, pos.getZ()+1);
         BlockPos.betweenClosedStream(pos1, pos2)
-                .filter(c -> level.getBlockState(c).getBlock().equals(alchemineBlocks.VITA_SLIME.get()))
+                .filter(c -> level.getBlockState(c).getBlock().equals(AlchemineBlocks.VITA_SLIME.get()))
                 .forEach(c -> unCharge(level.getBlockState(c), level, c, directness));
     }
 
