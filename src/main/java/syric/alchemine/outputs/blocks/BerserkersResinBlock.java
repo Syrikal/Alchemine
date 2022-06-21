@@ -148,7 +148,7 @@ public class BerserkersResinBlock extends AbstractImmersionBlock  {
     private void seal(Level level, BlockState state, BlockPos pos, LivingEntity entity) {
         giveSealedEffects(entity);
         Vec3i blockposition = new Vec3i(pos.getX(), pos.getY(), pos.getZ());
-        Vec3 position = Vec3.upFromBottomCenterOf(blockposition, -0.8);
+        Vec3 position = Vec3.upFromBottomCenterOf(blockposition, -1);
         entity.moveTo(position);
         level.setBlockAndUpdate(pos, state.setValue(SEALED, true).setValue(WAITING, false).setValue(CHARGED, false));
         level.setBlockAndUpdate(pos.below(), state.setValue(SEALED, true).setValue(WAITING, false).setValue(CHARGED, false));

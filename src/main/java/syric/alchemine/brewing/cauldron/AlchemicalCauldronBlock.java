@@ -21,8 +21,10 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
+import syric.alchemine.brewing.laboratory.AlchemicalAlembicBlockEntity;
+import syric.alchemine.setup.AlchemineBlockEntityTypes;
+import net.minecraft.world.level.block.CauldronBlock;
 
 import static syric.alchemine.util.ChatPrint.chatPrint;
 
@@ -37,13 +39,13 @@ public class AlchemicalCauldronBlock extends Block implements EntityBlock {
         this.registerDefaultState(this.defaultBlockState().setValue(LEVEL, 2));
     }
 
-    @Nullable
+    @org.jetbrains.annotations.Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new AlchemicalCauldronBlockEntity(pos, state);
+        return AlchemineBlockEntityTypes.ALCHEMICAL_CAULDRON.get().create(pos, state);
     }
 
-    @org.jetbrains.annotations.Nullable
+    @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
 //        return EntityBlock.super.getTicker(level, state, type);
@@ -52,15 +54,18 @@ public class AlchemicalCauldronBlock extends Block implements EntityBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        final AlchemicalCauldronBlockEntity blockentity = (AlchemicalCauldronBlockEntity) level.getBlockEntity(pos);
-        if (blockentity == null) { return InteractionResult.FAIL; } else {chatPrint("Block Entity exists", player);}
-        InteractionResult outputResult = InteractionResult.PASS;
-        if (!level.isClientSide) {
-            chatPrint("block detected use", player);
-            outputResult = blockentity.use(state, level, pos, player, hand, result);
+        final var blockentity = (AlchemicalCauldronBlockEntity) level.getBlockEntity(pos);
+        final var success = blockentity != null;
+        if (!level.isClientSide && !player.isShiftKeyDown()) {
+//            chatPrint("block detected use", player);
+            if (success) {
+//                blockentity.speak(player);
+                blockentity.announceIngredient(player.getItemInHand(hand).getItem(), player);
+            }
         }
-        chatPrint("Returning interactionResult " + outputResult.name() + ", clientside: " + level.isClientSide, player);
-        return outputResult;
+
+        return success ? InteractionResult.SUCCESS : InteractionResult.FAIL;
+
     }
 
 

@@ -74,6 +74,8 @@ public class AlchemineItems {
     public static final RegistryObject<Item> AMBER = ITEMS.register("amber",
             () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMY)));
 
+    public static final RegistryObject<Item> AZALEA_PETALS = ITEMS.register("azalea_petals",
+            () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMY)));
     public static final RegistryObject<Item> LUMINOUS_SPORES = ITEMS.register("luminous_spores",
             () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMY)));
     public static final RegistryObject<Item> FROGLIGHT_GEL = ITEMS.register("froglight_gel",

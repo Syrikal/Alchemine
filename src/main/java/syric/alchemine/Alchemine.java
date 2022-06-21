@@ -14,6 +14,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
+import syric.alchemine.brewing.ingredients.AlchemicalIngredients;
 import syric.alchemine.client.FogEffects;
 import syric.alchemine.setup.BlockRendering;
 import syric.alchemine.setup.AlchemineOverlays;
@@ -48,6 +49,9 @@ public class Alchemine
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
+
+        AlchemicalIngredients.fillMap();
+
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
         LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));

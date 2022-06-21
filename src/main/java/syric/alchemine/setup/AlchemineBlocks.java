@@ -102,6 +102,7 @@ public class AlchemineBlocks {
     static void register(IEventBus bus) {
         BLOCKS.register(bus);
     }
+
     private static <T extends Block> RegistryObject<T> registerNoItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
     }

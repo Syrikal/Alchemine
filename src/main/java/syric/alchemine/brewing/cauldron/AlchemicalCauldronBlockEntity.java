@@ -1,5 +1,6 @@
 package syric.alchemine.brewing.cauldron;
 
+import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Clearable;
@@ -89,9 +90,11 @@ public class AlchemicalCauldronBlockEntity extends BlockEntity implements Cleara
     public void announceIngredient(Item item, Entity entity) {
         String output = null;
         if (AlchemicalIngredients.INGREDIENTS_MAP.containsKey(item)) {
+//            chatPrint("announceIngredient detects that this is an ingredient", entity);
             output = AlchemicalIngredients.INGREDIENTS_MAP.get(item).toString();
+            LogUtils.getLogger().info("Ingredient toString from announceIngredient: " + output);
         } else {
-            output = "This item isn't an ingredient";
+            output = "This item isn't an ingredient. This is a(n) " + item.toString() + "\nThere are " + AlchemicalIngredients.INGREDIENTS_MAP.size() + " ingredients registered in the map.";
         }
         String[] outputSplit = output.split("\n");
         for (String i : outputSplit) {
@@ -104,9 +107,9 @@ public class AlchemicalCauldronBlockEntity extends BlockEntity implements Cleara
 
 
 
-    public void speak(Player player) {
-        chatPrint("block entity exists", player);
-    }
+//    public void speak(Player player) {
+//        chatPrint("block entity exists", player);
+//    }
 
     @Override
     public void load(CompoundTag nbt) {

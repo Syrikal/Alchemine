@@ -129,8 +129,8 @@ public class AspectSet {
         for (Map.Entry<Aspect, Integer> entry : aspectMap.entrySet()) {
             sb.append(entry.getKey()).append(": ").append(entry.getValue()).append(", ");
         }
-        sb.deleteCharAt(sb.length());
-        sb.deleteCharAt(sb.length());
+        sb.deleteCharAt(sb.length()-1);
+        sb.deleteCharAt(sb.length()-1);
         return sb.toString();
     }
 

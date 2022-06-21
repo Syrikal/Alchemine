@@ -88,7 +88,9 @@ public class Ingredient {
         StringBuilder builder = new StringBuilder();
         builder.append("This item is an Ingredient.\n");
         builder.append("Item: ").append(item.toString()).append("\n");
-        builder.append("Aspects: ").append(aspects.toString()).append("\n");
+        if (!aspects.getMap().isEmpty()) {
+            builder.append("Aspects: ").append(aspects.toString()).append("\n");
+        }
         builder.append("Energy: ").append(energy).append(", Linger Rate: ").append(linger).append("\n");
         builder.append("Volatility: ").append(volatility).append(", Stability: ").append(stability).append("\n");
         if (crash != 0) {
