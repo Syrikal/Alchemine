@@ -8,6 +8,8 @@ public class BlockRendering {
 
     public static void registerBlockRenderTypes() {
 
+        translucent(AlchemineBlocks.ALCHEMICAL_CAULDRON.get());
+
         translucent(AlchemineBlocks.BOUNCE_SLIME.get());
         translucent(AlchemineBlocks.CUSHIONING_SLIME.get());
         translucent(AlchemineBlocks.CRASH_PAD.get());
@@ -15,7 +17,6 @@ public class BlockRendering {
         translucent(AlchemineBlocks.VITA_SLIME.get());
         translucent(AlchemineBlocks.BERSERKERS_RESIN.get());
         translucent(AlchemineBlocks.RED_SLIME.get());
-        translucent(AlchemineBlocks.ALCHEMICAL_CAULDRON.get());
     }
 
     private static void translucent(Block block) {

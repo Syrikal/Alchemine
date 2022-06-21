@@ -124,6 +124,16 @@ public class AspectSet {
         return false;
     }
 
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<Aspect, Integer> entry : aspectMap.entrySet()) {
+            sb.append(entry.getKey()).append(": ").append(entry.getValue()).append(", ");
+        }
+        sb.deleteCharAt(sb.length());
+        sb.deleteCharAt(sb.length());
+        return sb.toString();
+    }
+
 
     //Setters
     public void add(Aspect aspect, int val) {
