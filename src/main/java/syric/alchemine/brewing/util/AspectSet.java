@@ -7,6 +7,11 @@ public class AspectSet {
 
     //Constructor
     public AspectSet() {}
+    public AspectSet(Aspect as, int value) {
+        this.setAspect(as, value);
+    }
+
+
 
 
     //Getters
@@ -136,61 +141,61 @@ public class AspectSet {
 
 
     //Setters
-    public void add(Aspect aspect, int val) {
+    public AspectSet add(Aspect aspect, int val) {
         if (aspectMap.containsKey(aspect)) {
             setAspect(aspect, aspectMap.get(aspect) + val);
         } else {
             setAspect(aspect, val);
         }
+        return this;
     }
-
-    public void add(AspectSet inputSet) {
+    public AspectSet add(AspectSet inputSet) {
         for (Map.Entry<Aspect, Integer> entry : inputSet.aspectMap.entrySet()) {
             add(entry.getKey(), entry.getValue());
         }
+        return this;
     }
-
-    public void setAspect(Aspect aspect, int val) {
+    public AspectSet setAspect(Aspect aspect, int val) {
         if (val < 0) {
             throw new ArithmeticException("Tried to aspectMap an aspect value to a negative number");
         } else {
             aspectMap.put(aspect, val);
         }
+        return this;
     }
-
     public void clear() {
         aspectMap.clear();
     }
 
 
-    //Builder class
-    public static class ASBuilder {
-        private final Map<Aspect, Integer> buildSet = new HashMap<Aspect, Integer>();
-
-        public ASBuilder() {}
-
-        public ASBuilder(Aspect aspect, int val) {
-            this.buildSet.put(aspect, val);
-        }
-
-        public ASBuilder add(Aspect aspect, int val) {
-            if (buildSet.containsKey(aspect)) {
-                buildSet.put(aspect, buildSet.get(aspect) + val);
-            } else {
-                buildSet.put(aspect, val);
-            }
-            return this;
-        }
-
-        public AspectSet build() {
-            AspectSet output = new AspectSet();
-            for (Map.Entry<Aspect, Integer> entry : buildSet.entrySet()) {
-                output.add(entry.getKey(), entry.getValue());
-            }
-            return output;
-        }
-
-    }
+//    //Builder class
+//    public static class ASBuilder {
+//        private final Map<Aspect, Integer> buildSet = new HashMap<Aspect, Integer>();
+//
+//        public ASBuilder() {}
+//
+//        public ASBuilder(Aspect aspect, int val) {
+//            this.buildSet.put(aspect, val);
+//        }
+//
+//        public ASBuilder add(Aspect aspect, int val) {
+//            if (buildSet.containsKey(aspect)) {
+//                buildSet.put(aspect, buildSet.get(aspect) + val);
+//            } else {
+//                buildSet.put(aspect, val);
+//            }
+//            return this;
+//        }
+//
+//        public AspectSet build() {
+//            AspectSet output = new AspectSet();
+//            for (Map.Entry<Aspect, Integer> entry : buildSet.entrySet()) {
+//                output.add(entry.getKey(), entry.getValue());
+//            }
+//            return output;
+//        }
+//
+//    }
 
 
 }

@@ -56,5 +56,7 @@ public enum Aspect {
     public boolean isCryophilic() {
         return this.equals(BOUNCY) || this.equals(ICE) || this.equals(SOLID) || this.equals(ZEPHYROUS);
     }
+
+    //Methods to return an explosion projectile
     
 }

@@ -2,7 +2,7 @@ package syric.alchemine.brewing.util;
 
 public class AlchemicalBase {
     public BaseTypes type;
-    public Aspect aspect;
+    private Aspect aspect;
 
     public AlchemicalBase(Aspect aspect) {
         this.type = BaseTypes.ASPECT;
@@ -17,6 +17,10 @@ public class AlchemicalBase {
         this.type = BaseTypes.ASPECT;
         this.aspect = aspect;
         return this;
+    }
+
+    public Aspect getAspect() {
+        return aspect;
     }
 
 }

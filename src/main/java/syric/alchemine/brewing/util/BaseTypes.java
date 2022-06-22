@@ -1,5 +1,5 @@
 package syric.alchemine.brewing.util;
 
 public enum BaseTypes {
-    ASPECT, POTION, WATER;
+    ASPECT, POTION, WATER, NONE;
 }

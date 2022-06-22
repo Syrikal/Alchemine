@@ -22,7 +22,7 @@ public class Spike {
         } else if (ticks <= 400) {
             energyOutput = (v/(300+20*rate))*ticks - (5*v*rate)/(4*peak-2*v);
         } else {
-            energyOutput = 0;
+            return null;
         }
         ticks++;
         return new MutablePair<Double, Double>(energyOutput, lingerOutput);
