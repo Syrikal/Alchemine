@@ -91,8 +91,8 @@ public class Accidents {
 
     private static int calculateExplosionMagnitude(AlchemicalCauldronBlockEntity cauldron) {
         double energy = cauldron.energy;
-        int volatility = cauldron.volatility;
-        int stability = cauldron.stability;
+        double volatility = cauldron.volatility;
+        double stability = cauldron.stability;
         int count = 1;
 
         //Energy contribution

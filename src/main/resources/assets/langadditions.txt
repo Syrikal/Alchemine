@@ -1,1 +1,0 @@
-berserkers_resin, "Berserker's Resin", block

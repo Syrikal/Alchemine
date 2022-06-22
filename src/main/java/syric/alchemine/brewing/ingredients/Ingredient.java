@@ -67,7 +67,7 @@ public class Ingredient {
         return aspects;
     }
     public List<Aspect> getMaxAspects() { return aspects.getMaxAspects(); }
-    public double getEnergynergy() {
+    public double getEnergy() {
         return energy;
     }
     public double getLinger() {
@@ -79,7 +79,7 @@ public class Ingredient {
     public boolean isContradictory() {
         return contradictory;
     }
-    public boolean getMetapotion() { return metapotion; }
+    public boolean isMetapotion() { return metapotion; }
     public double getLingerMultiplier() { return lingerMultiplier; }
     public Item getReturnedItem() { return returnedItem; }
 

@@ -130,13 +130,17 @@ public class AspectSet {
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Map.Entry<Aspect, Integer> entry : aspectMap.entrySet()) {
-            sb.append(entry.getKey()).append(": ").append(entry.getValue()).append(", ");
+        if (aspectMap.isEmpty()) {
+            return "empty AspectSet";
+        } else {
+            StringBuilder sb = new StringBuilder();
+            for (Map.Entry<Aspect, Integer> entry : aspectMap.entrySet()) {
+                sb.append(entry.getKey()).append(": ").append(entry.getValue()).append(", ");
+            }
+            sb.deleteCharAt(sb.length()-1);
+            sb.deleteCharAt(sb.length()-1);
+            return sb.toString();
         }
-        sb.deleteCharAt(sb.length()-1);
-        sb.deleteCharAt(sb.length()-1);
-        return sb.toString();
     }
 
 

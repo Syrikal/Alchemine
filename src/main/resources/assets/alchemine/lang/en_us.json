@@ -81,5 +81,9 @@
     "block.alchemine.red_slime": "Redslime",
     "block.alchemine.shell_slime": "Shell Slime",
 
-    "block.alchemine.berserkers_resin": "Berserker's Resin"
+    "block.alchemine.berserkers_resin": "Berserker's Resin",
+
+    "item.alchemine.debug_stick": "Debug Stick",
+    "item.alchemine.empty_stick": "Empty Stick",
+    "item.alchemine.azalea_petals": "Azalea Petals"
 }

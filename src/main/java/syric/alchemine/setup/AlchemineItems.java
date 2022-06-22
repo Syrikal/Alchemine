@@ -17,6 +17,12 @@ public class AlchemineItems {
             () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMY)));
     public static final RegistryObject<Item> ALCHEMICAL_FLASK_FULL = ITEMS.register("alchemical_flask_full",
             () -> new FullFlaskItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMY)));
+    public static final RegistryObject<Item> CAULDRON_DEBUG_STICK = ITEMS.register("debug_stick",
+            () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMY)));
+    public static final RegistryObject<Item> CAULDRON_EMPTY_STICK = ITEMS.register("empty_stick",
+            () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMY)));
+
+
 
     //INGREDIENTS (58 Items)
     public static final RegistryObject<Item> SALT = ITEMS.register("salt",
