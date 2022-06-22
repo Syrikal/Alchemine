@@ -608,7 +608,7 @@ public class AlchemicalIngredients {
         }
         for (RegistryObject<Ingredient> entry : INGREDIENTS.getEntries() ) {
             INGREDIENTS_MAP.put(entry.get().getItem(), entry.get());
-            LogUtils.getLogger().info("Adding " + entry.get().getItem().toString() + " to ingredients map");
+//            LogUtils.getLogger().info("Adding " + entry.get().getItem().toString() + " to ingredients map");
         }
         isInitialized = true;
     }

@@ -20,12 +20,20 @@ public class Reaction {
     }
 
     public double tick() {
-        double output = 0.0005*Math.pow(ticks, 2) + 0.0015;
+        double output = 0.000025*Math.pow(ticks, 2) + 0.0015;
         if (!upwards) {
             output *= -1;
         }
         output *= multiplier;
         ticks++;
         return output;
+    }
+
+    public int getMultiplier() { return multiplier; }
+
+    public boolean isNegative() { return !upwards; }
+
+    public String toString() {
+        return "[" + ticks + ", " + upwards + ", " + multiplier + "]";
     }
 }

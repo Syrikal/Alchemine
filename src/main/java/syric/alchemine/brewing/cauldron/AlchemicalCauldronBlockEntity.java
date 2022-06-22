@@ -44,6 +44,7 @@ public class AlchemicalCauldronBlockEntity extends BlockEntity implements Cleara
     private int drainCounter = 0;
     public double explosionCounter = 0;
     public double sludgeCounter = 0;
+    public StringBuilder spikeLog = new StringBuilder();
 
     public AlchemicalCauldronBlockEntity(BlockPos pos, BlockState state) {
         super(AlchemineBlockEntityTypes.ALCHEMICAL_CAULDRON.get(), pos, state);
@@ -54,22 +55,34 @@ public class AlchemicalCauldronBlockEntity extends BlockEntity implements Cleara
     public void tick() {
 
         //Handle spikes
-        //Tell it to not decrease below lingering!
         List<Spike> toRemove = new ArrayList<>();
         for (Spike spike : spikeList) {
+            boolean i = spike.equals(spikeList.get(0));
+            if (i && spike.getTicks() == 0) {
+                Pair<Double, Double> fakeOutput = spike.findDerivatives(0);
+                spikeLog.append(0).append(",").append(fakeOutput.getLeft()).append(",").append(energy).append(";");
+            }
             Pair<Double, Double> output = spike.tick();
             if (spike.isDone()) {
                 toRemove.add(spike);
-            } else {
+                if (i) {
+                    LogUtils.getLogger().info(spikeLog.toString());
+                }
+            //Don't add to energy if the change is negative and the energy is already below lingering
+            } else if (output.getLeft() > 0 || energy > lingeringEnergy) {
                 energy += output.getLeft();
                 lingeringEnergy += output.getRight();
+            } else {
+                lingeringEnergy += output.getRight();
             }
+
+            if (i) {
+                spikeLog.append(spike.getTicks()).append(",").append(output.getLeft()).append(",").append(energy).append(";");
+            }
+
         }
         //Remove old spikes
         spikeList.removeAll(toRemove);
-
-
-        //Increase lingering if ingredient added early!
 
 
         //Handle reactions
@@ -77,15 +90,14 @@ public class AlchemicalCauldronBlockEntity extends BlockEntity implements Cleara
             energy += reaction.tick();
         }
         //Including decay
-        energy -= drainCounter * 0.00025;
+        energy -= drainCounter * 0.001;
 
 
         //Check for decay
-        if (spikeList.isEmpty() && energy >= 1) {
+        if (spikeList.isEmpty() && (energy >= 1 || drainCounter > 0)) {
             if (Math.random() * 60 < 1) {
                 drainCounter ++;
             }
-
         }
 
         //Check for available recipes
@@ -114,6 +126,11 @@ public class AlchemicalCauldronBlockEntity extends BlockEntity implements Cleara
         }
 
 
+        if (energy < 0) {
+            energy = 0;
+        }
+
+
     }
 
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
@@ -124,9 +141,9 @@ public class AlchemicalCauldronBlockEntity extends BlockEntity implements Cleara
 
 
         //Add an ingredient
-        if (AlchemicalIngredients.INGREDIENTS_MAP.containsKey(interactedItemStack.getItem())) {
+        if (AlchemicalIngredients.INGREDIENTS_MAP.containsKey(interactedItemStack.getItem()) && !player.isShiftKeyDown()) {
             chatPrint("ATTEMPTING TO ADD INGREDIENT", player);
-            announceIngredient(interactedItemStack.getItem(), player);
+//            announceIngredient(interactedItemStack.getItem(), player);
             Ingredient ingredient = AlchemicalIngredients.INGREDIENTS_MAP.get(interactedItemStack.getItem());
             addIngredient(ingredient, player);
             return InteractionResult.SUCCESS;
@@ -181,12 +198,18 @@ public class AlchemicalCauldronBlockEntity extends BlockEntity implements Cleara
     public void addIngredient(Ingredient ingredient, Player player){
         //Check reactions
         int numReacts = ingredient.getAspects().countReactions(aspects);
-        if (!ingredient.isContradictory() && numReacts > 0) {
+        if (!ingredient.isContradictory() && numReacts != 0) {
             if (volatility < -2) {
                 reactionList.add(new Reaction(numReacts).negative());
+                chatPrint("Added " + numReacts + " new negative reactions", player);
             } else {
                 reactionList.add(new Reaction(numReacts));
+                chatPrint("Added " + numReacts + " new positive reactions", player);
             }
+        } else if (ingredient.isContradictory()) {
+            chatPrint("Ingredient is contradictory, not adding reactions", player);
+        } else {
+            chatPrint("No reactions detected", player);
         }
 
         //Check stabilizations
@@ -200,24 +223,31 @@ public class AlchemicalCauldronBlockEntity extends BlockEntity implements Cleara
         aspects.add(ingredient.getAspects());
 
         //Add spike
-        double energy = ingredient.getEnergy();
+        double ingredientEnergy = ingredient.getEnergy();
         if (ingredient.isMetapotion() && base.type == BaseTypes.POTION) {
-            energy /= 2;
+            ingredientEnergy /= 2;
         }
         double linger = ingredient.getLinger() * lingerMult;
-        spikeList.add(new Spike(energy, linger));
+        spikeList.add(new Spike(ingredientEnergy, linger));
 
         //Modify stability and volatility
         //Change this so they can't be moved out of bounds!
-        volatility += ingredient.getVolatility();
-        stability += ingredient.getStability();
+        addVolatility(ingredient.getVolatility());
+        addStability(ingredient.getStability());
+
+        //Modify lingering energy
+        if (energy > lingeringEnergy) {
+            lingeringEnergy += (energy - lingeringEnergy) / 2;
+        }
 
         //Modify lingerMult
         //Change so it's not multiplicative?
         lingerMult *= ingredient.getLingerMultiplier();
 
         //Add crashes, if any
-        reactionList.add(new Reaction(ingredient.getCrash()).negative());
+        if (ingredient.getCrash() != 0) {
+            reactionList.add(new Reaction(ingredient.getCrash()).negative());
+        }
 
 
         //Remove item from player (give one back if it has a returned item)
@@ -229,6 +259,30 @@ public class AlchemicalCauldronBlockEntity extends BlockEntity implements Cleara
 
 
 
+    //Variable handlers
+    private void setVolatility(double i) {
+        if (i <= 10 && i >= -10) {
+            volatility = i;
+        } else {
+            throw new IllegalArgumentException("Volatility must be between +- 10");
+        }
+    }
+    private void addVolatility(double i) {
+        setVolatility(volatility + i);
+    }
+
+    private void setStability(double i) {
+        if (i <= 10 && i >= 0) {
+            stability = i;
+        } else {
+            throw new IllegalArgumentException("Volatility must be from 0 to 10");
+        }
+    }
+    private void addStability(double i) {
+        setVolatility(stability + i);
+    }
+
+
 
 
 
@@ -238,7 +292,17 @@ public class AlchemicalCauldronBlockEntity extends BlockEntity implements Cleara
         sb.append("Energy: ").append(energy).append(", Lingering: ").append(lingeringEnergy).append("\n");
         sb.append("Aspects: ").append(aspects.toString()).append("\n");
         sb.append("Volatility: ").append(volatility).append(", Stability: ").append(stability).append("\n");
-        sb.append("Reactions: ").append(reactionList.size()).append(", Drain: ").append(drainCounter).append("\n");
+
+        sb.append("Reactions: ");
+        for (Reaction reaction : reactionList) {
+            sb.append(reaction.toString()).append(", ");
+        }
+        sb.append("\n");
+
+
+        sb.append("Drain: ").append(drainCounter).append("\n");
+
+
         sb.append("Ingredients: ");
         for (Ingredient i : ingredients) {
             sb.append(i.getItem().toString()).append(", ");
@@ -281,5 +345,6 @@ public class AlchemicalCauldronBlockEntity extends BlockEntity implements Cleara
         explosionCounter = 0;
         sludgeCounter = 0;
         lingerMult = 1;
+        spikeLog = new StringBuilder();
     }
 }
