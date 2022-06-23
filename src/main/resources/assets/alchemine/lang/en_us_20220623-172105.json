@@ -88,7 +88,6 @@
     "block.alchemine.berserkers_resin": "Berserker's Resin",
     "block.alchemine.luma_slime": "Lumaslime",
     "block.alchemine.non_stick_slime": "Non-Stick Slime",
-    "block.alchemine.hungry_slime": "Hungry Slime",
     "block.alchemine.white_chroma_slime": "White Chromaslime",
     "block.alchemine.light_gray_chroma_slime": "Light Gray Chromaslime",
     "block.alchemine.gray_chroma_slime": "Gray Chromaslime",
@@ -104,10 +103,5 @@
     "block.alchemine.pink_chroma_slime": "Pink Chromaslime",
     "block.alchemine.purple_chroma_slime": "Purple Chromaslime",
     "block.alchemine.magenta_chroma_slime": "Magenta Chromaslime",
-    "block.alchemine.brown_chroma_slime": "Brown Chromaslime",
-    "item.alchemine.slimeseed": "Slimeseed",
-    "item.alchemine.chroma_enhancer": "Chromatic Slime Enhancer",
-    "item.alchemine.cushioning_enhancer": "Cushioning Slime Enhancer",
-    "item.alchemine.bouncy_enhancer": "Bouncy Slime Enhancer",
-    "item.alchemine.slippery_enhancer": "Slippery Slime Enhancer"
+    "block.alchemine.brown_chroma_slime": "Brown Chromaslime"
 }

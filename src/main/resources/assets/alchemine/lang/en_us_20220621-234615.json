@@ -3,18 +3,16 @@
     "itemGroup.alchemycreations": "Alchemical Creations",
 
     "block.alchemine.alchemical_cauldron": "Alchemical Cauldron",
-    "block.alchemine.alchemical_grinder": "Alchemical Grinder",
-    "block.alchemine.alchemical_crucible": "Alchemical Crucible",
-    "block.alchemine.alchemical_alembic": "Alchemical Alembic",
-
     "item.alchemine.alchemical_flask": "Alchemical Flask",
     "item.alchemine.alchemical_flask_full": "Full Alchemical Flask",
-    "item.alchemine.debug_stick": "Debug Stick",
-    "item.alchemine.empty_stick": "Empty Stick",
 
+
+    "block.alchemine.crash_pad": "Crash Pad",
+    "block.alchemine.cushioning_slime": "Cushioning Slime",
+    "block.alchemine.launch_pad": "Launch Pad",
+    "block.alchemine.bounce_slime": "Bounce Slime",
 
     "block.alchemine.morb_block": "Morbium",
-
 
     "item.alchemine.salt": "Salt",
     "item.alchemine.ash": "Ash",
@@ -74,40 +72,14 @@
     "item.alchemine.andesite_dust": "Andesite Dust",
     "item.alchemine.diamond_dust": "Diamond Dust",
     "item.alchemine.ground_nether_star": "Ground Nether Star",
-    "item.alchemine.azalea_petals": "Azalea Petals",
 
+    "block.alchemine.alchemical_grinder": "Alchemical Grinder",
+    "block.alchemine.alchemical_crucible": "Alchemical Crucible",
+    "block.alchemine.alchemical_alembic": "Alchemical Alembic",
 
-
-    "block.alchemine.crash_pad": "Crash Pad",
-    "block.alchemine.cushioning_slime": "Cushioning Slime",
-    "block.alchemine.launch_pad": "Launch Pad",
-    "block.alchemine.bounce_slime": "Bounce Slime",
     "block.alchemine.vita_slime": "Vita-Slime",
     "block.alchemine.red_slime": "Redslime",
     "block.alchemine.shell_slime": "Shell Slime",
-    "block.alchemine.berserkers_resin": "Berserker's Resin",
-    "block.alchemine.luma_slime": "Lumaslime",
-    "block.alchemine.non_stick_slime": "Non-Stick Slime",
-    "block.alchemine.hungry_slime": "Hungry Slime",
-    "block.alchemine.white_chroma_slime": "White Chromaslime",
-    "block.alchemine.light_gray_chroma_slime": "Light Gray Chromaslime",
-    "block.alchemine.gray_chroma_slime": "Gray Chromaslime",
-    "block.alchemine.black_chroma_slime": "Black Chromaslime",
-    "block.alchemine.red_chroma_slime": "Red Chromaslime",
-    "block.alchemine.orange_chroma_slime": "Orange Chromaslime",
-    "block.alchemine.yellow_chroma_slime": "Yellow Chromaslime",
-    "block.alchemine.lime_chroma_slime": "Lime Chromaslime",
-    "block.alchemine.green_chroma_slime": "Green Chromaslime",
-    "block.alchemine.cyan_chroma_slime": "Cyan Chromaslime",
-    "block.alchemine.blue_chroma_slime": "Blue Chromaslime",
-    "block.alchemine.light_blue_chroma_slime": "Light Blue Chromaslime",
-    "block.alchemine.pink_chroma_slime": "Pink Chromaslime",
-    "block.alchemine.purple_chroma_slime": "Purple Chromaslime",
-    "block.alchemine.magenta_chroma_slime": "Magenta Chromaslime",
-    "block.alchemine.brown_chroma_slime": "Brown Chromaslime",
-    "item.alchemine.slimeseed": "Slimeseed",
-    "item.alchemine.chroma_enhancer": "Chromatic Slime Enhancer",
-    "item.alchemine.cushioning_enhancer": "Cushioning Slime Enhancer",
-    "item.alchemine.bouncy_enhancer": "Bouncy Slime Enhancer",
-    "item.alchemine.slippery_enhancer": "Slippery Slime Enhancer"
+
+    "block.alchemine.berserkers_resin": "Berserker's Resin"
 }

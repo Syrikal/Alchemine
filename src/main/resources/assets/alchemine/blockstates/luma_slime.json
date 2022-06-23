@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "light=true": {
+            "model": "alchemine:block/luma_slime"
+        },
+        "light=false": {
+            "model": "alchemine:block/luma_slime_dark"
+        }
+    }
+}

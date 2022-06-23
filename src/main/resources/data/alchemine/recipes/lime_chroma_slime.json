@@ -1,0 +1,37 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:lime_dye"
+        },
+        {
+            "item": "alchemine:chroma_enhancer"
+        },
+        {
+            "item": "minecraft:slime_block"
+        },
+        {
+            "item": "minecraft:slime_block"
+        },
+        {
+            "item": "minecraft:slime_block"
+        },
+        {
+            "item": "minecraft:slime_block"
+        },
+        {
+            "item": "minecraft:slime_block"
+        },
+        {
+            "item": "minecraft:slime_block"
+        },
+        {
+            "item": "minecraft:slime_block"
+        }
+    ],
+    "result": {
+        "item": "alchemine:lime_chroma_slime",
+        "count": 7
+    },
+    "group": "slime"
+}
