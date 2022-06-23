@@ -11,12 +11,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import org.jline.utils.Log;
 
 public class LumaSlimeBlock extends AbstractVariablyBouncySlimeBlock {
     public static final BooleanProperty LIGHT = BooleanProperty.create("light");
@@ -41,21 +43,17 @@ public class LumaSlimeBlock extends AbstractVariablyBouncySlimeBlock {
 
     @Override
     public int power(Level level, BlockPos pos, BlockState state) {
-        if (level instanceof ServerLevel serverLevel) {
-            if (state.getValue(LIGHT)) {
-                int value = serverLevel.getMaxLocalRawBrightness(pos, 0);
-                LogUtils.getLogger().info("Detected light level of " + value);
-                return value;
-            } else {
-                int value = 15 - serverLevel.getMaxLocalRawBrightness(pos, 0);
-                LogUtils.getLogger().info("Detected light level of " + value);
-                return value;
-            }
-        }
-        else {
-            int value = level.getMaxLocalRawBrightness(pos, 0);
-            LogUtils.getLogger().info("Level not instance of serverlevel. Detected light level of " + value);
+
+        int darkModified = Math.min(15, level.getSkyDarken() * 2);
+        int value = level.getRawBrightness(pos, darkModified);
+
+//        LogUtils.getLogger().info("Detected altered light level of " + value);
+        if (state.getValue(LIGHT)) {
+//            LogUtils.getLogger().info("Light mode, returning " + value);
             return value;
+        } else {
+//            LogUtils.getLogger().info("Dark mode, returning " + (15-value));
+            return (15 - value);
         }
     }
 

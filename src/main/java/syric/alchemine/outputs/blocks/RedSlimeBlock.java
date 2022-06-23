@@ -20,7 +20,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class RedSlimeBlock extends SlimeBlock {
+public class RedSlimeBlock extends AbstractVariablyBouncySlimeBlock {
     private static final Vec3[] COLORS = Util.make(new Vec3[16], (input) -> {
         for(int i = 0; i <= 15; ++i) {
             float f = (float)i / 15.0F;
@@ -96,12 +96,13 @@ public class RedSlimeBlock extends SlimeBlock {
    }
 
 
-   private int power(Level level, BlockPos pos, BlockState state) {
+   @Override
+   public int power(Level level, BlockPos pos, BlockState state) {
        if (level.getBlockState(pos).getBlock() == this) {
-           LogUtils.getLogger().info("Detected redstone level: " + level.getBestNeighborSignal(pos));
+//           LogUtils.getLogger().info("Detected redstone level: " + level.getBestNeighborSignal(pos));
            return level.getBestNeighborSignal(pos);
        } else if (level.getBlockState(pos.below()).getBlock() == this) {
-           LogUtils.getLogger().info("Detected redstone level: " + level.getBestNeighborSignal(pos.below()));
+//           LogUtils.getLogger().info("Detected redstone level: " + level.getBestNeighborSignal(pos.below()));
            return level.getBestNeighborSignal(pos.below());
        } else {
            BlockPos pos1 = new BlockPos(pos.getX()-1, pos.getY()-1,pos.getZ()-1);
@@ -111,10 +112,10 @@ public class RedSlimeBlock extends SlimeBlock {
                    .filter(c -> level.getBlockState(c).getBlock().equals(this))
                    .forEach(c -> options.add(level.getBestNeighborSignal(c)));
            if (options.isEmpty()) {
-               LogUtils.getLogger().info("Tried to find a Redslime and failed");
+//               LogUtils.getLogger().info("Tried to find a Redslime and failed");
                return 0;
            } else {
-               LogUtils.getLogger().info("Detected redstone level: " + Collections.max(options));
+//               LogUtils.getLogger().info("Detected redstone level: " + Collections.max(options));
                return Collections.max(options);
            }
        }
