@@ -101,6 +101,11 @@ public class AlchemineBlocks {
                     .friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion()),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
+    public static final RegistryObject<Block> HUNGRY_SLIME = register("hungry_slime",
+            () -> new NonStickSlimeBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.GRASS)
+                    .friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion().randomTicks()),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
     public static final RegistryObject<Block> WHITE_CHROMA_SLIME = register("white_chroma_slime", () -> new ChromaSlimeBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.SNOW).friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion()), AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
     public static final RegistryObject<Block> LIGHT_GRAY_CHROMA_SLIME = register("light_gray_chroma_slime", () -> new ChromaSlimeBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.COLOR_LIGHT_GRAY).friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion()), AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
     public static final RegistryObject<Block> GRAY_CHROMA_SLIME = register("gray_chroma_slime", () -> new ChromaSlimeBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.COLOR_GRAY).friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion()), AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
