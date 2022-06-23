@@ -1,0 +1,17 @@
+luma_slime
+white_chroma_slime
+light_gray_chroma_slime
+gray_chroma_slime
+black_chroma_slime
+red_chroma_slime
+orange_chroma_slime
+yellow_chroma_slime
+lime_chroma_slime
+green_chroma_slime
+cyan_chroma_slime
+blue_chroma_slime
+light_blue_chroma_slime
+pink_chroma_slime
+purple_chroma_slime
+magenta_chroma_slime
+brown_chroma_slime

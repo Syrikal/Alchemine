@@ -53,6 +53,9 @@ public class AlchemicalCauldronBlockEntity extends BlockEntity implements Cleara
 
 
     public void tick() {
+        if (base.type == BaseTypes.NONE && energy == 0 && ingredients.isEmpty() ) {
+            return;
+        }
 
         //Handle spikes
         List<Spike> toRemove = new ArrayList<>();

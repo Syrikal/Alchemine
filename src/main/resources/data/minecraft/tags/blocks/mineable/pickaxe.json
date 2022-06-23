@@ -1,5 +1,9 @@
 {
   "values": [
-    "alchemine:morb_block"
+    "alchemine:morb_block",
+    "alchemine:alchemical_cauldron",
+    "alchemine:alchemical_crucible",
+    "alchemine:alchemical_grinder",
+    "alchemine:alchemical_alembic"
   ]
 }
