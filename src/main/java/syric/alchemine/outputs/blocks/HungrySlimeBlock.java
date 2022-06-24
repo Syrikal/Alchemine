@@ -8,63 +8,173 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Slime;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.SlimeBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
-import org.jetbrains.annotations.Nullable;
-import syric.alchemine.brewing.laboratory.AlchemicalAlembicBlockEntity;
-import syric.alchemine.setup.AlchemineBlockEntityTypes;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.SpawnerBlock;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
+import syric.alchemine.setup.AlchemineBlocks;
 
-import java.util.Objects;
+import java.util.List;
 
 public class HungrySlimeBlock extends SlimeBlock {
-    public static final IntegerProperty FILL = BlockStateProperties.LEVEL_COMPOSTER;
+    public static final IntegerProperty FILL = IntegerProperty.create("fill", 0, 8);
+    public static final BooleanProperty SEED = BooleanProperty.create("seed");
     public static final Object2FloatMap<ItemLike> COMPOSTABLES = new Object2FloatOpenHashMap<>();
-
 
     public HungrySlimeBlock(BlockBehaviour.Properties properties) {
         super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(FILL, 0));
+        this.registerDefaultState(this.defaultBlockState().setValue(FILL, 0).setValue(SEED, true));
+        bootStrap();
     }
 
     public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FILL);
+        builder.add(FILL, SEED);
     }
 
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
-        if (state.getValue(FILL) == 8) {
-            BlockState emptyState = state.setValue(FILL, 0);
-            level.setBlockAndUpdate(pos, emptyState);
-            double random = Math.random();
-            if (random < 0.3) {
-                spreadSlime(level, pos);
-            } else if (random < 0.31) {
-                spawnSlime(level, pos);
+    public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+//        chatPrint("Entity stepped on hungry slime, attempting to eat", level);
+        if (entity instanceof ItemEntity ent) {
+            if (COMPOSTABLES.containsKey(ent.getItem().getItem())) {
+                eatEdibleStack(level, state, pos, ent.getItem());
             }
         }
     }
 
-    private void spreadSlime(Level level, BlockPos pos) {
-
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
+//        chatPrint("Hungry slime got a random tick.", level);
+        if (state.getValue(FILL) == 8) {
+            triggerSpread(level, state, pos);
+        }
+        consumeItems(level, state, pos);
     }
 
-    private void spawnSlime(Level level, BlockPos pos) {
+    public void triggerSpread(Level level, BlockState state, BlockPos pos) {
+//        chatPrint("Hungry slime attempting to spread", level);
+        BlockState emptyState = state.setValue(FILL, 0);
+        level.destroyBlock(pos, false);
+        //an audiovisual effect?
+        level.setBlockAndUpdate(pos, emptyState);
+        double random = Math.random();
+        if (random < 0.6) {
+            spreadSlime(level, pos);
+        } else if (random < 0.9) {
+            spawnSlime(level, pos, 0);
+        }
+    }
+
+    private void spreadSlime(Level level, BlockPos pos) {
+//        chatPrint("Attempting to spread slime", level);
+        boolean succeeded = false;
+        int tries = 0;
+
+        while (!succeeded) {
+            if (tries > 6) {
+                break;
+            }
+            Direction dir = Direction.getRandom(RandomSource.create());
+            BlockPos target = pos.relative(dir);
+            if (level.getBlockState(target).getMaterial() == Material.AIR) {
+                succeeded = true;
+                BlockState placeState = AlchemineBlocks.HUNGRY_SLIME.get().defaultBlockState().setValue(SEED, false);
+                level.setBlockAndUpdate(target, placeState);
+                level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(placeState));
+            } else if (level.getBlockState(target).getBlock() == this) {
+//                chatPrint("Chained spreadSlime", level);
+                succeeded = true;
+                spreadSlime(level, target);
+            } else {
+//                chatPrint("spreadSlime failed, trying again", level);
+                tries++;
+            }
+        }
+        if (!succeeded) {
+//            chatPrint("Giving up", level);
+        }
+    }
+
+    private void spawnSlime(Level level, BlockPos pos, int tries) {
+//        chatPrint("Attempting to spawn slime", level);
+        if (tries > 20) {
+//            chatPrint("Giving up", level);
+            return;
+        }
+
+        Slime entity = EntityType.SLIME.create(level); //Slimes have a weirdly high amount of health
+
+        double d0 = pos.getX() - 2 + Math.random()*4;
+        double d1 = pos.getY() - 1 + Math.random()*2;
+        double d2 = pos.getZ() - 2 + Math.random()*4;
+        assert entity != null;
+        entity.absMoveTo(d0, d1, d2);
+        if (!level.noCollision(entity)) {
+            spawnSlime(level, pos, tries + 1);
+//            chatPrint("Failed to spawn a slime", level);
+            return;
+        }
+        entity.setDeltaMovement(Vec3.ZERO);
+        level.addFreshEntity(entity);
+    }
+
+    private void consumeItems(Level level, BlockState state, BlockPos pos) {
+//        chatPrint("Attempting to consume items", level);
+        List<ItemEntity> list = level.getEntities(EntityType.ITEM, new AABB(pos).inflate(1.5), Entity::isOnGround);
+        for (ItemEntity ent : list) {
+            if (COMPOSTABLES.containsKey(ent.getItem().getItem())) {
+                int newValue = eatEdibleStack(level, state, pos, ent.getItem());
+                if (newValue == 8) {
+//                    chatPrint("Full, aborting consumeItems", level);
+                    break;
+                }
+            }
+        }
+//        chatPrint("ConsumeItems stopped. Full, or no more items to consume", level);
+    }
+
+    private int addLevel(Level level, BlockState state, BlockPos pos, float value) {
+        int prevLevel = state.getValue(FILL);
+        if (prevLevel == 8) {
+//            chatPrint("Not increasing level, slime full", level);
+            return 8;
+        }
+        if (Math.random() < value) {
+//            chatPrint("Level increased to " + (prevLevel+1), level);
+            level.setBlockAndUpdate(pos, state.setValue(FILL, prevLevel + 1));
+            level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(state.setValue(FILL, prevLevel + 1)));
+        } else {
+//            chatPrint("Level randomly not increased", level);
+        }
+        return prevLevel + 1;
+    }
+
+    private int eatEdibleStack(Level level, BlockState state, BlockPos pos, ItemStack stack) {
+//        chatPrint("Attempting to eat a stack of " + stack.getItem().toString(), level);
+        boolean full = state.getValue(FILL) == 8;
+        int currentLevel = state.getValue(FILL);
+        while (!stack.isEmpty() && !full) {
+            float value = COMPOSTABLES.getFloat(stack.getItem());
+            stack.shrink(1);
+//            chatPrint("Eating one of the items", level);
+            int newLevel = addLevel(level, state.setValue(FILL, currentLevel), pos, value);
+            currentLevel = newLevel;
+            if (newLevel == 8) {
+//                chatPrint("Full, aborting eatEdibleStack", level);
+                full = true;
+            }
+        }
+        return currentLevel;
     }
 
     public static void bootStrap() {
@@ -173,6 +283,7 @@ public class HungrySlimeBlock extends SlimeBlock {
     private static void add(float nutrition, ItemLike item) {
         COMPOSTABLES.put(item.asItem(), nutrition);
     }
+
 
 
 }

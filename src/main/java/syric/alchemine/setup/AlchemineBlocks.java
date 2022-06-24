@@ -102,7 +102,7 @@ public class AlchemineBlocks {
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> HUNGRY_SLIME = register("hungry_slime",
-            () -> new NonStickSlimeBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.GRASS)
+            () -> new HungrySlimeBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.GRASS)
                     .friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion().randomTicks()),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 

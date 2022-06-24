@@ -1,0 +1,40 @@
+{
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "alchemine:hungry_slime",
+                    "conditions": [
+                        {
+                            "condition": "minecraft:block_state_property",
+                            "block": "alchemine:hungry_slime",
+                            "properties": {
+                                "seed": "true"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:slime_block",
+                    "conditions": [
+                        {
+                            "condition": "minecraft:block_state_property",
+                            "block": "alchemine:hungry_slime",
+                            "properties": {
+                                "seed": "false"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
+        }
+    ]
+}
