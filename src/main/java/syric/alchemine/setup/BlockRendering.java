@@ -20,6 +20,8 @@ public class BlockRendering {
         translucent(AlchemineBlocks.LUMA_SLIME.get());
         translucent(AlchemineBlocks.SHELL_SLIME.get());
         translucent(AlchemineBlocks.NON_STICK_SLIME.get());
+        translucent(AlchemineBlocks.HUNGRY_SLIME.get());
+        translucent(AlchemineBlocks.SHELL_SLIME.get());
 
         translucent(AlchemineBlocks.WHITE_CHROMA_SLIME.get());
         translucent(AlchemineBlocks.LIGHT_GRAY_CHROMA_SLIME.get());

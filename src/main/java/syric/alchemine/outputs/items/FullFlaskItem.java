@@ -13,7 +13,7 @@ public class FullFlaskItem extends Item {
 
 public FullFlaskItem(Properties properties) {super(properties);}
 
-    AlchemicalEffect storedEffect = registerEffects.CRASH_PAD_EFFECT;
+    AlchemicalEffect storedEffect = registerEffects.INSTANT_SHELTER_EFFECT;
 
     public InteractionResult useOn(UseOnContext context) {
         storedEffect.detonate(context);

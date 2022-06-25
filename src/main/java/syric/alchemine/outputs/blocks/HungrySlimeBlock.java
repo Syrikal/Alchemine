@@ -31,22 +31,24 @@ import java.util.List;
 
 public class HungrySlimeBlock extends SlimeBlock {
     public static final IntegerProperty FILL = IntegerProperty.create("fill", 0, 8);
-    public static final BooleanProperty SEED = BooleanProperty.create("seed");
+//    public static final BooleanProperty SEED = BooleanProperty.create("seed");
     public static final Object2FloatMap<ItemLike> COMPOSTABLES = new Object2FloatOpenHashMap<>();
 
     public HungrySlimeBlock(BlockBehaviour.Properties properties) {
         super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(FILL, 0).setValue(SEED, true));
+//        this.registerDefaultState(this.defaultBlockState().setValue(FILL, 0).setValue(SEED, true));
+        this.registerDefaultState(this.defaultBlockState().setValue(FILL, 0));
         bootStrap();
     }
 
     public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FILL, SEED);
+//        builder.add(FILL, SEED);
+        builder.add(FILL);
     }
 
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
 //        chatPrint("Entity stepped on hungry slime, attempting to eat", level);
-        if (entity instanceof ItemEntity ent) {
+        if (entity instanceof ItemEntity ent && !level.isClientSide()) {
             if (COMPOSTABLES.containsKey(ent.getItem().getItem())) {
                 eatEdibleStack(level, state, pos, ent.getItem());
             }
@@ -55,10 +57,12 @@ public class HungrySlimeBlock extends SlimeBlock {
 
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
 //        chatPrint("Hungry slime got a random tick.", level);
-        if (state.getValue(FILL) == 8) {
-            triggerSpread(level, state, pos);
+        if (!level.isClientSide()) {
+            if (state.getValue(FILL) == 8) {
+                triggerSpread(level, state, pos);
+            }
+            consumeItems(level, state, pos);
         }
-        consumeItems(level, state, pos);
     }
 
     public void triggerSpread(Level level, BlockState state, BlockPos pos) {
@@ -68,9 +72,9 @@ public class HungrySlimeBlock extends SlimeBlock {
         //an audiovisual effect?
         level.setBlockAndUpdate(pos, emptyState);
         double random = Math.random();
-        if (random < 0.6) {
+        if (random < 0.25) {
             spreadSlime(level, pos);
-        } else if (random < 0.9) {
+        } else if (random < 0.3) {
             spawnSlime(level, pos, 0);
         }
     }
@@ -88,7 +92,7 @@ public class HungrySlimeBlock extends SlimeBlock {
             BlockPos target = pos.relative(dir);
             if (level.getBlockState(target).getMaterial() == Material.AIR) {
                 succeeded = true;
-                BlockState placeState = AlchemineBlocks.HUNGRY_SLIME.get().defaultBlockState().setValue(SEED, false);
+                BlockState placeState = AlchemineBlocks.HUNGRY_SLIME.get().defaultBlockState();
                 level.setBlockAndUpdate(target, placeState);
                 level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(placeState));
             } else if (level.getBlockState(target).getBlock() == this) {
@@ -113,19 +117,22 @@ public class HungrySlimeBlock extends SlimeBlock {
         }
 
         Slime entity = EntityType.SLIME.create(level); //Slimes have a weirdly high amount of health
+        if (entity != null) {
+            entity.setSize(2, true);
 
-        double d0 = pos.getX() - 2 + Math.random()*4;
-        double d1 = pos.getY() - 1 + Math.random()*2;
-        double d2 = pos.getZ() - 2 + Math.random()*4;
-        assert entity != null;
-        entity.absMoveTo(d0, d1, d2);
-        if (!level.noCollision(entity)) {
-            spawnSlime(level, pos, tries + 1);
+            double d0 = pos.getX() - 2 + Math.random()*4;
+            double d1 = pos.getY() - 1 + Math.random()*2;
+            double d2 = pos.getZ() - 2 + Math.random()*4;
+
+            entity.absMoveTo(d0, d1, d2);
+            if (!level.noCollision(entity)) {
+                spawnSlime(level, pos, tries + 1);
 //            chatPrint("Failed to spawn a slime", level);
-            return;
+                return;
+            }
+            entity.setDeltaMovement(Vec3.ZERO);
+            level.addFreshEntity(entity);
         }
-        entity.setDeltaMovement(Vec3.ZERO);
-        level.addFreshEntity(entity);
     }
 
     private void consumeItems(Level level, BlockState state, BlockPos pos) {

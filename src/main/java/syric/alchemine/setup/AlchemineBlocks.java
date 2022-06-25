@@ -1,10 +1,13 @@
 package syric.alchemine.setup;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -87,8 +90,8 @@ public class AlchemineBlocks {
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> SHELL_SLIME = register("shell_slime",
-            () -> new SlimeBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.GRASS)
-                    .friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion()),
+            () -> new ShellSlimeBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.GRASS)
+                    .friction(0.8F).sound(SoundType.STONE).noOcclusion().strength(2.0F).isViewBlocking(AlchemineBlocks::never).isSuffocating(AlchemineBlocks::never)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> LUMA_SLIME = register("luma_slime",
@@ -103,7 +106,7 @@ public class AlchemineBlocks {
 
     public static final RegistryObject<Block> HUNGRY_SLIME = register("hungry_slime",
             () -> new HungrySlimeBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.GRASS)
-                    .friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion().randomTicks()),
+                    .friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion().randomTicks().strength(2.0F)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> WHITE_CHROMA_SLIME = register("white_chroma_slime", () -> new ChromaSlimeBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.SNOW).friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion()), AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
@@ -138,7 +141,13 @@ public class AlchemineBlocks {
                     .sound(SoundType.NETHERRACK).requiresCorrectToolForDrops().strength(1.5F)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
-    //Methods
+    //Utility methods
+    private static boolean never(BlockState state, BlockGetter getter, BlockPos pos) {
+        return false;
+    }
+
+
+    //Registration Methods
     static void register(IEventBus bus) {
         BLOCKS.register(bus);
     }

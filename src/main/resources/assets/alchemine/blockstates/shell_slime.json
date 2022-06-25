@@ -1,7 +1,16 @@
 {
     "variants": {
-        "": {
-            "model": "alchemine:block/shell_slime"
+        "health=1": {
+            "model": "alchemine:block/red_chroma_slime"
+        },
+        "health=2": {
+            "model": "alchemine:block/orange_chroma_slime"
+        },
+        "health=3": {
+            "model": "alchemine:block/yellow_chroma_slime"
+        },
+        "health=4": {
+            "model": "alchemine:block/green_chroma_slime"
         }
     }
 }
