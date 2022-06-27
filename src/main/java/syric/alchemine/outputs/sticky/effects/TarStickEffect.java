@@ -18,7 +18,7 @@ public class TarStickEffect implements AlchemicalEffect {
 
         PlacementPattern place = new FlatDiscPattern(pos, 2.5F);
 
-        effectsUtil.placeAbsolute(level, place, AlchemineBlocks.TAR_STICK, effectsUtil.DEFAULT);
+        effectsUtil.placeAbsolute(level, place, AlchemineBlocks.TAR_STICK, effectsUtil.BLOCK_REPLACEABLE);
     }
 
 

@@ -91,7 +91,7 @@ public class AlchemineBlocks {
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> SHELL_SLIME = register("shell_slime",
-            () -> new ShellSlimeBlock(BlockBehaviour.Properties.of(Material.PORTAL, MaterialColor.GRASS)
+            () -> new ShellSlimeBlock(BlockBehaviour.Properties.of(AlchemineBlockMaterials.SHELL_SLIME_MAT)
                     .friction(0.8F).sound(SoundType.STONE).noOcclusion().strength(2.0F).isViewBlocking(AlchemineBlocks::never).isSuffocating(AlchemineBlocks::never)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
@@ -131,35 +131,35 @@ public class AlchemineBlocks {
 
     //Sticky
     public static final RegistryObject<Block> TAR_STICK = register("tar_stick",
-            () -> new StickyFlatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.COLOR_BLACK)
+            () -> new StickyFlatBlock(BlockBehaviour.Properties.of(AlchemineBlockMaterials.TAR_DEC_MAT, MaterialColor.COLOR_BLACK)
                     .sound(SoundType.MUD).noOcclusion().strength(0.5F)
-                    .jumpFactor(0.1F), 1),
+                    .jumpFactor(0.1F), 1, 1200),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> GLUE_STICK = register("glue_stick",
-            () -> new StickyFlatBlock(BlockBehaviour.Properties.of(Material.TOP_SNOW, MaterialColor.COLOR_LIGHT_GRAY)
+            () -> new StickyFlatBlock(BlockBehaviour.Properties.of(AlchemineBlockMaterials.GLUE_MAT, MaterialColor.COLOR_LIGHT_GRAY)
                     .sound(SoundType.SLIME_BLOCK).noOcclusion().strength(2.0F)
-                    .jumpFactor(0.01F), 2),
+                    .jumpFactor(0.01F), 2, 1200),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> SUPER_GLUE_STICK = register("super_glue_stick",
-            () -> new StickyFlatBlock(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.NONE)
+            () -> new GlueTrapBlock(BlockBehaviour.Properties.of(AlchemineBlockMaterials.GLUE_MAT, MaterialColor.NONE)
                     .sound(SoundType.SLIME_BLOCK).noOcclusion().strength(6.0F)
-                    .jumpFactor(0.01F), 3),
+                    .jumpFactor(0.01F), 3, 0),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> FOAM_SNARE = register("foam_snare",
             () -> new StickyFoamBlock(BlockBehaviour.Properties.of(Material.WEB)
-                    .noCollission().sound(SoundType.WOOL).strength(4.0F), 1),
+                    .noCollission().sound(SoundType.WOOL).strength(4.0F), 1, 1200),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> WEB_SNARE = register("web_snare",
             () -> new StickyFoamBlock(BlockBehaviour.Properties.of(Material.WEB)
-                    .noCollission().sound(SoundType.WOOL).strength(6.0F), 5),
+                    .noCollission().sound(SoundType.WOOL).strength(6.0F), 7, 1200),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> TAR_BLOCK = register("tar_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.COLOR_BLACK)
+            () -> new Block(BlockBehaviour.Properties.of(AlchemineBlockMaterials.TAR_MAT, MaterialColor.COLOR_BLACK)
                     .friction(0.8F).sound(SoundType.MUD).strength(2.0F)
                     .speedFactor(0.3F).jumpFactor(0.1F)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);

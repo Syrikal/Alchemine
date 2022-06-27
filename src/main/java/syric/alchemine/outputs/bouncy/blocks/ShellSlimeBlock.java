@@ -2,9 +2,11 @@ package syric.alchemine.outputs.bouncy.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
@@ -14,9 +16,8 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.HalfTransparentBlock;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -30,19 +31,22 @@ import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeBlock;
+import org.jetbrains.annotations.Nullable;
+import syric.alchemine.brewing.cauldron.AlchemicalCauldronBlockEntity;
+import syric.alchemine.setup.AlchemineBlockEntityTypes;
 import syric.alchemine.setup.AlchemineBlocks;
 import net.minecraft.world.item.Items;
 
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static syric.alchemine.util.ChatPrint.chatPrint;
 
-public class ShellSlimeBlock extends HalfTransparentBlock implements IForgeBlock {
+public class ShellSlimeBlock extends HalfTransparentBlock implements IForgeBlock, EntityBlock {
     public static final IntegerProperty HEALTH = IntegerProperty.create("health", 1, 4);
     protected static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
-    protected int breakTime = 0;
-    protected int lastBreakProgress = -1;
-    protected int timeToBreak = 200;
+    protected static final VoxelShape ANVILSHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
+
 
 
     public ShellSlimeBlock(BlockBehaviour.Properties properties) {
@@ -187,18 +191,22 @@ public class ShellSlimeBlock extends HalfTransparentBlock implements IForgeBlock
     }
 
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (entity instanceof Monster) {
+        final var blockentity = (ShellSlimeBlockEntity) level.getBlockEntity(pos);
 
-            ++this.breakTime;
-            int i = (int)((float)this.breakTime / (float)this.timeToBreak * 10.0F);
-            if (i != this.lastBreakProgress) {
+        if (entity instanceof Monster && blockentity != null) {
+            blockentity.increaseBreakTime();
+            int timeToBreak = blockentity.getTimeToBreak();
+            int lastBreakProgress = blockentity.getLastBreakProgress();
+            int breakTime = blockentity.getBreakTime();
+            int i = (int)((float)breakTime / (float)timeToBreak * 10.0F);
+            if (i != lastBreakProgress) {
                 entity.level.destroyBlockProgress(entity.getId(), pos, i);
-                this.lastBreakProgress = i;
+                blockentity.setLastBreakProgress(i);
             }
 
             if (breakTime == timeToBreak) {
                 damage(level, pos, state, 2);
-                this.breakTime = 0;
+                blockentity.resetBreakTime();
             }
 
 
@@ -206,6 +214,13 @@ public class ShellSlimeBlock extends HalfTransparentBlock implements IForgeBlock
                 creeper.ignite();
             }
 
+        }
+
+        else if (entity instanceof FallingBlockEntity falling) {
+            boolean isAnvil = falling.getBlockState().is(BlockTags.ANVIL);
+            if (isAnvil) {
+                directDamage(level, pos, state, 4);
+            }
         }
 
         super.entityInside(state, level, pos, entity);
@@ -227,27 +242,6 @@ public class ShellSlimeBlock extends HalfTransparentBlock implements IForgeBlock
 //        chatPrint("Decay destroyed a Shellslime block", level);
     }
 
-//    public boolean distributeDamage(LevelAccessor level, BlockPos pos) {
-//        AtomicInteger successfulDistributions = new AtomicInteger();
-//        BlockPos.betweenClosedStream(new AABB(pos).inflate(1))
-//                .filter(c -> level.getBlockState(c).getBlock().equals(AlchemineBlocks.SHELL_SLIME.get()))
-//                .filter(c -> c.above().equals(pos) || c.below().equals(pos) || c.east().equals(pos) || c.west().equals(pos) || c.north().equals(pos) || c.south().equals(pos))
-//                .forEach(c -> {
-//                    breakOneLevel(level, c, level.getBlockState(c));
-//                    successfulDistributions.getAndIncrement();
-//                });
-//        return successfulDistributions.get() > 2;
-//    }
-//
-//    public void breakOneLevel(LevelAccessor level, BlockPos pos, BlockState state) {
-//        if (state.getValue(HEALTH) > 1) {
-//            int currentHealth = state.getValue(HEALTH);
-//            level.setBlock(pos, state.setValue(HEALTH, currentHealth - 1), 2);
-//        } else {
-//            level.destroyBlock(pos, false);
-//        }
-//    }
-
     @Override
     public boolean isPathfindable(BlockState state, BlockGetter getter, BlockPos pos, PathComputationType type) {
         return true;
@@ -262,9 +256,25 @@ public class ShellSlimeBlock extends HalfTransparentBlock implements IForgeBlock
         if (context instanceof EntityCollisionContext entityCollisionContext) {
             if (entityCollisionContext.getEntity() instanceof Monster) {
                 return SHAPE;
+            } else if (entityCollisionContext.getEntity() instanceof FallingBlockEntity fall) {
+                if (fall.getBlockState().is(BlockTags.ANVIL)) {
+                    float fallDist = (fall.getStartPos().getY() - pos.getY());
+                    fallDist = Math.min(fallDist, 16);
+                    int damage = (int) (fallDist / 2);
+                    Level level = Objects.requireNonNull(((EntityCollisionContext) context).getEntity()).getLevel();
+                    damage(level, pos, state, damage);
+
+                    return Shapes.block();
+                }
             }
         }
         return Shapes.block();
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return AlchemineBlockEntityTypes.SHELL_SLIME.get().create(pos, state);
     }
 
 

@@ -5,8 +5,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import syric.alchemine.outputs.general.effects.AlchemicalEffect;
 import syric.alchemine.outputs.general.effects.effectsUtil;
-import syric.alchemine.outputs.general.effects.placementpatterns.FlatDiscPattern;
-import syric.alchemine.outputs.general.effects.placementpatterns.PlacementPattern;
 import syric.alchemine.setup.AlchemineBlocks;
 
 public class FoamsnareEffect implements AlchemicalEffect {
@@ -16,7 +14,7 @@ public class FoamsnareEffect implements AlchemicalEffect {
         BlockPos pos = AlchemicalEffect.getOrigin(context);
         Level level = context.getLevel();
 
-        effectsUtil.placeSwellInstantaneous(level, pos, 80, AlchemineBlocks.FOAM_SNARE, effectsUtil.DEFAULT);
+        effectsUtil.placeSwellInstantaneous(level, pos, 80, AlchemineBlocks.FOAM_SNARE, effectsUtil.BLOCK_REPLACEABLE);
     }
 
 

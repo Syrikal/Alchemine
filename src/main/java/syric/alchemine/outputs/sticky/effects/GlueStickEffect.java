@@ -18,7 +18,7 @@ public class GlueStickEffect implements AlchemicalEffect {
 
         PlacementPattern place = new FlatDiscPattern(pos, 1.5F);
 
-        effectsUtil.placeAbsolute(level, place, AlchemineBlocks.GLUE_STICK, effectsUtil.DEFAULT);
+        effectsUtil.placeAbsolute(level, place, AlchemineBlocks.GLUE_STICK, effectsUtil.BLOCK_REPLACEABLE);
     }
 
 

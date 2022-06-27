@@ -2,7 +2,9 @@ package syric.alchemine.outputs.sticky.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -23,10 +25,12 @@ import static syric.alchemine.util.ChatPrint.chatPrint;
 public class StickyFlatBlock extends Block {
     protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 1.0, 16.0);
     protected final int stickiness;
+    protected final int duration;
 
-    public StickyFlatBlock(Properties properties, int stick) {
+    public StickyFlatBlock(Properties properties, int stick, int dur) {
         super(properties);
         stickiness = stick;
+        duration = dur;
     }
 
     public boolean isPathfindable(BlockState state, BlockGetter getter, BlockPos pos, PathComputationType type) {
@@ -111,6 +115,21 @@ public class StickyFlatBlock extends Block {
 
     public boolean canBeReplaced(BlockState state, BlockPlaceContext context) {
         return true;
+    }
+
+    //Stuff relating to automatic destruction
+    @Override
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState state2, boolean bool) {
+        if (!level.isClientSide) {
+            level.scheduleTick(pos, this, duration == 0 ? 10 : duration);
+        }
+    }
+    @Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
+        super.tick(state, level, pos, source);
+        if (duration != 0) {
+            level.destroyBlock(pos, false);
+        }
     }
 
 }

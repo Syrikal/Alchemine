@@ -8,6 +8,7 @@ import net.minecraftforge.registries.RegistryObject;
 import syric.alchemine.Alchemine;
 import syric.alchemine.brewing.cauldron.AlchemicalCauldronBlockEntity;
 import syric.alchemine.brewing.laboratory.*;
+import syric.alchemine.outputs.bouncy.blocks.ShellSlimeBlockEntity;
 
 public final class AlchemineBlockEntityTypes {
 
@@ -20,6 +21,9 @@ public final class AlchemineBlockEntityTypes {
     public static final RegistryObject<BlockEntityType<AlchemicalGrinderBlockEntity>> GRINDER = BLOCK_ENTITIES.register("alchemical_grinder", () -> BlockEntityType.Builder.of(AlchemicalGrinderBlockEntity::new, AlchemineBlocks.ALCHEMICAL_GRINDER.get()).build(null));
     public static final RegistryObject<BlockEntityType<AlchemicalCrucibleBlockEntity>> CRUCIBLE = BLOCK_ENTITIES.register("alchemical_crucible", () -> BlockEntityType.Builder.of(AlchemicalCrucibleBlockEntity::new, AlchemineBlocks.ALCHEMICAL_CRUCIBLE.get()).build(null));
     public static final RegistryObject<BlockEntityType<AlchemicalAlembicBlockEntity>> ALEMBIC = BLOCK_ENTITIES.register("alchemical_alembic", () -> BlockEntityType.Builder.of(AlchemicalAlembicBlockEntity::new, AlchemineBlocks.ALCHEMICAL_ALEMBIC.get()).build(null));
+
+    //Utility
+    public static final RegistryObject<BlockEntityType<ShellSlimeBlockEntity>> SHELL_SLIME = BLOCK_ENTITIES.register("shell_slime", () -> BlockEntityType.Builder.of(ShellSlimeBlockEntity::new, AlchemineBlocks.SHELL_SLIME.get()).build(null));
 
 
     static void register(IEventBus bus) {

@@ -18,8 +18,8 @@ public class WebsnareEffect implements AlchemicalEffect {
 
         PlacementPattern pattern = new SpherePattern(pos, 1F);
         PlacementPattern pattern2 = new SpherePattern(pos.above(), 1F);
-        effectsUtil.placeAbsolute(level, pattern, AlchemineBlocks.WEB_SNARE, effectsUtil.DEFAULT);
-        effectsUtil.placeAbsolute(level, pattern2, AlchemineBlocks.WEB_SNARE, effectsUtil.DEFAULT);
+        effectsUtil.placeAbsolute(level, pattern, AlchemineBlocks.WEB_SNARE, effectsUtil.BLOCK_REPLACEABLE);
+        effectsUtil.placeAbsolute(level, pattern2, AlchemineBlocks.WEB_SNARE, effectsUtil.BLOCK_REPLACEABLE);
 
     }
 
