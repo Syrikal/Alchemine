@@ -1,15 +1,14 @@
 package syric.alchemine.setup;
 
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import syric.alchemine.Alchemine;
-import syric.alchemine.outputs.items.FullFlaskItem;
-import syric.alchemine.outputs.items.SlimeseedItem;
+import syric.alchemine.outputs.general.items.FullFlaskItem;
+import syric.alchemine.outputs.bouncy.items.SlimeseedItem;
+import net.minecraft.world.item.Items;
 
 public class AlchemineItems {
 
@@ -37,6 +36,9 @@ public class AlchemineItems {
             () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
     public static final RegistryObject<Item> SLIMESEED = ITEMS.register("slimeseed",
             () -> new SlimeseedItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+
+    public static final RegistryObject<Item> TARRY_SOUL_SAND_ENHANCER = ITEMS.register("tarry_enhancer",
+            () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
 
     //INGREDIENTS (58 Items)
     public static final RegistryObject<Item> SALT = ITEMS.register("salt",

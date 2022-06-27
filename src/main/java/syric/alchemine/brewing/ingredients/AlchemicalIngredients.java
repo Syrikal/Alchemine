@@ -2,29 +2,18 @@ package syric.alchemine.brewing.ingredients;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryBuilder;
 import net.minecraftforge.registries.RegistryObject;
 import syric.alchemine.Alchemine;
 import syric.alchemine.brewing.util.Aspect;
-import syric.alchemine.outputs.blocks.VitaSlimeBlock;
-import syric.alchemine.setup.AlchemineCreativeTabs;
 import syric.alchemine.setup.AlchemineItems;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Supplier;
-import java.util.logging.LogManager;
 
 public class AlchemicalIngredients {
 

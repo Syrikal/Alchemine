@@ -40,12 +40,21 @@ public class BlockRendering {
         translucent(AlchemineBlocks.MAGENTA_CHROMA_SLIME.get());
         translucent(AlchemineBlocks.BROWN_CHROMA_SLIME.get());
 
+        cutout(AlchemineBlocks.TAR_STICK.get());
+        cutout(AlchemineBlocks.GLUE_STICK.get());
+        translucent(AlchemineBlocks.SUPER_GLUE_STICK.get());
+        cutout(AlchemineBlocks.WEB_SNARE.get());
+        cutout(AlchemineBlocks.FOAM_SNARE.get());
 
 
     }
 
     private static void translucent(Block block) {
         ItemBlockRenderTypes.setRenderLayer(block, RenderType.translucent());
+    }
+
+    private static void cutout(Block block) {
+        ItemBlockRenderTypes.setRenderLayer(block, RenderType.cutout());
     }
 
 }

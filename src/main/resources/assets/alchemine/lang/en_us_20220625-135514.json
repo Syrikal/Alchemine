@@ -111,11 +111,5 @@
     "item.alchemine.bouncy_enhancer": "Bouncy Slime Enhancer",
     "item.alchemine.slippery_enhancer": "Slippery Slime Enhancer",
 
-    "block.alchemine.tar_stick": "Tar Stick",
-    "block.alchemine.glue_stick": "Glue Stick",
-    "block.alchemine.super_glue_stick": "Super Glue Stick",
-    "block.alchemine.foam_snare": "Foam Snare",
-    "block.alchemine.web_snare": "Web Snare",
-    "block.alchemine.tar_block": "Tar Block"
-
+    "block.alchemine.hungry_slime": "Hungry Slime"
 }

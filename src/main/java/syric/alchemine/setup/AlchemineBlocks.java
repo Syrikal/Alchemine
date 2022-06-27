@@ -18,9 +18,10 @@ import syric.alchemine.Alchemine;
 import syric.alchemine.brewing.laboratory.AlchemicalAlembicBlock;
 import syric.alchemine.brewing.laboratory.AlchemicalCrucibleBlock;
 import syric.alchemine.brewing.laboratory.AlchemicalGrinderBlock;
-import syric.alchemine.outputs.blocks.*;
 import syric.alchemine.brewing.cauldron.AlchemicalCauldronBlock;
+import syric.alchemine.outputs.bouncy.blocks.*;
 import net.minecraft.world.level.block.Blocks;
+import syric.alchemine.outputs.sticky.blocks.*;
 
 import java.util.function.Supplier;
 
@@ -90,7 +91,7 @@ public class AlchemineBlocks {
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> SHELL_SLIME = register("shell_slime",
-            () -> new ShellSlimeBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.GRASS)
+            () -> new ShellSlimeBlock(BlockBehaviour.Properties.of(Material.PORTAL, MaterialColor.GRASS)
                     .friction(0.8F).sound(SoundType.STONE).noOcclusion().strength(2.0F).isViewBlocking(AlchemineBlocks::never).isSuffocating(AlchemineBlocks::never)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
@@ -125,6 +126,43 @@ public class AlchemineBlocks {
     public static final RegistryObject<Block> PURPLE_CHROMA_SLIME = register("purple_chroma_slime", () -> new ChromaSlimeBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.COLOR_PURPLE).friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion()), AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
     public static final RegistryObject<Block> MAGENTA_CHROMA_SLIME = register("magenta_chroma_slime", () -> new ChromaSlimeBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.COLOR_MAGENTA).friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion()), AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
     public static final RegistryObject<Block> BROWN_CHROMA_SLIME = register("brown_chroma_slime", () -> new ChromaSlimeBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.COLOR_BROWN).friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion()), AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
+
+
+    //Sticky
+    public static final RegistryObject<Block> TAR_STICK = register("tar_stick",
+            () -> new StickyFlatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.COLOR_BLACK)
+                    .sound(SoundType.MUD).noOcclusion().strength(0.5F)
+                    .jumpFactor(0.1F), 1),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
+    public static final RegistryObject<Block> GLUE_STICK = register("glue_stick",
+            () -> new StickyFlatBlock(BlockBehaviour.Properties.of(Material.TOP_SNOW, MaterialColor.COLOR_LIGHT_GRAY)
+                    .sound(SoundType.SLIME_BLOCK).noOcclusion().strength(2.0F)
+                    .jumpFactor(0.01F), 2),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
+    public static final RegistryObject<Block> SUPER_GLUE_STICK = register("super_glue_stick",
+            () -> new StickyFlatBlock(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.NONE)
+                    .sound(SoundType.SLIME_BLOCK).noOcclusion().strength(6.0F)
+                    .jumpFactor(0.01F), 3),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
+    public static final RegistryObject<Block> FOAM_SNARE = register("foam_snare",
+            () -> new StickyFoamBlock(BlockBehaviour.Properties.of(Material.WEB)
+                    .noCollission().sound(SoundType.WOOL).strength(4.0F), 1),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
+    public static final RegistryObject<Block> WEB_SNARE = register("web_snare",
+            () -> new StickyFoamBlock(BlockBehaviour.Properties.of(Material.WEB)
+                    .noCollission().sound(SoundType.WOOL).strength(6.0F), 5),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
+    public static final RegistryObject<Block> TAR_BLOCK = register("tar_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.COLOR_BLACK)
+                    .friction(0.8F).sound(SoundType.MUD).strength(2.0F)
+                    .speedFactor(0.3F).jumpFactor(0.1F)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
 
 

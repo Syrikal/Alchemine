@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "slime",
+  "key": {
+    "#": {
+      "item": "minecraft:soul_sand"
+    },
+    "X": {
+      "item": "alchemine:tarry_enhancer"
+    }
+  },
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "result": {
+    "count": 8,
+    "item": "alchemine:tar_block"
+  }
+}
