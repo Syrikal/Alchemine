@@ -116,11 +116,6 @@
     "block.alchemine.super_glue_stick": "Super Glue Stick",
     "block.alchemine.foam_snare": "Foam Snare",
     "block.alchemine.web_snare": "Web Snare",
-    "block.alchemine.tar_block": "Tar Block",
-    "item.alchemine.tarry_enhancer": "Tarry Soul Sand Enhancer",
-
-    "block.alchemine.oil_slick": "Oil Slick",
-    "block.alchemine.wall_slide": "Wall Slide",
-    "block.alchemine.silver_ice": "Silver Ice"
+    "block.alchemine.tar_block": "Tar Block"
 
 }

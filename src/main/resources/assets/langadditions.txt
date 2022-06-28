@@ -1,0 +1,3 @@
+oil_slick, "Oil Slick", block
+wall_slide, "Wall Slide", block
+silver_ice, "Silver Ice", block

@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "facing=north": {
+            "model": "alchemine:block/wall_slide_north"
+        },
+        "facing=west": {
+            "model": "alchemine:block/wall_slide_west"
+        },
+        "facing=east": {
+            "model": "alchemine:block/wall_slide_east"
+        },
+        "facing=south": {
+            "model": "alchemine:block/wall_slide_south"
+        }
+    }
+}

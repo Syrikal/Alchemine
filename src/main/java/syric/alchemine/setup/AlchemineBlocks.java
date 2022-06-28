@@ -21,6 +21,8 @@ import syric.alchemine.brewing.laboratory.AlchemicalGrinderBlock;
 import syric.alchemine.brewing.cauldron.AlchemicalCauldronBlock;
 import syric.alchemine.outputs.bouncy.blocks.*;
 import net.minecraft.world.level.block.Blocks;
+import syric.alchemine.outputs.slippery.blocks.OilSlickBlock;
+import syric.alchemine.outputs.slippery.blocks.WallSlideBlock;
 import syric.alchemine.outputs.sticky.blocks.*;
 
 import java.util.function.Supplier;
@@ -166,10 +168,22 @@ public class AlchemineBlocks {
 
 
 
-//    public static final RegistryObject<Block> SHELL_SLIME = register("shell_slime",
-//            () -> new ShellSlimeBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.GRASS)
-//                    .friction(.8F).sound(SoundType.SLIME_BLOCK).strength(4.0F)),
-//            alchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+    //Slippery
+    public static final RegistryObject<Block> OIL_SLICK = register("oil_slick",
+            () -> new OilSlickBlock(BlockBehaviour.Properties.of(AlchemineBlockMaterials.TAR_DEC_MAT)
+                    .friction(1F).sound(SoundType.MUD).noOcclusion().strength(2.0F), 1200),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+    //add a speed factor back??
+
+    public static final RegistryObject<Block> WALL_SLIDE = register("wall_slide",
+            () -> new WallSlideBlock(BlockBehaviour.Properties.of(Material.TOP_SNOW, MaterialColor.ICE)
+                    .sound(SoundType.MUD).noOcclusion()),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
+    public static final RegistryObject<Block> SILVER_ICE = register("silver_ice",
+            () -> new HalfTransparentBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID)
+                    .friction(0.999F).sound(SoundType.GLASS)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
 
 

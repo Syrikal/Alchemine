@@ -15,38 +15,45 @@ import static syric.alchemine.util.ChatPrint.chatPrint;
 
 public class GlueTrapBlock extends StickyFlatBlock {
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
+    public static final BooleanProperty PRIMED = BooleanProperty.create("primed");
 
     public GlueTrapBlock(Properties properties, int stick, int dur) {
         super(properties, stick, dur);
-        this.registerDefaultState(this.defaultBlockState().setValue(ACTIVE, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(ACTIVE, false).setValue(PRIMED, false));
     }
 
     public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(ACTIVE);
+        builder.add(ACTIVE, PRIMED);
     }
 
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         Vec3 entityDistance = new Vec3(entity.getX() - pos.getX() - 0.5, 0, entity.getZ() - pos.getZ() - 0.5);
-        if (entity.getY() > pos.getY() + 0.07) {
+        if (entity.getY() > pos.getY() + 0.7) {
             return;
-        } else if ((entityDistance.length() < 0.25) && !state.getValue(ACTIVE)) {
-            level.setBlockAndUpdate(pos, state.setValue(ACTIVE, true));
-            chatPrint("Entity close to center, activating glue", entity);
         } else if (state.getValue(ACTIVE)) {
-            Vec3 stuckVector = new Vec3(0.1, 1, 0.1);
+            Vec3 stuckVector = new Vec3(0.05, 1, 0.05);
             entity.makeStuckInBlock(state, stuckVector);
-        } else {
-            level.scheduleTick(pos, this, 20);
-            chatPrint("Starting one-second countdown to activation", entity);
+//            chatPrint("Entity stuck", entity);
+        } else if ((entityDistance.length() < 0.25) && !state.getValue(ACTIVE)) {
+            if (level.isClientSide) { return; }
+            level.setBlockAndUpdate(pos, state.setValue(ACTIVE, true));
+//            chatPrint("Entity close to center, activating glue", entity);
+        }  else {
+            if (level.isClientSide) { return; }
+            level.setBlockAndUpdate(pos, state.setValue(PRIMED, true));
+            level.scheduleTick(pos, this, 100);
+//            chatPrint("Starting five-second countdown to activation", entity);
         }
     }
 
     @Override
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
         super.tick(state, level, pos, source);
-        level.setBlockAndUpdate(pos, state.setValue(ACTIVE, true));
-        chatPrint("Time up, activating glue", level);
+        if (!level.isClientSide() && state.getValue(PRIMED)) {
+            level.setBlockAndUpdate(pos, state.setValue(ACTIVE, true));
+            chatPrint("Time up, activating glue", level);
+        }
     }
 
 

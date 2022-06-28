@@ -46,6 +46,8 @@ public class BlockRendering {
         cutout(AlchemineBlocks.WEB_SNARE.get());
         cutout(AlchemineBlocks.FOAM_SNARE.get());
 
+        translucent(AlchemineBlocks.WALL_SLIDE.get());
+
 
     }
 
