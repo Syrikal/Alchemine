@@ -143,20 +143,6 @@
     "item.alchemine.ferrous_slimeseed": "Ferrous Slimeseed",
     "item.alchemine.mercurial_slimeseed": "Mercurial Slimeseed",
     "item.alchemine.mulchy_slimeseed": "Mulchy Slimeseed",
-    "item.alchemine.foamy_slimeseed": "Foamy Slimeseed",
-
-    "block.alchemine.flexible_sludge": "Flexible Sludge",
-    "block.alchemine.adhesive_sludge": "Adhesive Sludge",
-    "block.alchemine.greasy_sludge": "Greasy Sludge",
-    "block.alchemine.infernal_sludge": "Infernal Sludge",
-    "block.alchemine.stygian_sludge": "Stygian Sludge",
-    "block.alchemine.luminous_sludge": "Luminous Sludge",
-    "block.alchemine.caustic_sludge": "Caustic Sludge",
-    "block.alchemine.metallic_sludge": "Metallic Sludge",
-    "block.alchemine.vigorous_sludge": "Vigorous Sludge",
-    "block.alchemine.hardened_sludge": "Hardened Sludge",
-    "block.alchemine.foamy_sludge": "Foamy Sludge",
-    "block.alchemine.volatile_sludge": "Volatile Sludge",
-    "block.alchemine.chaotic_sludge": "Chaotic Sludge"
+    "item.alchemine.foamy_slimeseed": "Foamy Slimeseed"
 
 }

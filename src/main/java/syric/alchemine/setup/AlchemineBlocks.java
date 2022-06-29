@@ -195,6 +195,61 @@ public class AlchemineBlocks {
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
 
+    //Sludge
+    public static final RegistryObject<Block> FLEXIBLE_SLUDGE = register("flexible_sludge",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.GRASS)
+                    .sound(SoundType.SLIME_BLOCK).noLootTable().strength(5F)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+    public static final RegistryObject<Block> ADHESIVE_SLUDGE = register("adhesive_sludge",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_ORANGE)
+                    .sound(SoundType.HONEY_BLOCK).noLootTable().strength(5F)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+    public static final RegistryObject<Block> GREASY_SLUDGE = register("greasy_sludge",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK)
+                    .sound(SoundType.MUD).noLootTable().strength(5F)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+    public static final RegistryObject<Block> INFERNAL_SLUDGE = register("infernal_sludge",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.NETHER)
+                    .sound(SoundType.STONE).noLootTable().strength(5F)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+    public static final RegistryObject<Block> STYGIAN_SLUDGE = register("stygian_sludge",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.ICE)
+                    .sound(SoundType.GLASS).noLootTable().strength(20F)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+    public static final RegistryObject<Block> LUMINOUS_SLUDGE = register("luminous_sludge",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SAND)
+                    .sound(SoundType.GLASS).noLootTable().strength(3F)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+    public static final RegistryObject<Block> CAUSTIC_SLUDGE = register("caustic_sludge",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GREEN)
+                    .sound(SoundType.MUD).noLootTable().strength(5F)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+    public static final RegistryObject<Block> METALLIC_SLUDGE = register("metallic_sludge",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.METAL)
+                    .sound(SoundType.METAL).strength(20F)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+    public static final RegistryObject<Block> VIGOROUS_SLUDGE = register("vigorous_sludge",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_GREEN)
+                    .sound(SoundType.SLIME_BLOCK).noLootTable().strength(5F)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+    public static final RegistryObject<Block> HARDENED_SLUDGE = register("hardened_sludge",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.DEEPSLATE)
+                    .sound(SoundType.STONE).noLootTable().strength(60F)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+    public static final RegistryObject<Block> FOAMY_SLUDGE = register("foamy_sludge",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_WHITE)
+                    .sound(SoundType.WOOL).noLootTable().strength(3F)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+    public static final RegistryObject<Block> VOLATILE_SLUDGE = register("volatile_sludge",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE)
+                    .sound(SoundType.STONE).noLootTable().strength(3F)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+    public static final RegistryObject<Block> CHAOTIC_SLUDGE = register("chaotic_sludge",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_PURPLE)
+                    .sound(SoundType.MUD).noLootTable().strength(5F)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
+
 
     //Morb
     public static final RegistryObject<Block> MORB_BLOCK = register("morb_block",
