@@ -32,18 +32,19 @@ public class GlueTrapBlock extends StickyFlatBlock {
         if (entity.getY() > pos.getY() + 0.7) {
             return;
         } else if (state.getValue(ACTIVE)) {
-            Vec3 stuckVector = new Vec3(0.05, 1, 0.05);
+            Vec3 stuckVector = new Vec3(0.03, 1, 0.03);
             entity.makeStuckInBlock(state, stuckVector);
 //            chatPrint("Entity stuck", entity);
-        } else if ((entityDistance.length() < 0.25) && !state.getValue(ACTIVE)) {
+        } else if ((entityDistance.length() < 0.4)) {
             if (level.isClientSide) { return; }
             level.setBlockAndUpdate(pos, state.setValue(ACTIVE, true));
+            Vec3 stuckVector = new Vec3(0.03, 1, 0.03);
+            entity.makeStuckInBlock(state, stuckVector);
 //            chatPrint("Entity close to center, activating glue", entity);
-        }  else {
-            if (level.isClientSide) { return; }
+        }  else if (!level.isClientSide && !state.getValue(PRIMED)) {
             level.setBlockAndUpdate(pos, state.setValue(PRIMED, true));
-            level.scheduleTick(pos, this, 100);
-//            chatPrint("Starting five-second countdown to activation", entity);
+            level.scheduleTick(pos, this, 6);
+//            chatPrint("Starting one-minute countdown to activation", entity);
         }
     }
 
@@ -52,9 +53,12 @@ public class GlueTrapBlock extends StickyFlatBlock {
         super.tick(state, level, pos, source);
         if (!level.isClientSide() && state.getValue(PRIMED)) {
             level.setBlockAndUpdate(pos, state.setValue(ACTIVE, true));
-            chatPrint("Time up, activating glue", level);
+//            chatPrint("Time up, activating glue", level);
         }
     }
 
+    @Override
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState state2, boolean bool) {
+    }
 
 }

@@ -90,11 +90,11 @@ public class OilSlickBlock extends Block {
 //    }
 
 
-    @Override
-    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        return level.getBlockState(pos.below()).getMaterial().isSolid();
-//        return !level.isEmptyBlock(pos.below());
-    }
+//    @Override
+//    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+//        return level.getBlockState(pos.below()).getMaterial().isSolid();
+////        return !level.isEmptyBlock(pos.below());
+//    }
 
 //    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
 //        BlockState blockstate = level.getBlockState(pos.below());
@@ -106,18 +106,18 @@ public class OilSlickBlock extends Block {
     }
 
     //Stuff relating to automatic destruction
-    @Override
-    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState state2, boolean bool) {
-        if (!level.isClientSide) {
-            level.scheduleTick(pos, this, duration);
-        }
-    }
-    @Override
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
-        super.tick(state, level, pos, source);
-        if (duration != 0) {
-            level.destroyBlock(pos, false);
-        }
-    }
+//    @Override
+//    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState state2, boolean bool) {
+//        if (!level.isClientSide) {
+//            level.scheduleTick(pos, this, duration);
+//        }
+//    }
+//    @Override
+//    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
+//        super.tick(state, level, pos, source);
+//        if (duration != 0) {
+//            level.destroyBlock(pos, false);
+//        }
+//    }
 
 }

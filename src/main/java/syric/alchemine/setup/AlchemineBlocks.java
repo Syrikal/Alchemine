@@ -171,13 +171,13 @@ public class AlchemineBlocks {
     //Slippery
     public static final RegistryObject<Block> OIL_SLICK = register("oil_slick",
             () -> new OilSlickBlock(BlockBehaviour.Properties.of(AlchemineBlockMaterials.TAR_DEC_MAT)
-                    .friction(1F).sound(SoundType.MUD).noOcclusion().strength(2.0F), 1200),
+                    .speedFactor(1.6F).sound(SoundType.MUD).noOcclusion().strength(2.0F), 1200),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
     //add a speed factor back??
 
     public static final RegistryObject<Block> WALL_SLIDE = register("wall_slide",
             () -> new WallSlideBlock(BlockBehaviour.Properties.of(Material.TOP_SNOW, MaterialColor.ICE)
-                    .sound(SoundType.MUD).noOcclusion()),
+                    .sound(SoundType.MUD).noCollission().noOcclusion()),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> SILVER_ICE = register("silver_ice",
