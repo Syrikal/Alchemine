@@ -66,6 +66,8 @@ public FullFlaskItem(Properties properties) {super(properties);}
         add(registerEffects.TAR_STICK_EFFECT, "Tar Stick");
         add(registerEffects.GLUE_STICK_EFFECT, "Glue Stick");
         add(registerEffects.STONE_BLOB_EFFECT, "Stone Blob");
+        add(registerEffects.OIL_SLICK_EFFECT, "Oil Slick");
+        add(registerEffects.WALL_SLIDE_EFFECT, "Wall Slide");
         initialized = true;
     }
 

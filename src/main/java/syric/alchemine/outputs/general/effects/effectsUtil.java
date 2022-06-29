@@ -2,9 +2,11 @@ package syric.alchemine.outputs.general.effects;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.RegistryObject;
@@ -22,6 +24,7 @@ public class effectsUtil {
     public static ReplaceablesFilter BREAK_ON_PUSH = (state) -> state.getMaterial().getPushReaction() == PushReaction.DESTROY || state.getMaterial().equals(Material.AIR);;
     public static ReplaceablesFilter BLOCK_REPLACEABLE = (state) -> state.getMaterial().isReplaceable();
     public static ReplaceablesFilter STRONG = (state) -> state.getMaterial().isReplaceable() || state.getMaterial().getPushReaction() == PushReaction.DESTROY;
+    public static ReplaceablesFilter MAGMA_VEIN = (state) -> state.is(BlockTags.BASE_STONE_NETHER) || state.is(BlockTags.BASE_STONE_OVERWORLD);
     //One that doesn't work underwater?
 
     public static void placeAbsolute(Level level, PlacementPattern pattern, Block block, ReplaceablesFilter replaceables) {
@@ -30,6 +33,15 @@ public class effectsUtil {
                     level.destroyBlock(c, true);
                     level.setBlockAndUpdate(c, block.defaultBlockState());
                 });
+    }
+
+    public static void placeAbsolute(Level level, PlacementPattern pattern, BlockState state, ReplaceablesFilter replaceables) {
+        pattern.blockList().filter(c -> replaceables.check(level.getBlockState(c)))
+                .forEach(c -> {
+                    level.destroyBlock(c, true);
+                    level.setBlockAndUpdate(c, state);
+                });
+
     }
 
     public static void placeAbsolute(Level level, PlacementPattern pattern, RegistryObject<Block> blockReg, ReplaceablesFilter replaceables) {

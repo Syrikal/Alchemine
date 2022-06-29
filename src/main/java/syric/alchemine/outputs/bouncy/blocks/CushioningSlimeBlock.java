@@ -14,11 +14,11 @@ import syric.alchemine.setup.AlchemineBlocks;
 
 public class CushioningSlimeBlock extends HalfTransparentBlock {
 
-    public static final BooleanProperty STABLE = BooleanProperty.create("stable");
+    public static final BooleanProperty PERMANENT = BooleanProperty.create("permanent");
 
-    public CushioningSlimeBlock(BlockBehaviour.Properties properties, boolean stable) {
+    public CushioningSlimeBlock(BlockBehaviour.Properties properties, boolean permanent) {
         super (properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(STABLE, stable));
+        this.registerDefaultState(this.defaultBlockState().setValue(PERMANENT, permanent));
     }
 
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity faller, float num) {
@@ -27,7 +27,7 @@ public class CushioningSlimeBlock extends HalfTransparentBlock {
         } else {
             faller.causeFallDamage(num, 0.0F, DamageSource.FALL);
         }
-        if (!level.isClientSide && num > 3 && !state.getValue(STABLE)) {
+        if (!level.isClientSide && num > 3 && !state.getValue(PERMANENT)) {
             level.destroyBlock(pos, true);
             BlockPos pos1 = new BlockPos(pos.getX()-4, pos.getY()-1,pos.getZ()-4);
             BlockPos pos2 = new BlockPos(pos.getX()+4, pos.getY(), pos.getZ()+4);
@@ -47,7 +47,7 @@ public class CushioningSlimeBlock extends HalfTransparentBlock {
 
     @Override
     public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(STABLE);
+        builder.add(PERMANENT);
     }
 
 }

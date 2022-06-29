@@ -13,6 +13,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -106,18 +107,18 @@ public class OilSlickBlock extends Block {
     }
 
     //Stuff relating to automatic destruction
-//    @Override
-//    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState state2, boolean bool) {
-//        if (!level.isClientSide) {
-//            level.scheduleTick(pos, this, duration);
-//        }
-//    }
-//    @Override
-//    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
-//        super.tick(state, level, pos, source);
-//        if (duration != 0) {
-//            level.destroyBlock(pos, false);
-//        }
-//    }
+    @Override
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState state2, boolean bool) {
+        if (!level.isClientSide) {
+            level.scheduleTick(pos, this, duration);
+        }
+    }
+    @Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
+        super.tick(state, level, pos, source);
+        if (duration != 0) {
+            level.destroyBlock(pos, false);
+        }
+    }
 
 }

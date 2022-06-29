@@ -174,6 +174,11 @@ public class AlchemineBlocks {
                     .speedFactor(1.6F).sound(SoundType.MUD).noOcclusion().strength(2.0F), 1200),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
+    public static final RegistryObject<Block> PERMANENT_OIL_SLICK = register("permanent_oil_slick",
+            () -> new OilSlickBlock(BlockBehaviour.Properties.of(AlchemineBlockMaterials.TAR_DEC_MAT)
+                    .speedFactor(1.6F).sound(SoundType.MUD).noOcclusion().strength(2.0F), 0),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
     public static final RegistryObject<Block> WALL_SLIDE = register("wall_slide",
             () -> new WallSlideBlock(BlockBehaviour.Properties.of(Material.TOP_SNOW, MaterialColor.ICE)
                     .sound(SoundType.MUD).noCollission().noOcclusion()),

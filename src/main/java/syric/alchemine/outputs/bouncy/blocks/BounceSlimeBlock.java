@@ -18,14 +18,14 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BounceSlimeBlock extends HalfTransparentBlock {
 
-    public static final BooleanProperty STABLE = BooleanProperty.create("stable");
+    public static final BooleanProperty PERMANENT = BooleanProperty.create("permanent");
     protected static final VoxelShape TOP = Block.box(3.0D, 8.0D, 3.0D, 12.0D, 16.0D, 12.0D);
     protected static final VoxelShape BOTTOM = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
 
 
-    public BounceSlimeBlock(BlockBehaviour.Properties properties, boolean stable) {
+    public BounceSlimeBlock(BlockBehaviour.Properties properties, boolean permanent) {
         super (properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(STABLE, stable));
+        this.registerDefaultState(this.defaultBlockState().setValue(PERMANENT, permanent));
     }
 
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
@@ -46,14 +46,14 @@ public class BounceSlimeBlock extends HalfTransparentBlock {
 //            }
         }
         super.stepOn(level, pos, state, entity);
-        if (!level.isClientSide && !state.getValue(STABLE)) {
+        if (!level.isClientSide && !state.getValue(PERMANENT)) {
             level.destroyBlock(pos, true);
         }
     }
 
     @Override
     public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(STABLE);
+        builder.add(PERMANENT);
     }
 
     public VoxelShape getCollisionShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
