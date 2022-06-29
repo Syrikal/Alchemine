@@ -135,14 +135,6 @@
     "item.alchemine.salamander_gloves": "Salamander Gloves",
     "item.alchemine.smelters_delight": "Smelter's Delight",
     "item.alchemine.magmatic_slimeseed": "Magmatic Slimeseed",
-    "item.alchemine.fiery_slimeseed": "Fiery Slimeseed",
-
-    "item.alchemine.glowing_slimeseed": "Glowing Slimeseed",
-    "item.alchemine.caustic_slimeseed": "Caustic Slimeseed",
-    "item.alchemine.withering_slimeseed": "Withering Slimeseed",
-    "item.alchemine.ferrous_slimeseed": "Ferrous Slimeseed",
-    "item.alchemine.mercurial_slimeseed": "Mercurial Slimeseed",
-    "item.alchemine.mulchy_slimeseed": "Mulchy Slimeseed",
-    "item.alchemine.foamy_slimeseed": "Foamy Slimeseed"
+    "item.alchemine.fiery_slimeseed": "Fiery Slimeseed"
 
 }
