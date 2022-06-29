@@ -36,9 +36,33 @@ public class AlchemineItems {
             () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
     public static final RegistryObject<Item> SLIMESEED = ITEMS.register("slimeseed",
             () -> new SlimeseedItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+    public static final RegistryObject<Item> CLAY_SLIMESEED = ITEMS.register("clay_slimeseed",
+            () -> new SlimeseedItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
 
     public static final RegistryObject<Item> TARRY_SOUL_SAND_ENHANCER = ITEMS.register("tarry_enhancer",
             () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+    public static final RegistryObject<Item> HONEYED_SLIMESEED = ITEMS.register("honeyed_slimeseed",
+            () -> new SlimeseedItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+
+    public static final RegistryObject<Item> SILVERY_ICE_ENHANCER = ITEMS.register("silvery_enhancer",
+            () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+    public static final RegistryObject<Item> GROOVED_ICE_ENHANCER = ITEMS.register("grooved_enhancer",
+            () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+    public static final RegistryObject<Item> OILY_SLIMESEED = ITEMS.register("oily_slimeseed",
+            () -> new SlimeseedItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+    public static final RegistryObject<Item> INKY_SLIMESEED = ITEMS.register("inky_slimeseed",
+            () -> new SlimeseedItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+
+    public static final RegistryObject<Item> PRIMAL_COAL = ITEMS.register("primal_coal",
+            () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+    public static final RegistryObject<Item> SALAMANDER_GLOVES = ITEMS.register("salamander_gloves",
+            () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+    public static final RegistryObject<Item> SMELTERS_DELIGHT = ITEMS.register("smelters_delight",
+            () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+    public static final RegistryObject<Item> MAGMATIC_SLIMESEED = ITEMS.register("magmatic_slimeseed",
+            () -> new SlimeseedItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+    public static final RegistryObject<Item> FIERY_SLIMESEED = ITEMS.register("fiery_slimeseed",
+            () -> new SlimeseedItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
 
     //INGREDIENTS (58 Items)
     public static final RegistryObject<Item> SALT = ITEMS.register("salt",

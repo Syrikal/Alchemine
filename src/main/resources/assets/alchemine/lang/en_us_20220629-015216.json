@@ -106,7 +106,6 @@
     "block.alchemine.magenta_chroma_slime": "Magenta Chromaslime",
     "block.alchemine.brown_chroma_slime": "Brown Chromaslime",
     "item.alchemine.slimeseed": "Slimeseed",
-    "item.alchemine.clay_slimeseed": "Clay Slimeseed",
     "item.alchemine.chroma_enhancer": "Chromatic Slime Enhancer",
     "item.alchemine.cushioning_enhancer": "Cushioning Slime Enhancer",
     "item.alchemine.bouncy_enhancer": "Bouncy Slime Enhancer",
@@ -118,22 +117,10 @@
     "block.alchemine.foam_snare": "Foam Snare",
     "block.alchemine.web_snare": "Web Snare",
     "block.alchemine.tar_block": "Tar Block",
-    "item.alchemine.honeyed_slimeseed": "Honeyed Slimeseed",
     "item.alchemine.tarry_enhancer": "Tarry Soul Sand Enhancer",
 
     "block.alchemine.oil_slick": "Oil Slick",
     "block.alchemine.wall_slide": "Wall Slide",
-    "block.alchemine.silver_ice": "Silver Ice",
-    "block.alchemine.grooved_ice": "Grooved Ice",
-    "item.alchemine.oily_slimeseed": "Oily Slimeseed",
-    "item.alchemine.inky_slimeseed": "Inky Slimeseed",
-    "item.alchemine.silvery_enhancer": "Silvery Enhancer",
-    "item.alchemine.grooved_enhancer": "Grooved Enhancer",
-
-    "item.alchemine.primal_coal": "Primal Coal",
-    "item.alchemine.salamander_gloves": "Salamander Gloves",
-    "item.alchemine.smelters_delight": "Smelter's Delight",
-    "item.alchemine.magmatic_slimeseed": "Magmatic Slimeseed",
-    "item.alchemine.fiery_slimeseed": "Fiery Slimeseed"
+    "block.alchemine.silver_ice": "Silver Ice"
 
 }

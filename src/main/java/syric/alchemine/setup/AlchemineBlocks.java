@@ -173,7 +173,6 @@ public class AlchemineBlocks {
             () -> new OilSlickBlock(BlockBehaviour.Properties.of(AlchemineBlockMaterials.TAR_DEC_MAT)
                     .speedFactor(1.6F).sound(SoundType.MUD).noOcclusion().strength(2.0F), 1200),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
-    //add a speed factor back??
 
     public static final RegistryObject<Block> WALL_SLIDE = register("wall_slide",
             () -> new WallSlideBlock(BlockBehaviour.Properties.of(Material.TOP_SNOW, MaterialColor.ICE)
@@ -182,7 +181,12 @@ public class AlchemineBlocks {
 
     public static final RegistryObject<Block> SILVER_ICE = register("silver_ice",
             () -> new HalfTransparentBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID)
-                    .friction(0.999F).sound(SoundType.GLASS)),
+                    .friction(1.01F).sound(SoundType.GLASS)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
+    public static final RegistryObject<Block> GROOVED_ICE = register("grooved_ice",
+            () -> new HalfTransparentBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID)
+                    .friction(0.4F).sound(SoundType.GLASS)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
 

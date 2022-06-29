@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "sticky",
+  "group": "slippery",
   "key": {
     "#": {
-      "item": "minecraft:soul_sand"
+      "item": "minecraft:blue_ice"
     },
     "X": {
-      "item": "alchemine:tarry_enhancer"
+      "item": "alchemine:silvery_enhancer"
     }
   },
   "pattern": [
@@ -16,6 +16,6 @@
   ],
   "result": {
     "count": 8,
-    "item": "alchemine:tar_block"
+    "item": "alchemine:silver_ice"
   }
 }
