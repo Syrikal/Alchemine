@@ -24,10 +24,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeBlock;
+import syric.alchemine.util.ColorsUtil;
 
 public class CausticSludgeBlock extends SludgeBlock implements IForgeBlock {
-    private static MobEffectInstance getPoison() { return new MobEffectInstance(MobEffects.POISON, 40, 0, true, true); }
-    private static MobEffectInstance getWither() { return new MobEffectInstance(MobEffects.WITHER, 60, 0, true, true); }
+    private static MobEffectInstance getPoison() { return new MobEffectInstance(MobEffects.POISON, 40, 1, true, true); }
+    private static MobEffectInstance getWither() { return new MobEffectInstance(MobEffects.WITHER, 100, 1, true, true); }
     private static MobEffectInstance getWeakPoison() { return new MobEffectInstance(MobEffects.POISON, 20, 0, true, true); }
 
 
@@ -55,7 +56,6 @@ public class CausticSludgeBlock extends SludgeBlock implements IForgeBlock {
         if (!levelAccessor.isClientSide()) {
             RandomSource source = RandomSource.create();
             AreaEffectCloud cloud = EntityType.AREA_EFFECT_CLOUD.create((Level) levelAccessor);
-
             BlockPos position = pos.offset(0.5, 0.5, 0.5);
             assert cloud != null;
             cloud.absMoveTo(position.getX(), position.getY(), position.getZ());
@@ -64,9 +64,18 @@ public class CausticSludgeBlock extends SludgeBlock implements IForgeBlock {
             MobEffectInstance poison = new MobEffectInstance(MobEffects.POISON, 200, 0, false, false);
             cloud.addEffect(poison);
             cloud.setDeltaMovement(Vec3.ZERO);
+            cloud.setFixedColor(ColorsUtil.rawColorFromRGB(78, 147, 49));
             levelAccessor.addFreshEntity(cloud);
         }
 
+    }
+
+    @Override
+    public float getDestroyProgress(BlockState state, Player player, BlockGetter getter, BlockPos pos) {
+        if (!player.level.isClientSide()) {
+            player.addEffect(state.getValue(WEAK_VERSION) ? getWeakPoison() : getPoison());
+        }
+        return super.getDestroyProgress(state, player, getter, pos);
     }
 
 

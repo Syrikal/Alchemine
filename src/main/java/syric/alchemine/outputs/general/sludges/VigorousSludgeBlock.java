@@ -5,9 +5,13 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.monster.Slime;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.Fallable;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -15,10 +19,11 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.Vec3;
 import syric.alchemine.outputs.general.alchemicaleffects.effectsUtil;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.ReplaceablesFilter;
+import syric.alchemine.setup.AlchemineBlocks;
 
 import static syric.alchemine.util.ChatPrint.chatPrint;
 
-public class VigorousSludgeBlock extends SludgeBlock {
+public class VigorousSludgeBlock extends SludgeBlock implements Fallable {
     public static final IntegerProperty SPREAD = IntegerProperty.create("spread", 0, 10);
 
     public VigorousSludgeBlock(Properties properties) {
@@ -66,7 +71,7 @@ public class VigorousSludgeBlock extends SludgeBlock {
             int newSpread = state.getValue(WEAK_VERSION) ? Math.max(spread - 3, 0) : Math.max(spread - 2, 0);
             level.setBlockAndUpdate(pos, state.setValue(SPREAD, newSpread));
         }
-
+        checkFall(level, pos);
     }
 
     public void destroy(LevelAccessor levelAccessor, BlockPos pos, BlockState state) {
@@ -83,6 +88,29 @@ public class VigorousSludgeBlock extends SludgeBlock {
             }
         }
     }
+
+    @Override
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState state2, boolean bool) {
+        checkFall(level, pos);
+    }
+
+    private void checkFall(Level level, BlockPos pos) {
+        if (level.isClientSide()) {
+            return;
+        }
+        BlockState state = level.getBlockState(pos);
+        if (state.getBlock() != AlchemineBlocks.VIGOROUS_SLUDGE.get()) {
+            return;
+        }
+        RandomSource rdm = RandomSource.create();
+        if (rdm.nextDouble() < 0.3) {
+            if (level.getBlockState(pos.below()).getMaterial().isReplaceable() && pos.getY() >= level.getMinBuildHeight()) {
+                FallingBlockEntity fallingblockentity = FallingBlockEntity.fall(level, pos, state);
+                checkFall(level, pos.above());
+            }
+        }
+    }
+
 
     @Override
     public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {

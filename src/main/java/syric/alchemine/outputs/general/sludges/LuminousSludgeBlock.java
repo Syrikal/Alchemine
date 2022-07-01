@@ -28,7 +28,7 @@ public class LuminousSludgeBlock extends SludgeBlock implements IForgeBlock {
 
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
-        if (!level.isClientSide()) {
+        if (!level.isClientSide() && !player.isCreative()) {
             MobEffectInstance blind = new MobEffectInstance(MobEffects.BLINDNESS, 600, 0, true, true);
             MobEffectInstance lightblind = new MobEffectInstance(AlchemineEffects.LIGHT_BLINDNESS.get(), 600, 0, true, true);
 

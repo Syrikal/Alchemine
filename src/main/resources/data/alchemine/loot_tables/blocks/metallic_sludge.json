@@ -1,12 +1,17 @@
 {
     "pools": [
         {
-            "rolls": 0,
-            "bonus_rolls": {
+            "conditions": [
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ],
+            "rolls": {
                 "type": "minecraft:binomial",
                 "n": 4,
-                "p": 0.1
+                "p": 0.5
             },
+            "bonus_rolls": 0,
             "entries": [
                 {
                     "type": "minecraft:item",
@@ -19,11 +24,6 @@
                     "weight": 1,
                     "quality": 1,
                     "name": "minecraft:raw_copper"
-                }
-            ],
-            "conditions": [
-                {
-                    "condition": "minecraft:survives_explosion"
                 }
             ]
         }

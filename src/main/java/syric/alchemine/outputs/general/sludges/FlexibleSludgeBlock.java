@@ -111,7 +111,7 @@ public class FlexibleSludgeBlock extends SludgeBlock {
     @Override
     public void attack(BlockState state, Level level, BlockPos pos, Player player) {
         RandomSource rand =RandomSource.create();
-        if (rand.nextDouble() < 0.5) {
+        if (rand.nextDouble() < 0.7) {
             Vec3 vectorToEntityCenter = player.getBoundingBox().getCenter();
             double entityX = vectorToEntityCenter.x;
             double entityY = vectorToEntityCenter.y;
@@ -127,7 +127,7 @@ public class FlexibleSludgeBlock extends SludgeBlock {
 //            chatPrint("Displacement Vector: " + displacement.toString() + ", length: " + displacement.length() + ", multiplying...", level);
 
 
-            double factor = (1D / displacement.length());
+            double factor = (1.5D / displacement.length());
 
             displacement = displacement.multiply(factor, factor, factor);
 //            chatPrint("Displacement Vector: " + displacement.toString() + ", length: " + displacement.length(), level);

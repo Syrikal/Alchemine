@@ -1,5 +1,6 @@
 package syric.alchemine.outputs.general.sludges;
 
+import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
@@ -33,12 +34,16 @@ public class StygianSludgeBlockEntity extends BlockEntity {
         BlockPos pos2 = new BlockPos(pos.getX()+variation, pos.getY()+variation, pos.getZ()+variation);
 
         assert level != null;
+        StringBuilder sb = new StringBuilder();
         for (Entity entity : level.getEntities(null, new AABB(pos1, pos2))) {
-            if (entity.position().vectorTo(new Vec3(pos.getX(), pos.getY(), pos.getZ())).length() <= ((double) variation / 2D)) {
-                entity.setTicksFrozen(entity.getTicksFrozen() + 1);
+            if (entity.position().vectorTo(new Vec3(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5)).length() <= ((double) variation)) {
+                StygianSludgeBlock.freeze(level, entity, 1, false);
             }
         }
-
+//        LogUtils.getLogger().info("Stygian Sludge block entity attempting to freeze nearby entities");
+        if (sb.length() > 0) {
+            LogUtils.getLogger().info(sb.toString());
+        }
     }
 
 

@@ -18,6 +18,8 @@ import syric.alchemine.setup.AlchemineBlocks;
 import syric.alchemine.setup.AlchemineEffects;
 import syric.alchemine.setup.AlchemineOverlays;
 
+import java.util.Objects;
+
 public class FogEffects {
 
     public static void renderFog(final EntityViewRenderEvent.RenderFogEvent event) {
@@ -32,7 +34,7 @@ public class FogEffects {
 //            event.setCanceled(false);
             OverlayRegistry.enableOverlay(vita_slime_overlay, true);
         } else {
-            if (OverlayRegistry.getEntry(vita_slime_overlay).isEnabled()) {
+            if (Objects.requireNonNull(OverlayRegistry.getEntry(vita_slime_overlay)).isEnabled()) {
                 OverlayRegistry.enableOverlay(vita_slime_overlay, false);
             }
         }
@@ -47,7 +49,7 @@ public class FogEffects {
             OverlayRegistry.enableOverlay(berserkers_resin_overlay, true);
         }
         else {
-            if (OverlayRegistry.getEntry(berserkers_resin_overlay).isEnabled()) {
+            if (Objects.requireNonNull(OverlayRegistry.getEntry(berserkers_resin_overlay)).isEnabled()) {
                 OverlayRegistry.enableOverlay(berserkers_resin_overlay, false);
             }
         }
@@ -65,7 +67,7 @@ public class FogEffects {
 
                 assert effect != null;
                 float render = event.getRenderer().getRenderDistance();
-                float f = Mth.lerp(Math.min(1.0F, (float)effect.getDuration() / 20.0F), render, 5.0F);
+                float f = Mth.lerp(Math.min(0.7F, (float)effect.getDuration() / 20.0F), render, 5.0F);
                 if (event.getFogShape() == FogShape.CYLINDER) {
                     event.setNearPlaneDistance(0.0F);
                     event.setFarPlaneDistance(f * 0.8F);

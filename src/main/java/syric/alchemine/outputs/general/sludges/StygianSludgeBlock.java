@@ -1,7 +1,9 @@
 package syric.alchemine.outputs.general.sludges;
 
+import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -30,6 +32,8 @@ import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.Place
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.ReplaceablesFilter;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.SpherePattern;
 import syric.alchemine.setup.AlchemineBlockEntityTypes;
+
+import static syric.alchemine.util.ChatPrint.chatPrint;
 
 public class StygianSludgeBlock extends SludgeBlock implements IForgeBlock, EntityBlock {
     private static MobEffectInstance getBriefSlow() { return new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 0, true, true);}
@@ -60,32 +64,31 @@ public class StygianSludgeBlock extends SludgeBlock implements IForgeBlock, Enti
             if (damage > 0) {
                 entity.hurt(DamageSource.FREEZE, damage);
             }
-            if (!state.getValue(WEAK_VERSION) && !entity.isSteppingCarefully()) {
-                entity.setTicksFrozen(entity.getTicksFrozen() + 3);
+            if (!state.getValue(WEAK_VERSION) && !entity.isSteppingCarefully() && !level.isClientSide()) {
+                freeze(level, entity, 2, false);
             }
-
             if (!state.getValue(WEAK_VERSION)) {
                 ((LivingEntity) entity).addEffect(getBriefSlow());
             }
-
         }
-
         super.stepOn(level, pos, state, entity);
     }
 
     @Override
     public void attack(BlockState state, Level level, BlockPos pos, Player player) {
+        freeze(player.getLevel(), player, 20, true);
         if (player.canFreeze() && !state.getValue(WEAK_VERSION)) {
-            player.setTicksFrozen(player.getTicksFrozen()+10);
             player.addEffect(getBriefSlow());
         }
+//        BlockEntity blockEntity = level.getBlockEntity(pos);
+//        if (blockEntity instanceof StygianSludgeBlockEntity) {
+//            ((StygianSludgeBlockEntity) blockEntity).speak(player);
+//        }
     }
 
     @Override
     public float getDestroyProgress(BlockState state, Player player, BlockGetter getter, BlockPos pos) {
-        if (player.canFreeze()) {
-            player.setTicksFrozen(player.getTicksFrozen() + 1);
-        }
+        freeze(player.getLevel(), player, 2, true);
         return super.getDestroyProgress(state, player, getter, pos);
     }
 
@@ -103,8 +106,9 @@ public class StygianSludgeBlock extends SludgeBlock implements IForgeBlock, Enti
 
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
+        int freeze = state.getValue(WEAK_VERSION) ? 100 : 200;
+        freeze(level, player, freeze, true);
         if (player.canFreeze() && !level.isClientSide()) {
-            player.setTicksFrozen(state.getValue(WEAK_VERSION) ? 100 : 200);
             player.addEffect(getLongSlow());
         }
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
@@ -158,6 +162,19 @@ public class StygianSludgeBlock extends SludgeBlock implements IForgeBlock, Enti
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
 //        return EntityBlock.super.getTicker(level, state, type);
         return level.isClientSide ? null : (level0, pos, state2, blockEntity) -> ((StygianSludgeBlockEntity) blockEntity).tick();
+    }
+
+
+    public static void freeze(Level level, Entity entity, int freezeTicks, boolean override) {
+        if (!entity.canFreeze() || level.isClientSide()) {
+            return;
+        }
+        if (entity.isInPowderSnow && !override) {
+            return;
+        }
+        int freezeTarget = Math.min(entity.getTicksRequiredToFreeze(), entity.getTicksFrozen() + freezeTicks);
+        entity.setIsInPowderSnow(true);
+        entity.setTicksFrozen(freezeTarget);
     }
 
 

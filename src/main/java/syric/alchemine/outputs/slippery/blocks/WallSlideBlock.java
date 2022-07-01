@@ -67,7 +67,7 @@ public class WallSlideBlock extends HorizontalDirectionalBlock {
         List<Entity> contained = level.getEntities(null, shape);
         List<VoxelShape> contained2 = level.getEntityCollisions(null, shape);
         boolean ret = contained2.contains(Shapes.create(entity.getBoundingBox()));
-        chatPrint("Entities in block: " + contained2, level);
+        chatPrint("Entities in block detected on "+ (level.isClientSide ? "client" : "server") + "side", level);
 //        return contained.contains(entity);
         return ret;
     }
@@ -84,7 +84,7 @@ public class WallSlideBlock extends HorizontalDirectionalBlock {
 //            chatPrint("Not falling fast enough to start sliding", entity);
         }
 
-        if (doesEntityDoWallSlideFfects(entity) && sliding) {
+        if (doesEntityDoWallSlideEffects(entity) && sliding) {
             if (level.random.nextInt(5) == 0) {
                 entity.playSound(SoundEvents.HONEY_BLOCK_SLIDE, 1.0F, 1.0F);
             }
@@ -96,14 +96,14 @@ public class WallSlideBlock extends HorizontalDirectionalBlock {
 
     }
 
-    private static boolean doesEntityDoWallSlideFfects(Entity entity) {
+    private static boolean doesEntityDoWallSlideEffects(Entity entity) {
         return entity instanceof LivingEntity || entity instanceof AbstractMinecart || entity instanceof PrimedTnt || entity instanceof Boat;
     }
 
 
-    public boolean skipRendering(BlockState state1, BlockState state2, Direction dir) {
-        return state2.is(this) ? true : super.skipRendering(state1, state2, dir);
-    }
+//    public boolean skipRendering(BlockState state1, BlockState state2, Direction dir) {
+//        return state2.is(this) || super.skipRendering(state1, state2, dir);
+//    }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());

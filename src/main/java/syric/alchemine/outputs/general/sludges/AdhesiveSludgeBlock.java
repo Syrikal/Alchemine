@@ -20,7 +20,7 @@ import syric.alchemine.setup.AlchemineBlocks;
 
 public class AdhesiveSludgeBlock extends SludgeBlock {
     protected static final VoxelShape SHAPE = Block.box(1D, 0.0D, 1D, 15D, 16.0D, 15D);
-    private static MobEffectInstance getFatigue() { return new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 200, 0, true, true); }
+    private static MobEffectInstance getFatigue() { return new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 200, 1, true, true); }
 
     public AdhesiveSludgeBlock(Properties properties) {
         super(properties);

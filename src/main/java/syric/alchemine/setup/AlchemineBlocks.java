@@ -210,13 +210,13 @@ public class AlchemineBlocks {
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
     public static final RegistryObject<Block> GREASY_SLUDGE = register("greasy_sludge",
             () -> new GreasySludgeBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK)
-                    .sound(SoundType.MUD).noLootTable().strength(5.0F)
-                    .friction(1.2F).speedFactor(2F)),
+                    .sound(SoundType.MUD).noLootTable().strength(5.0F)),
+//                    .friction(1.2F).speedFactor(2F)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
     public static final RegistryObject<Block> INFERNAL_SLUDGE = register("infernal_sludge",
             () -> new InfernalSludgeBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.NETHER)
                     .sound(SoundType.STONE).noLootTable().strength(5.0F)
-                    .randomTicks()),
+                    .randomTicks().lightLevel((c) -> {return 15;})),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
     public static final RegistryObject<Block> STYGIAN_SLUDGE = register("stygian_sludge",
             () -> new StygianSludgeBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.ICE)

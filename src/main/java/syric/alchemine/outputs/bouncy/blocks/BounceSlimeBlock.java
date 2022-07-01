@@ -1,6 +1,8 @@
 package syric.alchemine.outputs.bouncy.blocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -40,7 +42,13 @@ public class BounceSlimeBlock extends HalfTransparentBlock {
             double latAdd = 2.2 * Math.cos(angle);
             double mult = (lat + latAdd) / lat;
 
-            entity.setDeltaMovement(vec3.x * mult, vert, vec3.z*mult);
+            if (!level.isClientSide()) {
+                entity.setDeltaMovement(vec3.x * mult, vert, vec3.z*mult);
+                if (entity instanceof ServerPlayer) {
+                    ((ServerPlayer) entity).connection.send(new ClientboundSetEntityMotionPacket(entity));
+                }
+            }
+
 //            if (entity instanceof Player) {
 //                ChatPrint.chatPrint("lateral speed: " + lat + ", launch angle: " + angleDegrees, (Player) entity);
 //            }
