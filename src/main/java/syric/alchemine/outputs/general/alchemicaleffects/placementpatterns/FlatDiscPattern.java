@@ -1,8 +1,6 @@
-package syric.alchemine.outputs.general.effects.placementpatterns;
+package syric.alchemine.outputs.general.alchemicaleffects.placementpatterns;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.state.BlockState;
-import syric.alchemine.setup.AlchemineBlocks;
 
 import java.util.stream.Stream;
 

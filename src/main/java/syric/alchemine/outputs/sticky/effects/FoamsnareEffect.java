@@ -3,8 +3,8 @@ package syric.alchemine.outputs.sticky.effects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import syric.alchemine.outputs.general.effects.AlchemicalEffect;
-import syric.alchemine.outputs.general.effects.effectsUtil;
+import syric.alchemine.outputs.general.alchemicaleffects.AlchemicalEffect;
+import syric.alchemine.outputs.general.alchemicaleffects.effectsUtil;
 import syric.alchemine.setup.AlchemineBlocks;
 
 public class FoamsnareEffect implements AlchemicalEffect {

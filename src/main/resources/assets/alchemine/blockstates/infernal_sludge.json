@@ -1,7 +1,7 @@
 {
     "variants": {
         "": {
-            "model": "alchemine:block/infernal_sludge"
+            "model": "minecraft:block/magma_block"
         }
     }
 }

@@ -9,6 +9,7 @@ public class AlchemineBlockMaterials {
     public static final Material TAR_DEC_MAT = (new Builder(MaterialColor.COLOR_BLACK)).noCollider().notSolidBlocking().nonSolid().flammable().replaceable().destroyOnPush().build();
     public static final Material TAR_MAT = (new Builder(MaterialColor.COLOR_BLACK)).flammable().build();
     public static final Material GLUE_MAT = (new Builder(MaterialColor.TERRACOTTA_WHITE)).noCollider().notSolidBlocking().nonSolid().replaceable().notPushable().build();
+    public static final Material UNPUSHABLE = (new Builder(MaterialColor.STONE)).notPushable().build();
 
 
     public static class Builder {

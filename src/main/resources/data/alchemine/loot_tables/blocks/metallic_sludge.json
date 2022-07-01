@@ -1,20 +1,31 @@
 {
-    "type": "minecraft:block",
     "pools": [
         {
-        "bonus_rolls": 0.0,
-        "conditions": [
-            {
-                "condition": "minecraft:survives_explosion"
-            }
-        ],
-        "entries": [
-            {
-                "type": "minecraft:item",
-                "name": "alchemine:metallic_sludge"
-            }
-        ],
-        "rolls": 1.0
+            "rolls": 0,
+            "bonus_rolls": {
+                "type": "minecraft:binomial",
+                "n": 4,
+                "p": 0.1
+            },
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "weight": 1,
+                    "quality": 3,
+                    "name": "minecraft:raw_iron"
+                },
+                {
+                    "type": "minecraft:item",
+                    "weight": 1,
+                    "quality": 1,
+                    "name": "minecraft:raw_copper"
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
         }
     ]
 }

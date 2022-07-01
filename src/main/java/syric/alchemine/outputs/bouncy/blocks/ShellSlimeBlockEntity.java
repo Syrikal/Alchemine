@@ -44,18 +44,6 @@ public class ShellSlimeBlockEntity extends BlockEntity {
     }
 
 
-//    @Override
-//    public void load(CompoundTag nbt) {
-//        super.load(nbt);
-//    }
-//
-//    @Override
-//    protected void saveAdditional(CompoundTag nbt) {
-//        super.saveAdditional(nbt);
-//    }
-//
-//    public void tick() {}
-
     public void speak(Player player) {
         chatPrint("block entity exists", player);
     }

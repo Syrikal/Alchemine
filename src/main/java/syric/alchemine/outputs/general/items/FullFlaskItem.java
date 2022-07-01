@@ -8,8 +8,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import syric.alchemine.outputs.general.effects.AlchemicalEffect;
-import syric.alchemine.outputs.general.effects.registerEffects;
+import syric.alchemine.outputs.general.alchemicaleffects.AlchemicalEffect;
+import syric.alchemine.outputs.general.alchemicaleffects.registerEffects;
 import syric.alchemine.setup.AlchemineItems;
 
 import java.util.ArrayList;

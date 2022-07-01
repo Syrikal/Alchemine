@@ -1,6 +1,5 @@
-package syric.alchemine.outputs.general.effects;
+package syric.alchemine.outputs.general.alchemicaleffects;
 
-import org.checkerframework.checker.units.qual.A;
 import syric.alchemine.outputs.bouncy.effects.CrashPadEffect;
 import syric.alchemine.outputs.bouncy.effects.InstantShelterEffect;
 import syric.alchemine.outputs.slippery.effects.OilSlickEffect;

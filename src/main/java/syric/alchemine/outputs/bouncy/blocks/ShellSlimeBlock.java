@@ -61,7 +61,8 @@ public class ShellSlimeBlock extends HalfTransparentBlock implements IForgeBlock
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
         if (player.isCreative()) {
-            level.destroyBlock(pos, true);
+            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 0);
+//            level.destroyBlock(pos, true);
         }
         return true;
     }

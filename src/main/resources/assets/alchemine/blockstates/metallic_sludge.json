@@ -1,7 +1,7 @@
 {
     "variants": {
         "": {
-            "model": "alchemine:block/metallic_sludge"
+            "model": "minecraft:block/iron_ore"
         }
     }
 }

@@ -1,4 +1,4 @@
-package syric.alchemine.outputs.general.effects;
+package syric.alchemine.outputs.general.alchemicaleffects;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -10,11 +10,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.RegistryObject;
-import syric.alchemine.outputs.general.effects.placementpatterns.ReplaceablesFilter;
-import syric.alchemine.outputs.general.effects.placementpatterns.PlacementPattern;
+import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.ReplaceablesFilter;
+import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.PlacementPattern;
 
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

@@ -1,4 +1,4 @@
-package syric.alchemine.outputs.general.effects;
+package syric.alchemine.outputs.general.alchemicaleffects;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

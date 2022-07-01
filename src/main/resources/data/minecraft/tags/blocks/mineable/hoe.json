@@ -1,5 +1,9 @@
 {
   "values": [
-    "alchemine:hungry_slime"
+    "alchemine:hungry_slime",
+    "alchemine:flexible_sludge",
+    "alchemine:adhesive_sludge",
+    "alchemine:greasy_sludge",
+    "alchemine:vigorous_sludge"
   ]
 }

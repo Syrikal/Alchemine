@@ -1,4 +1,4 @@
-package syric.alchemine.outputs.general.effects.placementpatterns;
+package syric.alchemine.outputs.general.alchemicaleffects.placementpatterns;
 
 import net.minecraft.world.level.block.state.BlockState;
 

@@ -1,7 +1,7 @@
 {
     "parent": "block/thin_block",
     "textures": {
-        "texture": "alchemine:block/tar_block",
+        "texture": "alchemine:block/oil_slick",
         "particle": "#texture"
     },
     "elements": [

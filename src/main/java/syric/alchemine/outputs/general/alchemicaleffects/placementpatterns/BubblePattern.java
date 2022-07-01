@@ -1,6 +1,5 @@
-package syric.alchemine.outputs.general.effects.placementpatterns;
+package syric.alchemine.outputs.general.alchemicaleffects.placementpatterns;
 
-import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 
 import java.util.stream.Stream;

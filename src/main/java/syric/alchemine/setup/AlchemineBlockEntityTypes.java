@@ -1,5 +1,6 @@
 package syric.alchemine.setup;
 
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -9,6 +10,7 @@ import syric.alchemine.Alchemine;
 import syric.alchemine.brewing.cauldron.AlchemicalCauldronBlockEntity;
 import syric.alchemine.brewing.laboratory.*;
 import syric.alchemine.outputs.bouncy.blocks.ShellSlimeBlockEntity;
+import syric.alchemine.outputs.general.sludges.StygianSludgeBlockEntity;
 
 public final class AlchemineBlockEntityTypes {
 
@@ -24,7 +26,7 @@ public final class AlchemineBlockEntityTypes {
 
     //Utility
     public static final RegistryObject<BlockEntityType<ShellSlimeBlockEntity>> SHELL_SLIME = BLOCK_ENTITIES.register("shell_slime", () -> BlockEntityType.Builder.of(ShellSlimeBlockEntity::new, AlchemineBlocks.SHELL_SLIME.get()).build(null));
-
+    public static final RegistryObject<BlockEntityType<StygianSludgeBlockEntity>> STYGIAN = BLOCK_ENTITIES.register("stygian_sludge", () -> BlockEntityType.Builder.of(StygianSludgeBlockEntity::new, AlchemineBlocks.STYGIAN_SLUDGE.get()).build(null));
 
     static void register(IEventBus bus) {
         BLOCK_ENTITIES.register(bus);

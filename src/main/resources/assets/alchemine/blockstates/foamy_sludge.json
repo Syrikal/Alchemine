@@ -1,7 +1,7 @@
 {
     "variants": {
         "": {
-            "model": "alchemine:block/foamy_sludge"
+            "model": "alchemine:block/foam_snare"
         }
     }
 }
