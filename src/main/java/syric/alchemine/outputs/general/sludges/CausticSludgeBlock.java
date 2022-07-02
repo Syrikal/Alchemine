@@ -27,9 +27,9 @@ import net.minecraftforge.common.extensions.IForgeBlock;
 import syric.alchemine.util.ColorsUtil;
 
 public class CausticSludgeBlock extends SludgeBlock implements IForgeBlock {
-    private static MobEffectInstance getPoison() { return new MobEffectInstance(MobEffects.POISON, 40, 1, true, true); }
+    private static MobEffectInstance getPoison() { return new MobEffectInstance(MobEffects.POISON, 80, 1, true, true); }
     private static MobEffectInstance getWither() { return new MobEffectInstance(MobEffects.WITHER, 100, 1, true, true); }
-    private static MobEffectInstance getWeakPoison() { return new MobEffectInstance(MobEffects.POISON, 20, 0, true, true); }
+    private static MobEffectInstance getWeakPoison() { return new MobEffectInstance(MobEffects.POISON, 40, 0, true, true); }
 
 
     public CausticSludgeBlock(Properties properties) {
@@ -39,7 +39,9 @@ public class CausticSludgeBlock extends SludgeBlock implements IForgeBlock {
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity live) {
-            live.addEffect(state.getValue(WEAK_VERSION) ? getWeakPoison() : getPoison());
+            if (!live.hasEffect(MobEffects.POISON)) {
+                live.addEffect(state.getValue(WEAK_VERSION) ? getWeakPoison() : getPoison());
+            }
         }
         entity.makeStuckInBlock(state, new Vec3(0.2, 0.2, 0.2));
     }
@@ -73,7 +75,9 @@ public class CausticSludgeBlock extends SludgeBlock implements IForgeBlock {
     @Override
     public float getDestroyProgress(BlockState state, Player player, BlockGetter getter, BlockPos pos) {
         if (!player.level.isClientSide()) {
-            player.addEffect(state.getValue(WEAK_VERSION) ? getWeakPoison() : getPoison());
+            if (!player.hasEffect(MobEffects.POISON)) {
+                player.addEffect(state.getValue(WEAK_VERSION) ? getWeakPoison() : getPoison());
+            }
         }
         return super.getDestroyProgress(state, player, getter, pos);
     }

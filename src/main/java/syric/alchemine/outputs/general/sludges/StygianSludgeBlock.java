@@ -65,7 +65,7 @@ public class StygianSludgeBlock extends SludgeBlock implements IForgeBlock, Enti
                 entity.hurt(DamageSource.FREEZE, damage);
             }
             if (!state.getValue(WEAK_VERSION) && !entity.isSteppingCarefully() && !level.isClientSide()) {
-                freeze(level, entity, 2, false);
+                freeze(level, entity, 1, true);
             }
             if (!state.getValue(WEAK_VERSION)) {
                 ((LivingEntity) entity).addEffect(getBriefSlow());
@@ -80,15 +80,11 @@ public class StygianSludgeBlock extends SludgeBlock implements IForgeBlock, Enti
         if (player.canFreeze() && !state.getValue(WEAK_VERSION)) {
             player.addEffect(getBriefSlow());
         }
-//        BlockEntity blockEntity = level.getBlockEntity(pos);
-//        if (blockEntity instanceof StygianSludgeBlockEntity) {
-//            ((StygianSludgeBlockEntity) blockEntity).speak(player);
-//        }
     }
 
     @Override
     public float getDestroyProgress(BlockState state, Player player, BlockGetter getter, BlockPos pos) {
-        freeze(player.getLevel(), player, 2, true);
+        freeze(player.getLevel(), player, 3, true);
         return super.getDestroyProgress(state, player, getter, pos);
     }
 
@@ -172,7 +168,7 @@ public class StygianSludgeBlock extends SludgeBlock implements IForgeBlock, Enti
         if (entity.isInPowderSnow && !override) {
             return;
         }
-        int freezeTarget = Math.min(entity.getTicksRequiredToFreeze(), entity.getTicksFrozen() + freezeTicks);
+        int freezeTarget = Math.min(entity.getTicksRequiredToFreeze()+3, entity.getTicksFrozen() + freezeTicks);
         entity.setIsInPowderSnow(true);
         entity.setTicksFrozen(freezeTarget);
     }

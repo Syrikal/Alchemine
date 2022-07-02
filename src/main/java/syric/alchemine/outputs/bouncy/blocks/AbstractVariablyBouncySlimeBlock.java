@@ -1,6 +1,8 @@
 package syric.alchemine.outputs.bouncy.blocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -42,7 +44,12 @@ public abstract class AbstractVariablyBouncySlimeBlock extends SlimeBlock {
         if (vec3.y < 0.0D) {
             int power = power(entity);
             double d0 = entity instanceof LivingEntity ? 0.1D * power : 0.8D * power;
-            entity.setDeltaMovement(vec3.x, -vec3.y * d0, vec3.z);
+            if (!entity.getLevel().isClientSide()) {
+                entity.setDeltaMovement(vec3.x, -vec3.y * d0, vec3.z);
+                if (entity instanceof ServerPlayer) {
+                    ((ServerPlayer) entity).connection.send(new ClientboundSetEntityMotionPacket(entity));
+                }
+            }
         }
     }
 
@@ -50,7 +57,7 @@ public abstract class AbstractVariablyBouncySlimeBlock extends SlimeBlock {
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
         double d0 = Math.abs(entity.getDeltaMovement().y);
         int power = power(level, pos, state);
-        if (d0 < 0.1D && !entity.isSteppingCarefully()) {
+        if (d0 < 0.1D && !entity.isSteppingCarefully() && power >= 2) {
             double d1 = 0.4D + d0 * 0.018D * power;
             entity.setDeltaMovement(entity.getDeltaMovement().multiply(d1, 1.0D, d1));
         }

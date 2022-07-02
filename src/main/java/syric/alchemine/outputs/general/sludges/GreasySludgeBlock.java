@@ -101,17 +101,18 @@ public class GreasySludgeBlock extends SludgeBlock implements IForgeBlock {
     private void slip(Level level, BlockState state, Entity entity) {
         boolean slip = true;
         if (entity instanceof LivingEntity livingEntity) {
-            if (livingEntity.hasEffect(MobEffects.MOVEMENT_SLOWDOWN) && !(state.getValue(WEAK_VERSION) && entity.isSteppingCarefully())) {
-//                chatPrint("Not slipping on the " + (level.isClientSide() ? "client" : "server") + " side.", level);
+            if (livingEntity.hasEffect(MobEffects.MOVEMENT_SLOWDOWN) || (state.getValue(WEAK_VERSION) && entity.isSteppingCarefully())) {
                 slip = false;
-                MobEffectInstance slow = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 2, true, true);
-                livingEntity.addEffect(slow);
             }
         }
 
         if (slip) {
+            MobEffectInstance slow = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 9, true, true);
+            if (entity instanceof LivingEntity livingEntity) {
+                livingEntity.addEffect(slow);
+            }
             RandomSource rand = RandomSource.create();
-            Vec3 direction = new Vec3(rand.nextDouble() - 0.5, 0.05, rand.nextDouble() - 0.5).normalize().scale(2);
+            Vec3 direction = new Vec3(rand.nextDouble() - 0.5, 0, rand.nextDouble() - 0.5).normalize().scale(1).add(0, 0.1, 0);
 //            chatPrint("Slipping with magnitude " + direction.length() + " on the " + (level.isClientSide() ? "client" : "server") + " side", entity);
             entity.setDeltaMovement(direction);
             if (entity instanceof ServerPlayer) {

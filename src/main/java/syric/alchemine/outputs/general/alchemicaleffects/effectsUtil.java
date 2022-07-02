@@ -19,6 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import static syric.alchemine.util.ChatPrint.chatPrint;
 
 public class effectsUtil {
+    public static ReplaceablesFilter AIR_ONLY = (state) -> state.getMaterial().equals(Material.AIR);;
     public static ReplaceablesFilter BREAK_ON_PUSH = (state) -> state.getMaterial().getPushReaction() == PushReaction.DESTROY || state.getMaterial().equals(Material.AIR);;
     public static ReplaceablesFilter BLOCK_REPLACEABLE = (state) -> state.getMaterial().isReplaceable();
     public static ReplaceablesFilter STRONG = (state) -> state.getMaterial().isReplaceable() || state.getMaterial().getPushReaction() == PushReaction.DESTROY;
@@ -31,6 +32,7 @@ public class effectsUtil {
                     level.destroyBlock(c, true);
                     level.setBlockAndUpdate(c, block.defaultBlockState());
                 });
+//        placeAbsolute(level, pattern, block.defaultBlockState(), replaceables); ???
     }
 
     public static void placeAbsolute(Level level, PlacementPattern pattern, BlockState state, ReplaceablesFilter replaceables) {

@@ -8,6 +8,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
@@ -49,7 +50,7 @@ public class InfernalSludgeBlock extends SludgeBlock implements IForgeBlock {
                 entity.hurt(DamageSource.HOT_FLOOR, damage);
             }
             if (!state.getValue(WEAK_VERSION) && !entity.isSteppingCarefully()) {
-                entity.setSecondsOnFire(1);
+                entity.setRemainingFireTicks(entity.getRemainingFireTicks() + 20);
             }
 
         }
@@ -60,8 +61,16 @@ public class InfernalSludgeBlock extends SludgeBlock implements IForgeBlock {
     @Override
     public void attack(BlockState state, Level level, BlockPos pos, Player player) {
         if (!player.fireImmune() && !state.getValue(WEAK_VERSION)) {
-            player.setSecondsOnFire(1);
+            player.setRemainingFireTicks(player.getRemainingFireTicks() + 20);
         }
+    }
+
+    @Override
+    public float getDestroyProgress(BlockState state, Player player, BlockGetter getter, BlockPos pos) {
+        if (!player.fireImmune() && !state.getValue(WEAK_VERSION)) {
+            player.setRemainingFireTicks(player.getRemainingFireTicks() + 20);
+        }
+        return super.getDestroyProgress(state, player, getter, pos);
     }
 
 
@@ -79,7 +88,7 @@ public class InfernalSludgeBlock extends SludgeBlock implements IForgeBlock {
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
         if (!player.fireImmune() && !level.isClientSide()) {
-            player.setSecondsOnFire(state.getValue(WEAK_VERSION) ? 5 : 10);
+            player.setRemainingFireTicks(player.getRemainingFireTicks() + (state.getValue(WEAK_VERSION) ? 100 : 200));
         }
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
     }

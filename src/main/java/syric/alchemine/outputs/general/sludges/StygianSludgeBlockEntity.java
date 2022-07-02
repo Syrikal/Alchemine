@@ -29,15 +29,15 @@ public class StygianSludgeBlockEntity extends BlockEntity {
             return;
         }
         BlockPos pos = this.getBlockPos();
-        int variation = 3;
-        BlockPos pos1 = new BlockPos(pos.getX()-variation, pos.getY()-variation,pos.getZ()-variation);
-        BlockPos pos2 = new BlockPos(pos.getX()+variation, pos.getY()+variation, pos.getZ()+variation);
+        int range = 5;
+        BlockPos pos1 = new BlockPos(pos.getX()-range, pos.getY()-range,pos.getZ()-range);
+        BlockPos pos2 = new BlockPos(pos.getX()+range, pos.getY()+range, pos.getZ()+range);
 
         assert level != null;
         StringBuilder sb = new StringBuilder();
         for (Entity entity : level.getEntities(null, new AABB(pos1, pos2))) {
-            if (entity.position().vectorTo(new Vec3(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5)).length() <= ((double) variation)) {
-                StygianSludgeBlock.freeze(level, entity, 1, false);
+            if (entity.position().vectorTo(new Vec3(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5)).length() <= ((double) range)) {
+                StygianSludgeBlock.freeze(level, entity, 1, true);
             }
         }
 //        LogUtils.getLogger().info("Stygian Sludge block entity attempting to freeze nearby entities");
