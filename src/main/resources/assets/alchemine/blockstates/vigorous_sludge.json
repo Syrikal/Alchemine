@@ -1,31 +1,31 @@
 {
     "variants": {
         "spread = 8": {
-            "model": "alchemine:block/hungry_slime"
+            "model": "alchemine:block/vigorous_sludge"
         },
         "spread = 7": {
-            "model": "alchemine:block/hungry_slime"
+            "model": "alchemine:block/vigorous_sludge"
         },
         "spread = 6": {
-            "model": "alchemine:block/hungry_slime"
+            "model": "alchemine:block/vigorous_sludge"
         },
         "spread = 5": {
-            "model": "alchemine:block/hungry_slime"
+            "model": "alchemine:block/vigorous_sludge"
         },
         "spread = 4": {
-            "model": "alchemine:block/hungry_slime"
+            "model": "alchemine:block/vigorous_sludge"
         },
         "spread = 3": {
-            "model": "alchemine:block/hungry_slime"
+            "model": "alchemine:block/vigorous_sludge"
         },
         "spread = 2": {
-            "model": "alchemine:block/hungry_slime"
+            "model": "alchemine:block/vigorous_sludge"
         },
         "spread = 1": {
-            "model": "alchemine:block/hungry_slime"
+            "model": "alchemine:block/vigorous_sludge"
         },
         "spread = 0": {
-            "model": "alchemine:block/non_stick_slime"
+            "model": "alchemine:block/vigorous_sludge_dull"
         }
     }
 }

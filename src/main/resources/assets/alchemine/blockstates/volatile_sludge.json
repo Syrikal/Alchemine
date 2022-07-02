@@ -1,7 +1,7 @@
 {
     "variants": {
         "": {
-            "model": "minecraft:block/tnt"
+            "model": "alchemine:block/volatile_sludge"
         }
     }
 }

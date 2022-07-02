@@ -49,6 +49,9 @@ public class BlockRendering {
         translucent(AlchemineBlocks.WALL_SLIDE.get());
 
 
+        cutout(AlchemineBlocks.FOAMY_SLUDGE.get());
+
+
     }
 
     private static void translucent(Block block) {
