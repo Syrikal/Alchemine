@@ -1,7 +1,16 @@
 {
     "variants": {
-        "": {
-            "model": "alchemine:block/grooved_ice"
+        "axis=x": {
+            "model": "alchemine:block/grooved_ice",
+            "x": 90,
+            "y": 90
+        },
+        "axis=y": {
+            "model": "minecraft:block/oak_log"
+        },
+        "axis=z": {
+            "model": "alchemine:block/grooved_ice",
+            "x": 90
         }
     }
 }

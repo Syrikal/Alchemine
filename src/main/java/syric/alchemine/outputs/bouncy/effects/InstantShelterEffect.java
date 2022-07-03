@@ -23,5 +23,7 @@ public class InstantShelterEffect implements AlchemicalEffect {
 
     }
 
+    @Override
+    public String toString() { return "Instant Shelter"; }
 
 }

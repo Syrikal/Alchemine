@@ -18,6 +18,7 @@ public class registry {
         AlchemineSoundEvents.register(modEventBus);
         AlchemicalIngredients.register(modEventBus);
         AlchemicalRecipes.register(modEventBus);
+        AlchemineEffects.register(modEventBus);
     }
 
 }

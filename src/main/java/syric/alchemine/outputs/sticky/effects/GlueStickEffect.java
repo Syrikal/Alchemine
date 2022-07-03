@@ -21,5 +21,8 @@ public class GlueStickEffect implements AlchemicalEffect {
         effectsUtil.placeAbsolute(level, place, AlchemineBlocks.GLUE_STICK, effectsUtil.BLOCK_REPLACEABLE);
     }
 
+    @Override
+    public String toString() { return "Glue Stick"; }
+
 
 }

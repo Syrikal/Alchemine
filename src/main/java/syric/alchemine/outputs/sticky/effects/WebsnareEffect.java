@@ -23,4 +23,7 @@ public class WebsnareEffect implements AlchemicalEffect {
 
     }
 
+    @Override
+    public String toString() { return "Websnare"; }
+
 }

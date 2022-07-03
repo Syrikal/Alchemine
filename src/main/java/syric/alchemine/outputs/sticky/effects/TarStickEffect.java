@@ -21,5 +21,7 @@ public class TarStickEffect implements AlchemicalEffect {
         effectsUtil.placeAbsolute(level, place, AlchemineBlocks.TAR_STICK, effectsUtil.BLOCK_REPLACEABLE);
     }
 
+    @Override
+    public String toString() { return "Tar Stick"; }
 
 }

@@ -23,4 +23,7 @@ public class OilSlickEffect implements AlchemicalEffect {
 
     }
 
+    @Override
+    public String toString() { return "Oil Slick"; }
+
 }

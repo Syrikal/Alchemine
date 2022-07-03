@@ -21,6 +21,7 @@ import syric.alchemine.brewing.laboratory.AlchemicalGrinderBlock;
 import syric.alchemine.brewing.cauldron.AlchemicalCauldronBlock;
 import syric.alchemine.outputs.bouncy.blocks.*;
 import syric.alchemine.outputs.general.sludges.*;
+import syric.alchemine.outputs.slippery.blocks.GroovedIceBlock;
 import syric.alchemine.outputs.slippery.blocks.OilSlickBlock;
 import syric.alchemine.outputs.slippery.blocks.WallSlideBlock;
 import syric.alchemine.outputs.sticky.blocks.*;
@@ -192,7 +193,7 @@ public class AlchemineBlocks {
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> GROOVED_ICE = register("grooved_ice",
-            () -> new HalfTransparentBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID)
+            () -> new GroovedIceBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID)
                     .friction(0.4F).sound(SoundType.GLASS)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 

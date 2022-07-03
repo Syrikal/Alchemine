@@ -15,4 +15,7 @@ public class StoneBlobEffect implements AlchemicalEffect {
         effectsUtil.placeSwellInstantaneous(level, pos, 60, Blocks.STONE, effectsUtil.BREAK_ON_PUSH);
     }
 
+    @Override
+    public String toString() { return "Stone Blob"; }
+
 }

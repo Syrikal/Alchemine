@@ -23,4 +23,7 @@ public class CrashPadEffect implements AlchemicalEffect {
 
     }
 
+    @Override
+    public String toString() { return "Crash Pad"; }
+
 }

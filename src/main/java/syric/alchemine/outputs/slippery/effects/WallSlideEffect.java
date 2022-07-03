@@ -59,4 +59,7 @@ public class WallSlideEffect implements AlchemicalEffect {
         return (replaceables.check(level.getBlockState(pos)) && level.getBlockState(wallCandidate).isFaceSturdy(level, pos, dir));
     }
 
+    @Override
+    public String toString() { return "Wall Slide"; }
+
 }
