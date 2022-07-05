@@ -133,9 +133,11 @@
 
     "item.alchemine.primal_coal": "Primal Coal",
     "item.alchemine.salamander_gloves": "Salamander Gloves",
-    "item.alchemine.smelters_delight": "Smelter's Delight",
+    "item.alchemine.eternal_ember": "Eternal Ember",
     "item.alchemine.magmatic_slimeseed": "Magmatic Slimeseed",
     "item.alchemine.fiery_slimeseed": "Fiery Slimeseed",
+    "block.alchemine.flash_fire": "Flashfire",
+    "block.alchemine.stone_fire": "Stonefire",
 
     "item.alchemine.glowing_slimeseed": "Glowing Slimeseed",
 

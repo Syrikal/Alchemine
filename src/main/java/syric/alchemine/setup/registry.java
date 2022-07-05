@@ -4,6 +4,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import syric.alchemine.brewing.ingredients.AlchemicalIngredients;
 import syric.alchemine.brewing.util.AlchemicalRecipes;
+import syric.alchemine.outputs.general.alchemicaleffects.AlchemicalEffects;
 
 public class registry {
 
@@ -18,7 +19,7 @@ public class registry {
         AlchemineSoundEvents.register(modEventBus);
         AlchemicalIngredients.register(modEventBus);
         AlchemicalRecipes.register(modEventBus);
-        AlchemineEffects.register(modEventBus);
+        AlchemicalEffects.register(modEventBus);
     }
 
 }

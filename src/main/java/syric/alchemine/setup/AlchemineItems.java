@@ -6,6 +6,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import syric.alchemine.Alchemine;
+import syric.alchemine.outputs.fire.items.EternalEmberItem;
+import syric.alchemine.outputs.fire.items.PrimalCoalItem;
 import syric.alchemine.outputs.general.items.FullFlaskItem;
 import syric.alchemine.outputs.bouncy.items.SlimeseedItem;
 import net.minecraft.world.item.Items;
@@ -58,11 +60,11 @@ public class AlchemineItems {
 
     //Fire
     public static final RegistryObject<Item> PRIMAL_COAL = ITEMS.register("primal_coal",
-            () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+            () -> new PrimalCoalItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
     public static final RegistryObject<Item> SALAMANDER_GLOVES = ITEMS.register("salamander_gloves",
             () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
-    public static final RegistryObject<Item> SMELTERS_DELIGHT = ITEMS.register("smelters_delight",
-            () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+    public static final RegistryObject<Item> ETERNAL_EMBER = ITEMS.register("eternal_ember",
+            () -> new EternalEmberItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
     public static final RegistryObject<Item> MAGMATIC_SLIMESEED = ITEMS.register("magmatic_slimeseed",
             () -> new SlimeseedItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
     public static final RegistryObject<Item> FIERY_SLIMESEED = ITEMS.register("fiery_slimeseed",

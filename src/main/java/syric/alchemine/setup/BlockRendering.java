@@ -3,6 +3,7 @@ package syric.alchemine.setup;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
+import syric.alchemine.Alchemine;
 
 public class BlockRendering {
 
@@ -47,6 +48,9 @@ public class BlockRendering {
         cutout(AlchemineBlocks.FOAM_SNARE.get());
 
         translucent(AlchemineBlocks.WALL_SLIDE.get());
+
+        cutout(AlchemineBlocks.FLASH_FIRE.get());
+        cutout(AlchemineBlocks.STONE_FIRE.get());
 
 
         cutout(AlchemineBlocks.FOAMY_SLUDGE.get());

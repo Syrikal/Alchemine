@@ -8,13 +8,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import syric.alchemine.outputs.general.alchemicaleffects.AlchemicalEffect;
 import syric.alchemine.outputs.general.alchemicaleffects.AlchemicalEffects;
-import syric.alchemine.outputs.general.alchemicaleffects.registerEffects;
 import syric.alchemine.setup.AlchemineItems;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static syric.alchemine.util.ChatPrint.chatPrint;
 
@@ -22,15 +17,9 @@ public class FullFlaskItem extends Item {
 
 public FullFlaskItem(Properties properties) {super(properties);}
 
-//    private static List<AlchemicalEffect> effects = new ArrayList<>();
-//    private static List<String> effectNames = new ArrayList<>();
     private int index = 0;
-//    private boolean initialized = false;
 
     public InteractionResult useOn(UseOnContext context) {
-//        if (!initialized) {
-//            init();
-//        }
 
         AlchemicalEffects.EFFECT_LIST.get(index).detonate(context);
 
@@ -44,9 +33,6 @@ public FullFlaskItem(Properties properties) {super(properties);}
     }
 
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-//        if (!initialized) {
-//            init();
-//        }
         if (!level.isClientSide) {
             if (player.isShiftKeyDown()) {
                 index--;
@@ -59,32 +45,9 @@ public FullFlaskItem(Properties properties) {super(properties);}
                     index = 0;
                 }
             }
+            String str = AlchemicalEffects.EFFECT_LIST.get(index).toString();
+            chatPrint("Changing stored effect to " + str, level);
         }
-
-
-        String str = AlchemicalEffects.EFFECT_LIST.get(index).toString();
-        chatPrint("Changing stored effect to " + str, level);
-
-
         return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide());
     }
-
-//    public void init() {
-//        add(AlchemicalEffects.CRASH_PAD.get(), "Crash Pad");
-//        add(AlchemicalEffects.INSTANT_SHELTER.get(), "Instant Shelter");
-//        add(AlchemicalEffects.FOAMSNARE.get(), "Foamsnare");
-//        add(AlchemicalEffects.WEBSNARE.get(), "Websnare");
-//        add(AlchemicalEffects.TAR_STICK.get(), "Tar Stick");
-//        add(AlchemicalEffects.GLUE_STICK.get(), "Glue Stick");
-//        add(AlchemicalEffects.STONE_BLOB.get(), "Stone Blob");
-//        add(AlchemicalEffects.OIL_SLICK.get(), "Oil Slick");
-//        add(AlchemicalEffects.WALL_SLIDE.get(), "Wall Slide");
-//        initialized = true;
-//    }
-//
-//    private void add(AlchemicalEffect effect, String name) {
-//        effects.add(effect);
-//        effectNames.add(name);
-//    }
-
 }

@@ -20,6 +20,8 @@ import syric.alchemine.brewing.laboratory.AlchemicalCrucibleBlock;
 import syric.alchemine.brewing.laboratory.AlchemicalGrinderBlock;
 import syric.alchemine.brewing.cauldron.AlchemicalCauldronBlock;
 import syric.alchemine.outputs.bouncy.blocks.*;
+import syric.alchemine.outputs.fire.blocks.FlashfireBlock;
+import syric.alchemine.outputs.fire.blocks.StonefireBlock;
 import syric.alchemine.outputs.general.sludges.*;
 import syric.alchemine.outputs.slippery.blocks.GroovedIceBlock;
 import syric.alchemine.outputs.slippery.blocks.OilSlickBlock;
@@ -194,7 +196,19 @@ public class AlchemineBlocks {
 
     public static final RegistryObject<Block> GROOVED_ICE = register("grooved_ice",
             () -> new GroovedIceBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID)
-                    .friction(0.4F).sound(SoundType.GLASS)),
+                    .sound(SoundType.GLASS)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
+
+
+    //Fire
+    public static final RegistryObject<Block> FLASH_FIRE = register("flash_fire",
+            () -> new FlashfireBlock(BlockBehaviour.Properties.of(Material.FIRE)
+                    .noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+    public static final RegistryObject<Block> STONE_FIRE = register("stone_fire",
+            () -> new StonefireBlock(BlockBehaviour.Properties.of(Material.FIRE)
+                    .noCollission().instabreak().lightLevel((state) -> 10).sound(SoundType.WOOL)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
 
