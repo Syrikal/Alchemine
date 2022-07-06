@@ -1,9 +1,7 @@
 package syric.alchemine.outputs.general.sludges;
 
-import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -11,7 +9,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -26,11 +23,6 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.extensions.IForgeBlock;
 import org.jetbrains.annotations.Nullable;
-import syric.alchemine.brewing.laboratory.AlchemicalAlembicBlockEntity;
-import syric.alchemine.outputs.general.alchemicaleffects.effectsUtil;
-import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.PlacementPattern;
-import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.ReplaceablesFilter;
-import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.SpherePattern;
 import syric.alchemine.setup.AlchemineBlockEntityTypes;
 
 import static syric.alchemine.util.ChatPrint.chatPrint;

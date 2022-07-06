@@ -1,10 +1,12 @@
 package syric.alchemine.outputs.general.alchemicaleffects.placementpatterns;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.Block;
 
+import java.util.*;
 import java.util.stream.Stream;
 
-public class BubblePattern implements PlacementPattern{
+public class BubblePattern implements PlacementPattern {
     private final float inRad;
     private final float outRad;
     private final BlockPos origin;
@@ -16,11 +18,13 @@ public class BubblePattern implements PlacementPattern{
     }
 
     @Override
-    public Stream<BlockPos> blockList() {
+    public Map<BlockPos, Double> blockMap() {
         int variation = (int) Math.ceil(outRad);
         BlockPos pos1 = new BlockPos(origin.getX()-variation, origin.getY()-variation,origin.getZ()-variation);
         BlockPos pos2 = new BlockPos(origin.getX()+variation, origin.getY()+variation, origin.getZ()+variation);
-        return BlockPos.betweenClosedStream(pos1, pos2).filter(c -> distance(c) <= outRad).filter(c -> distance(c) >= inRad);
+        HashMap<BlockPos, Double> output = new HashMap<BlockPos, Double>();
+        BlockPos.betweenClosedStream(pos1, pos2).filter(c -> distance(c) <= outRad).filter(c -> distance(c) >= inRad).forEach(c -> output.put(c.immutable(), (double) distance(c)));
+        return output;
     }
 
     private float distance(BlockPos pos) {

@@ -10,15 +10,15 @@ import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Fallable;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.Vec3;
-import syric.alchemine.outputs.general.alchemicaleffects.effectsUtil;
-import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.ReplaceablesFilter;
+import syric.alchemine.outputs.general.alchemicaleffects.PlacementSet;
+import syric.alchemine.outputs.general.alchemicaleffects.filters.PlacementFilter;
+import syric.alchemine.outputs.general.alchemicaleffects.filters.SimpleFilter;
 import syric.alchemine.setup.AlchemineBlocks;
 
 import static syric.alchemine.util.ChatPrint.chatPrint;
@@ -55,14 +55,14 @@ public class VigorousSludgeBlock extends SludgeBlock implements Fallable {
 //                chatPrint("Candidate direction: " + direction, level);
                 BlockState candidateState = level.getBlockState(candidate);
 //                chatPrint("Candidate block: " + candidateState.getBlock(), level);
-                ReplaceablesFilter filter = effectsUtil.BLOCK_REPLACEABLE;
-                ReplaceablesFilter air = (c) -> (c.getMaterial() == Material.AIR);
-                if (air.check(candidateState)) {
+                PlacementFilter filter = PlacementSet.BLOCK_REPLACEABLE;
+                SimpleFilter air = (c) -> (c.getMaterial() == Material.AIR);
+                if (air.check(level, candidate)) {
 //                    chatPrint("Passed filter, placing", level);
                     level.destroyBlock(candidate, true);
                     level.setBlockAndUpdate(candidate, placeState);
                     numberReplacements++;
-                } else if (filter.check(candidateState) && source.nextDouble() < 0.2) {
+                } else if (filter.check(level, candidate) && source.nextDouble() < 0.2) {
                     level.destroyBlock(candidate, true);
                     level.setBlockAndUpdate(candidate, placeState);
                     numberReplacements++;

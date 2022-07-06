@@ -32,7 +32,9 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import syric.alchemine.setup.AlchemineBlocks;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -118,6 +120,19 @@ public class WallSlideBlock extends HorizontalDirectionalBlock {
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+    }
+
+    //For placing via effects
+    public static BlockState getEffectState(Level level, BlockPos pos, Direction dir) {
+        Direction[] directions = {dir, dir.getOpposite(), dir.getClockWise(), dir.getCounterClockWise()};
+
+        for (Direction direction : directions) {
+            BlockPos wallCandidate = pos.relative(direction);
+            if (level.getBlockState(wallCandidate).isFaceSturdy(level, wallCandidate, direction)) {
+                return AlchemineBlocks.WALL_SLIDE.get().defaultBlockState().setValue(FACING, direction);
+            }
+        }
+        return Blocks.AIR.defaultBlockState();
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {

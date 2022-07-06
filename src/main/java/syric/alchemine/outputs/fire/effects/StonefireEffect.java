@@ -4,9 +4,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import syric.alchemine.outputs.general.alchemicaleffects.AlchemicalEffect;
-import syric.alchemine.outputs.general.alchemicaleffects.effectsUtil;
+import syric.alchemine.outputs.general.alchemicaleffects.PlacementSet;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.PlacementPattern;
-import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.SparseSpherePattern;
+import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.SpherePattern;
 import syric.alchemine.setup.AlchemineBlocks;
 
 public class StonefireEffect implements AlchemicalEffect{
@@ -16,8 +16,9 @@ public class StonefireEffect implements AlchemicalEffect{
         BlockPos pos = AlchemicalEffect.getOrigin(context);
         Level level = context.getLevel();
 
-        PlacementPattern pattern = new SparseSpherePattern(pos, 4F, 0.05);
-        effectsUtil.placeAbsolute(level, pattern, AlchemineBlocks.STONE_FIRE, effectsUtil.AIR_ONLY);
+        PlacementPattern pattern = new SpherePattern(pos, 3F);
+        new PlacementSet(level).addPattern(pattern).cull(PlacementSet.AIR_ONLY).cull(PlacementSet.randomFilter(0.2F)).placeImmediate(AlchemineBlocks.STONE_FIRE, false);
+
 
     }
 

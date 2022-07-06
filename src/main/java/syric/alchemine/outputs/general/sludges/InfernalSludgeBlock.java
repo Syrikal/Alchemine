@@ -15,9 +15,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.common.extensions.IForgeBlock;
+import syric.alchemine.outputs.general.alchemicaleffects.PlacementSet;
 import syric.alchemine.outputs.general.alchemicaleffects.effectsUtil;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.PlacementPattern;
-import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.ReplaceablesFilter;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.SpherePattern;
 
 public class InfernalSludgeBlock extends SludgeBlock implements IForgeBlock {
@@ -107,8 +107,8 @@ public class InfernalSludgeBlock extends SludgeBlock implements IForgeBlock {
 
 
         PlacementPattern pattern = new SpherePattern(pos, 1);
-        ReplaceablesFilter filter = (c) -> c.is(Blocks.AIR);
-        effectsUtil.placeAbsolute(level, pattern, Blocks.FIRE, filter);
+        new PlacementSet(level).addPattern(pattern).cull(PlacementSet.AIR_ONLY).cull(PlacementSet.randomFilter(0.5F)).placeImmediate(Blocks.FIRE, false);
+
     }
 
     private float distance(BlockPos origin, BlockPos pos) {

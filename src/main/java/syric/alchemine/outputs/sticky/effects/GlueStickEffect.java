@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import syric.alchemine.outputs.general.alchemicaleffects.AlchemicalEffect;
+import syric.alchemine.outputs.general.alchemicaleffects.PlacementSet;
 import syric.alchemine.outputs.general.alchemicaleffects.effectsUtil;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.FlatDiscPattern;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.PlacementPattern;
@@ -17,8 +18,8 @@ public class GlueStickEffect implements AlchemicalEffect {
         Level level = context.getLevel();
 
         PlacementPattern place = new FlatDiscPattern(pos, 1.5F);
+        new PlacementSet(level).addPattern(place).cull(effectsUtil.BLOCK_REPLACEABLE).placeImmediate(AlchemineBlocks.GLUE_STICK, true);
 
-        effectsUtil.placeAbsolute(level, place, AlchemineBlocks.GLUE_STICK, effectsUtil.BLOCK_REPLACEABLE);
     }
 
     @Override

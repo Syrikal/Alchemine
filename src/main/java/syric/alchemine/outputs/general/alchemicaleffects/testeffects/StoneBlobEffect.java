@@ -1,27 +1,28 @@
-package syric.alchemine.outputs.sticky.effects;
+package syric.alchemine.outputs.general.alchemicaleffects.testeffects;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import syric.alchemine.outputs.general.alchemicaleffects.AlchemicalEffect;
 import syric.alchemine.outputs.general.alchemicaleffects.PlacementSet;
-import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.FlatDiscPattern;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.PlacementPattern;
-import syric.alchemine.setup.AlchemineBlocks;
+import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.SpreadPattern;
 
-public class TarStickEffect implements AlchemicalEffect {
+public class StoneBlobEffect implements AlchemicalEffect {
 
     @Override
     public void detonate(UseOnContext context) {
         BlockPos pos = AlchemicalEffect.getOrigin(context);
         Level level = context.getLevel();
 
-        PlacementPattern place = new FlatDiscPattern(pos, 2.5F);
-        new PlacementSet(level).addPattern(place).cull(PlacementSet.BLOCK_REPLACEABLE).placeImmediate(AlchemineBlocks.TAR_STICK, true);
+
+        PlacementPattern pattern = new SpreadPattern(level, pos, 60, PlacementSet.BREAK_ON_PUSH);
+        new PlacementSet(level).addPattern(pattern).cull(PlacementSet.BREAK_ON_PUSH).placeImmediate(Blocks.STONE.defaultBlockState(), true);
 
     }
 
     @Override
-    public String toString() { return "Tar Stick"; }
+    public String toString() { return "Stone Blob"; }
 
 }

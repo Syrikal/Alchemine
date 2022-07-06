@@ -2,24 +2,14 @@ package syric.alchemine.outputs.slippery.effects;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.PushReaction;
 import syric.alchemine.outputs.general.alchemicaleffects.AlchemicalEffect;
-import syric.alchemine.outputs.general.alchemicaleffects.effectsUtil;
+import syric.alchemine.outputs.general.alchemicaleffects.PlacementSet;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.PlacementPattern;
-import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.ReplaceablesFilter;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.SpherePattern;
 import syric.alchemine.outputs.slippery.blocks.WallSlideBlock;
-import syric.alchemine.setup.AlchemineBlocks;
-
-import java.util.Collection;
-
-import static net.minecraft.world.level.block.DirectionalBlock.FACING;
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 
 public class WallSlideEffect implements AlchemicalEffect {
 
@@ -34,30 +24,38 @@ public class WallSlideEffect implements AlchemicalEffect {
         }
 
         PlacementPattern place = new SpherePattern(pos, 10F);
-        BlockState state1 = AlchemineBlocks.WALL_SLIDE.get().defaultBlockState().setValue(HORIZONTAL_FACING, direction);
-        BlockState state2 = AlchemineBlocks.WALL_SLIDE.get().defaultBlockState().setValue(HORIZONTAL_FACING, direction.getOpposite());
-        BlockState state3 = AlchemineBlocks.WALL_SLIDE.get().defaultBlockState().setValue(HORIZONTAL_FACING, direction.getClockWise());
-        BlockState state4 = AlchemineBlocks.WALL_SLIDE.get().defaultBlockState().setValue(HORIZONTAL_FACING, direction.getCounterClockWise());
-
-        WallPlace(level, place, state1, effectsUtil.AIR_ONLY, direction);
-        WallPlace(level, place, state2, effectsUtil.AIR_ONLY, direction.getOpposite());
-        WallPlace(level, place, state3, effectsUtil.AIR_ONLY, direction.getClockWise());
-        WallPlace(level, place, state4, effectsUtil.AIR_ONLY, direction.getCounterClockWise());
-
+        new PlacementSet(level).addPattern(place).cull(PlacementSet.AIR_ONLY).placeContextualWall(WallSlideBlock::getEffectState, false, direction);
+//        BlockState state1 = AlchemineBlocks.WALL_SLIDE.get().defaultBlockState().setValue(HORIZONTAL_FACING, direction);
+//        BlockState state2 = AlchemineBlocks.WALL_SLIDE.get().defaultBlockState().setValue(HORIZONTAL_FACING, direction.getOpposite());
+//        BlockState state3 = AlchemineBlocks.WALL_SLIDE.get().defaultBlockState().setValue(HORIZONTAL_FACING, direction.getClockWise());
+//        BlockState state4 = AlchemineBlocks.WALL_SLIDE.get().defaultBlockState().setValue(HORIZONTAL_FACING, direction.getCounterClockWise());
+//
+//        WallPlace(level, place, state1, PlacementSet.AIR_ONLY, direction);
+//        WallPlace(level, place, state2, PlacementSet.AIR_ONLY, direction.getOpposite());
+//        WallPlace(level, place, state3, PlacementSet.AIR_ONLY, direction.getClockWise());
+//        WallPlace(level, place, state4, PlacementSet.AIR_ONLY, direction.getCounterClockWise());
     }
 
-    public static void WallPlace(Level level, PlacementPattern pattern, BlockState state, ReplaceablesFilter replaceables, Direction direction) {
-        pattern.blockList().filter(c -> checkWallPlaceable(level, c, direction, replaceables))
-                .forEach(c -> {
-                    level.destroyBlock(c, true);
-                    level.setBlockAndUpdate(c, state);
-                });
-    }
+//    private static void placeDirectionalBlock(PlacementSet set, boolean drop, Direction initialDirection) {
+//        for (BlockPos pos : set.placementMap.keySet()) {
+//            set.level.destroyBlock(pos, drop);
+//            BlockState state = WallSlideBlock.getEffectState(set.level, pos, initialDirection);
+//            set.level.setBlockAndUpdate(pos, state);
+//        }
+//    }
 
-    private static boolean checkWallPlaceable(Level level, BlockPos pos, Direction dir, ReplaceablesFilter replaceables) {
-        BlockPos wallCandidate = pos.relative(dir.getOpposite());
-        return (replaceables.check(level.getBlockState(pos)) && level.getBlockState(wallCandidate).isFaceSturdy(level, pos, dir));
-    }
+//    public static void WallPlace(Level level, PlacementPattern pattern, BlockState state, PlacementFilter replaceables, Direction direction) {
+//        pattern.blockMap().entrySet().stream().filter(c -> checkWallPlaceable(level, c.getKey(), direction, replaceables))
+//                .forEach(c -> {
+//                    level.destroyBlock(c.getKey(), true);
+//                    level.setBlockAndUpdate(c.getKey(), state);
+//                });
+//    }
+//
+//    private static boolean checkWallPlaceable(Level level, BlockPos pos, Direction dir, PlacementFilter replaceables) {
+//        BlockPos wallCandidate = pos.relative(dir.getOpposite());
+//        return (replaceables.check(level, pos) && level.getBlockState(wallCandidate).isFaceSturdy(level, pos, dir));
+//    }
 
     @Override
     public String toString() { return "Wall Slide"; }

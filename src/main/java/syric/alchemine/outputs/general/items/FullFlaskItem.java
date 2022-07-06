@@ -21,12 +21,14 @@ public FullFlaskItem(Properties properties) {super(properties);}
 
     public InteractionResult useOn(UseOnContext context) {
 
-        AlchemicalEffects.EFFECT_LIST.get(index).detonate(context);
+        if (!context.getLevel().isClientSide()) {
+            AlchemicalEffects.EFFECT_LIST.get(index).detonate(context);
 
-        Player player = context.getPlayer();
-        if (player != null && !player.isCreative()) {
-            context.getItemInHand().setCount(0);
-            player.getInventory().add(new ItemStack(AlchemineItems.ALCHEMICAL_FLASK.get(), 1));
+            Player player = context.getPlayer();
+            if (player != null && !player.isCreative()) {
+                context.getItemInHand().setCount(0);
+                player.getInventory().add(new ItemStack(AlchemineItems.ALCHEMICAL_FLASK.get(), 1));
+            }
         }
 
         return InteractionResult.sidedSuccess(context.getLevel().isClientSide());

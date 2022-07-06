@@ -5,10 +5,9 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import syric.alchemine.outputs.general.alchemicaleffects.AlchemicalEffect;
-import syric.alchemine.outputs.general.alchemicaleffects.effectsUtil;
+import syric.alchemine.outputs.general.alchemicaleffects.PlacementSet;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.PlacementPattern;
-import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.SparseSpherePattern;
-import syric.alchemine.setup.AlchemineBlocks;
+import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.SpherePattern;
 
 public class FireblossomEffect implements AlchemicalEffect{
 
@@ -18,8 +17,8 @@ public class FireblossomEffect implements AlchemicalEffect{
         BlockPos pos = AlchemicalEffect.getOrigin(context);
         Level level = context.getLevel();
 
-        PlacementPattern pattern = new SparseSpherePattern(pos, 4F, 0.1);
-        effectsUtil.placeAbsolute(level, pattern, Blocks.FIRE, effectsUtil.AIR_ONLY);
+        PlacementPattern pattern = new SpherePattern(pos, 4F);
+        new PlacementSet(level).addPattern(pattern).cull(PlacementSet.AIR_ONLY).cull(PlacementSet.randomFilter(0.3F)).placeImmediate(Blocks.FIRE, false);
 
         //Damage entities
 

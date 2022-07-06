@@ -2,6 +2,7 @@ package syric.alchemine.outputs.general.alchemicaleffects.placementpatterns;
 
 import net.minecraft.core.BlockPos;
 
+import java.util.*;
 import java.util.stream.Stream;
 
 public class FlatDiscPattern implements PlacementPattern{
@@ -14,11 +15,13 @@ public class FlatDiscPattern implements PlacementPattern{
     }
 
     @Override
-    public Stream<BlockPos> blockList() {
+    public Map<BlockPos, Double> blockMap() {
         int variation = (int) Math.ceil(radius);
         BlockPos pos1 = new BlockPos(origin.getX()-variation, origin.getY(),origin.getZ()-variation);
         BlockPos pos2 = new BlockPos(origin.getX()+variation, origin.getY(), origin.getZ()+variation);
-        return BlockPos.betweenClosedStream(pos1, pos2).filter(c -> distance(c) <= radius);
+        HashMap<BlockPos, Double> output = new HashMap<BlockPos, Double>();
+        BlockPos.betweenClosedStream(pos1, pos2).filter(c -> distance(c) <= radius).forEach(c -> output.put(c.immutable(), (double) distance(c)));
+        return output;
     }
 
     private float distance(BlockPos pos) {

@@ -13,6 +13,8 @@ import syric.alchemine.outputs.fire.effects.FireblossomEffect;
 import syric.alchemine.outputs.fire.effects.FlashfireEffect;
 import syric.alchemine.outputs.fire.effects.MagmaVeinEffect;
 import syric.alchemine.outputs.fire.effects.StonefireEffect;
+import syric.alchemine.outputs.general.alchemicaleffects.testeffects.StoneBlobEffect;
+import syric.alchemine.outputs.general.alchemicaleffects.testeffects.StoneSphereEffect;
 import syric.alchemine.outputs.slippery.effects.OilSlickEffect;
 import syric.alchemine.outputs.slippery.effects.WallSlideEffect;
 import syric.alchemine.outputs.sticky.effects.FoamsnareEffect;
@@ -70,6 +72,8 @@ public class AlchemicalEffects {
     //Misc
     public static final RegistryObject<AlchemicalEffect> STONE_BLOB = registerEffect("stone_blob_effect",
             StoneBlobEffect::new);
+    public static final RegistryObject<AlchemicalEffect> STONE_SPHERE = registerEffect("stone_sphere_effect",
+            StoneSphereEffect::new);
 
 
 
