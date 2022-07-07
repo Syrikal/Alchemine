@@ -7,6 +7,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.PushReaction;
@@ -38,6 +39,9 @@ public class PlacementSet {
     //Pattern returns a new placement set of blocks in the given pattern.
     public PlacementSet addPattern(PlacementPattern inputPattern) {
         PlacementSet output = new PlacementSet(level);
+        for (Map.Entry<BlockPos, Double> entry : placementMap.entrySet()) {
+            output.add(entry);
+        }
         Map<BlockPos, Double> patternMap = inputPattern.blockMap();
         for (Map.Entry<BlockPos, Double> entry : patternMap.entrySet()) {
             output.add(entry);
@@ -68,10 +72,13 @@ public class PlacementSet {
 
     //Places a contextual wall block.
     public void placeContextualWall(DirectionalStateGetter stateProvider, boolean drop, Direction initialDirection) {
+//        LogUtils.getLogger().info("Placing contextual blocks");
         for (BlockPos pos : placementMap.keySet()) {
-            level.destroyBlock(pos, drop);
             BlockState state = stateProvider.getState(level, pos, initialDirection);
-            level.setBlockAndUpdate(pos, state);
+            if (state.getBlock() != Blocks.AIR) {
+                level.destroyBlock(pos, drop);
+                level.setBlockAndUpdate(pos, state);
+            }
         }
     }
 
@@ -84,7 +91,7 @@ public class PlacementSet {
     }
     public void add(Map.Entry<BlockPos, Double> input) {
         Double prev = placementMap.putIfAbsent(input.getKey(), input.getValue());
-        LogUtils.getLogger().info((prev == null) ? "Added previously-unknown position, (" + input.getKey().toShortString() + "), to placement map." : "Position (\" + input.getKey().toShortString() + \") is already in placement map.");
+//        LogUtils.getLogger().info((prev == null) ? "Added previously-unknown position, (" + input.getKey().toShortString() + "), to placement map." : "Position (\" + input.getKey().toShortString() + \") is already in placement map.");
     }
     public void add(BlockPos pos, Double val) {
         placementMap.putIfAbsent(pos, val);

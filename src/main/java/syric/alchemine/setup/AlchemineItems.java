@@ -11,6 +11,7 @@ import syric.alchemine.outputs.fire.items.PrimalCoalItem;
 import syric.alchemine.outputs.general.items.FullFlaskItem;
 import syric.alchemine.outputs.bouncy.items.SlimeseedItem;
 import net.minecraft.world.item.Items;
+import syric.alchemine.outputs.general.items.PermanentStickItem;
 
 public class AlchemineItems {
 
@@ -25,6 +26,8 @@ public class AlchemineItems {
             () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMY)));
     public static final RegistryObject<Item> CAULDRON_EMPTY_STICK = ITEMS.register("empty_stick",
             () -> new Item(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMY)));
+    public static final RegistryObject<Item> PERMANENT_STICK = ITEMS.register("permanent_stick",
+            () -> new PermanentStickItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMY)));
 
 
     //Products

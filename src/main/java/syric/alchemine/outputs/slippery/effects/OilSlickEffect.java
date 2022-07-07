@@ -5,7 +5,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import syric.alchemine.outputs.general.alchemicaleffects.AlchemicalEffect;
 import syric.alchemine.outputs.general.alchemicaleffects.PlacementSet;
-import syric.alchemine.outputs.general.alchemicaleffects.effectsUtil;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.FlatDiscPattern;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.PlacementPattern;
 import syric.alchemine.setup.AlchemineBlocks;

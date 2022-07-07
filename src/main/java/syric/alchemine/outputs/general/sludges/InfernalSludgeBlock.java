@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.common.extensions.IForgeBlock;
 import syric.alchemine.outputs.general.alchemicaleffects.PlacementSet;
-import syric.alchemine.outputs.general.alchemicaleffects.effectsUtil;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.PlacementPattern;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.SpherePattern;
 
@@ -97,7 +96,7 @@ public class InfernalSludgeBlock extends SludgeBlock implements IForgeBlock {
             int variation = 1;
             BlockPos pos1 = new BlockPos(pos.getX()-variation, pos.getY()-variation,pos.getZ()-variation);
             BlockPos pos2 = new BlockPos(pos.getX()+variation, pos.getY()+variation, pos.getZ()+variation);
-            BlockPos.betweenClosedStream(pos1, pos2).filter(c -> distance(pos, c) <= 1.0F).filter(c -> effectsUtil.BLOCK_REPLACEABLE.check(level.getBlockState(c)))
+            BlockPos.betweenClosedStream(pos1, pos2).filter(c -> distance(pos, c) <= 1.0F).filter(c -> PlacementSet.BLOCK_REPLACEABLE.check(level.getBlockState(c)))
                     .forEach(c -> {
                     if (source.nextFloat() < 0.3) {
                         level.destroyBlock(c, true);

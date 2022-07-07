@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
@@ -33,6 +34,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.extensions.IForgeBlock;
 import org.jetbrains.annotations.Nullable;
 import syric.alchemine.brewing.cauldron.AlchemicalCauldronBlockEntity;
+import syric.alchemine.outputs.general.blocks.PossiblyPermanentBlock;
 import syric.alchemine.setup.AlchemineBlockEntityTypes;
 import syric.alchemine.setup.AlchemineBlocks;
 import net.minecraft.world.item.Items;
@@ -42,16 +44,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static syric.alchemine.util.ChatPrint.chatPrint;
 
-public class ShellSlimeBlock extends HalfTransparentBlock implements IForgeBlock, EntityBlock {
+public class ShellSlimeBlock extends HalfTransparentBlock implements IForgeBlock, EntityBlock, PossiblyPermanentBlock {
     public static final IntegerProperty HEALTH = IntegerProperty.create("health", 1, 4);
     protected static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
     protected static final VoxelShape ANVILSHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 
 
-
     public ShellSlimeBlock(BlockBehaviour.Properties properties) {
         super (properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(HEALTH, 4));
+        this.registerDefaultState(this.defaultBlockState().setValue(HEALTH, 4).setValue(PossiblyPermanentBlock.PERMANENT, false));
     }
 
     public void destroy(LevelAccessor levelAccessor, BlockPos pos, BlockState state) {
@@ -239,7 +240,9 @@ public class ShellSlimeBlock extends HalfTransparentBlock implements IForgeBlock
     @Override
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
         super.tick(state, level, pos, source);
-        level.destroyBlock(pos, false);
+        if (!state.getValue(PERMANENT)) {
+            level.destroyBlock(pos, false);
+        }
 //        chatPrint("Decay destroyed a Shellslime block", level);
     }
 
@@ -249,7 +252,7 @@ public class ShellSlimeBlock extends HalfTransparentBlock implements IForgeBlock
     }
 
     public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(HEALTH);
+        builder.add(HEALTH, PossiblyPermanentBlock.PERMANENT);
     }
 
     @Override
@@ -277,6 +280,5 @@ public class ShellSlimeBlock extends HalfTransparentBlock implements IForgeBlock
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return AlchemineBlockEntityTypes.SHELL_SLIME.get().create(pos, state);
     }
-
 
 }

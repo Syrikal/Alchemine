@@ -13,13 +13,15 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import syric.alchemine.outputs.general.blocks.PossiblyPermanentBlock;
 
-public class OilSlickBlock extends Block {
+public class OilSlickBlock extends Block implements PossiblyPermanentBlock {
     protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 1.0, 16.0);
     protected final int duration;
 
@@ -27,20 +29,20 @@ public class OilSlickBlock extends Block {
     public OilSlickBlock(Properties properties, int dur) {
         super(properties);
         duration = dur;
+        this.registerDefaultState(this.defaultBlockState().setValue(PossiblyPermanentBlock.PERMANENT, false));
+    }
+
+    public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(PossiblyPermanentBlock.PERMANENT);
     }
 
     public boolean isPathfindable(BlockState state, BlockGetter getter, BlockPos pos, PathComputationType type) {
-        switch (type) {
-            case LAND:
-                return true;
-            case WATER:
-                return false;
-            case AIR:
-                return false;
-            default:
-                return false;
-        }
+        return switch (type) {
+            case LAND -> true;
+            case WATER, AIR -> false;
+        };
     }
+
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
         return SHAPE;
@@ -116,7 +118,7 @@ public class OilSlickBlock extends Block {
     @Override
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
         super.tick(state, level, pos, source);
-        if (duration != 0) {
+        if (duration != 0 && !state.getValue(PERMANENT)) {
             level.destroyBlock(pos, false);
         }
     }

@@ -18,7 +18,7 @@ public class FlashfireEffect implements AlchemicalEffect {
         Level level = context.getLevel();
 
         PlacementPattern pattern = new SpherePattern(pos, 2F);
-        new PlacementSet(level).addPattern(pattern).cull(PlacementSet.AIR_ONLY).cull(PlacementSet.randomFilter(0.3F)).placeImmediate(AlchemineBlocks.FLASH_FIRE, false);
+        new PlacementSet(level).addPattern(pattern).cull(PlacementSet.AIR_ONLY).cull(PlacementSet.randomFilter(0.5F)).placeImmediate(AlchemineBlocks.FLASH_FIRE, false);
 
 
     }

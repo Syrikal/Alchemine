@@ -18,7 +18,7 @@ public class FireblossomEffect implements AlchemicalEffect{
         Level level = context.getLevel();
 
         PlacementPattern pattern = new SpherePattern(pos, 4F);
-        new PlacementSet(level).addPattern(pattern).cull(PlacementSet.AIR_ONLY).cull(PlacementSet.randomFilter(0.3F)).placeImmediate(Blocks.FIRE, false);
+        new PlacementSet(level).addPattern(pattern).cull(PlacementSet.AIR_ONLY).cull(PlacementSet.randomFilter(0.4F)).placeImmediate(Blocks.FIRE, false);
 
         //Damage entities
 

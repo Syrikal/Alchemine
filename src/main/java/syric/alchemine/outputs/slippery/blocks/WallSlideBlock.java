@@ -2,11 +2,14 @@ package syric.alchemine.outputs.slippery.blocks;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.PrimedTnt;
@@ -32,6 +35,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import syric.alchemine.outputs.general.blocks.PossiblyPermanentBlock;
 import syric.alchemine.setup.AlchemineBlocks;
 
 import java.util.ArrayList;
@@ -40,7 +44,7 @@ import java.util.Map;
 
 import static syric.alchemine.util.ChatPrint.chatPrint;
 
-public class WallSlideBlock extends HorizontalDirectionalBlock {
+public class WallSlideBlock extends HorizontalDirectionalBlock implements PossiblyPermanentBlock {
     private static final Map<Direction, VoxelShape> SHAPE_MAP = Maps.newEnumMap(ImmutableMap.of(
             Direction.NORTH, Block.box(0.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D),
             Direction.SOUTH, Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 2.0D),
@@ -51,7 +55,7 @@ public class WallSlideBlock extends HorizontalDirectionalBlock {
 
     public WallSlideBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(PERMANENT, true));
+        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(PERMANENT, false));
     }
 
     public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
@@ -123,20 +127,45 @@ public class WallSlideBlock extends HorizontalDirectionalBlock {
     }
 
     //For placing via effects
-    public static BlockState getEffectState(Level level, BlockPos pos, Direction dir) {
-        Direction[] directions = {dir, dir.getOpposite(), dir.getClockWise(), dir.getCounterClockWise()};
+    public static BlockState getEffectState(Level level, BlockPos pos, Direction initialDir) {
+        Direction[] directions = {initialDir, initialDir.getOpposite(), initialDir.getClockWise(), initialDir.getCounterClockWise()};
 
         for (Direction direction : directions) {
-            BlockPos wallCandidate = pos.relative(direction);
-            if (level.getBlockState(wallCandidate).isFaceSturdy(level, wallCandidate, direction)) {
+            if (checkWallPlaceable(level, pos, direction)) {
                 return AlchemineBlocks.WALL_SLIDE.get().defaultBlockState().setValue(FACING, direction);
             }
+//            LogUtils.getLogger().info("Testing direction " + direction);
+//            BlockPos wallCandidate = pos.relative(direction);
+//            if (level.getBlockState(wallCandidate).isFaceSturdy(level, pos, direction)) {
+//                LogUtils.getLogger().info("Success");
+//                return AlchemineBlocks.WALL_SLIDE.get().defaultBlockState().setValue(FACING, direction);
+//            }
         }
         return Blocks.AIR.defaultBlockState();
     }
 
+    private static boolean checkWallPlaceable(Level level, BlockPos pos, Direction dir) {
+        BlockPos wallCandidate = pos.relative(dir.getOpposite());
+        return (level.getBlockState(wallCandidate).isFaceSturdy(level, pos, dir));
+    }
+
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, PERMANENT);
+    }
+
+    //Stuff relating to automatic destruction
+    @Override
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState state2, boolean bool) {
+        if (!level.isClientSide) {
+            level.scheduleTick(pos, this, 1200);
+        }
+    }
+    @Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
+        super.tick(state, level, pos, source);
+        if (!state.getValue(PERMANENT)) {
+            level.destroyBlock(pos, false);
+        }
     }
 
 }

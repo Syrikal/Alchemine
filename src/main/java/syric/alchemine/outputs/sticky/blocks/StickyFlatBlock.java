@@ -14,15 +14,17 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import syric.alchemine.outputs.general.blocks.PossiblyPermanentBlock;
 
 import static syric.alchemine.util.ChatPrint.chatPrint;
 
-public class StickyFlatBlock extends Block {
+public class StickyFlatBlock extends Block implements PossiblyPermanentBlock {
     protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 1.0, 16.0);
     protected final int stickiness;
     protected final int duration;
@@ -31,19 +33,18 @@ public class StickyFlatBlock extends Block {
         super(properties);
         stickiness = stick;
         duration = dur;
+        this.registerDefaultState(this.defaultBlockState().setValue(PossiblyPermanentBlock.PERMANENT, false));
+    }
+
+    public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(PossiblyPermanentBlock.PERMANENT);
     }
 
     public boolean isPathfindable(BlockState state, BlockGetter getter, BlockPos pos, PathComputationType type) {
-        switch (type) {
-            case LAND:
-                return true;
-            case WATER:
-                return false;
-            case AIR:
-                return false;
-            default:
-                return false;
-        }
+        return switch (type) {
+            case LAND -> true;
+            case WATER, AIR -> false;
+        };
     }
 
     @Override

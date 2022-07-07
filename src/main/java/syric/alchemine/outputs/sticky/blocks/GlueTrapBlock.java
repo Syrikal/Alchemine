@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.Vec3;
+import syric.alchemine.outputs.general.blocks.PossiblyPermanentBlock;
 
 import static syric.alchemine.util.ChatPrint.chatPrint;
 
@@ -19,11 +20,11 @@ public class GlueTrapBlock extends StickyFlatBlock {
 
     public GlueTrapBlock(Properties properties, int stick, int dur) {
         super(properties, stick, dur);
-        this.registerDefaultState(this.defaultBlockState().setValue(ACTIVE, false).setValue(PRIMED, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(ACTIVE, false).setValue(PRIMED, false).setValue(PossiblyPermanentBlock.PERMANENT, false));
     }
 
     public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(ACTIVE, PRIMED);
+        builder.add(ACTIVE, PRIMED, PossiblyPermanentBlock.PERMANENT);
     }
 
     @Override
