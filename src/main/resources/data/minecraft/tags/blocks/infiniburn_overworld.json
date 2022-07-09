@@ -1,5 +1,8 @@
 {
   "values": [
-    "alchemine:infernal_sludge"
+    "alchemine:infernal_sludge",
+    "alchemine:emberstone",
+    "alchemine:cobbled_emberstone",
+    "alchemine:dark_emberstone"
   ]
 }

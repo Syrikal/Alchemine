@@ -2,23 +2,19 @@ package syric.alchemine.outputs.fire.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import syric.alchemine.setup.AlchemineBlocks;
 
 public class StonefireBlock extends AbstractAlchemicalFireBlock {
 
-    public StonefireBlock(Properties properties) {
-        super(properties);
-    }
-
-    @Override
-    public int getFireTickDelay(RandomSource source) {
-        return 30 + source.nextInt(10);
+    public StonefireBlock(Properties properties, float damage) {
+        super(properties, damage);
     }
 
     public static void bootStrap() {
@@ -180,17 +176,19 @@ public class StonefireBlock extends AbstractAlchemicalFireBlock {
     }
 
     @Override
-    public boolean canCatchFire(BlockGetter world, BlockPos pos, Direction face) {
-        return this.getIgniteOdds(world.getBlockState(pos)) > 0;
+    public boolean canBlockIgnite(BlockGetter level, BlockPos pos, Direction face) {
+        return this.canIgniteStored(level.getBlockState(pos));
     }
 
     @Override
-    public int getFlammabilityChangeable(Level level, BlockPos pos, Direction face) {
-        if (canCatchFire(level, pos, face)) {
-            return this.getBurnOdds(level.getBlockState(pos));
-        } else {
-            return 0;
-        }
+    public int getBlockIgniteChance(BlockGetter level, BlockPos pos, Direction face) {
+        BlockState state = level.getBlockState(pos);
+        return this.getIgniteChanceStored(state);
+    }
+
+    @Override
+    public int getBlockBurnChance(Level level, BlockPos pos, Direction face) {
+        return this.getBurnChanceStored(level.getBlockState(pos));
     }
 
 }

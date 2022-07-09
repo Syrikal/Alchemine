@@ -2,10 +2,6 @@
     "itemGroup.alchemy": "Alchemy",
     "itemGroup.alchemycreations": "Alchemical Creations",
 
-
-    "effect.alchemine.light_blindness": "Light Blindness",
-    "sounds.alchemine.luminous_break": "Luminous Sludge Blinds",
-
     "block.alchemine.alchemical_cauldron": "Alchemical Cauldron",
     "block.alchemine.alchemical_grinder": "Alchemical Grinder",
     "block.alchemine.alchemical_crucible": "Alchemical Crucible",
@@ -16,6 +12,7 @@
     "item.alchemine.debug_stick": "Debug Stick",
     "item.alchemine.empty_stick": "Empty Stick",
     "item.alchemine.permanent_stick": "Permanent Stick",
+
 
     "block.alchemine.morb_block": "Morbium",
 
@@ -142,15 +139,6 @@
     "item.alchemine.fiery_slimeseed": "Fiery Slimeseed",
     "block.alchemine.flash_fire": "Flashfire",
     "block.alchemine.stone_fire": "Stonefire",
-    "block.alchemine.lifebane_fire": "Lifebane Fire",
-    "block.alchemine.sun_fire": "Sunfire",
-    "block.alchemine.tidy_fire": "Tidy Fire",
-    "block.alchemine.cozy_fire": "Cozy Fire",
-    "block.alchemine.fell_fire": "Fell Fire",
-    "block.alchemine.sparks_block": "Sparks",
-    "block.alchemine.emberstone": "Emberstone",
-    "block.alchemine.cobbled_emberstone": "Cobbled Emberstone",
-    "block.alchemine.dark_emberstone": "Dark Emberstone",
 
     "item.alchemine.glowing_slimeseed": "Glowing Slimeseed",
 
@@ -176,6 +164,16 @@
     "block.alchemine.hardened_sludge": "Hardened Sludge",
     "block.alchemine.foamy_sludge": "Foamy Sludge",
     "block.alchemine.volatile_sludge": "Volatile Sludge",
-    "block.alchemine.chaotic_sludge": "Chaotic Sludge"
+    "block.alchemine.chaotic_sludge": "Chaotic Sludge",
+
+    "effect.alchemine.light_blindness": "Light Blindness",
+
+    "sounds.alchemine.luminous_break": "Luminous Sludge Blinds",
+
+    "block.alchemine.lifebane_fire": "Lifebane Fire",
+    "block.alchemine.sun_fire": "Sunfire",
+    "block.alchemine.tidy_fire": "Tidy Fire",
+    "block.alchemine.cozy_fire": "Cozy Fire",
+    "block.alchemine.fell_fire": "Fell Fire"
 
 }

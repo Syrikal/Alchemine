@@ -8,7 +8,7 @@ public class BootStrap {
 
 
     public static void bootStrap() {
-        FlashfireBlock.bootStrap();
+//        FlashfireBlock.bootStrap();
         StonefireBlock.bootStrap();
     }
 

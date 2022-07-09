@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 
 public class FlashfireBlock extends AbstractAlchemicalFireBlock {
 
-    public FlashfireBlock(BlockBehaviour.Properties properties) {
-        super(properties);
+    public FlashfireBlock(BlockBehaviour.Properties properties, float damage) {
+        super(properties, damage);
     }
 
     @Override
@@ -22,9 +22,9 @@ public class FlashfireBlock extends AbstractAlchemicalFireBlock {
         return 5 + source.nextInt(5);
     }
 
-    public static void bootStrap() {
-        defaultFireBootStrap((AbstractAlchemicalFireBlock) AlchemineBlocks.FLASH_FIRE.get());
-    }
+//    public static void bootStrap() {
+//        defaultFireBootStrap((AbstractAlchemicalFireBlock) AlchemineBlocks.FLASH_FIRE.get());
+//    }
 
     public Block getSelf() {
         return AlchemineBlocks.FLASH_FIRE.get();
