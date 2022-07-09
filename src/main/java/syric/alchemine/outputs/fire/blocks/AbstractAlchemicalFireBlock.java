@@ -134,6 +134,7 @@ public class AbstractAlchemicalFireBlock extends Block {
         return getStateForPlacement(context.getLevel(), context.getClickedPos());
     }
 
+
     //Returns the blockstate appropriate for the given position, with the given age.
     private BlockState getStateWithAge(LevelAccessor level, BlockPos pos, int age) {
         BlockState blockstate = getStateForPlacement(level, pos);

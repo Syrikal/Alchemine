@@ -13,6 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
 import org.apache.commons.lang3.StringUtils;
 import syric.alchemine.setup.AlchemineBlocks;
@@ -46,10 +47,10 @@ public class FellfireBlock extends AbstractAlchemicalFireBlock {
     public int modifiedIgniteChance(int baseIgniteChance, int age, Level level, BlockPos pos) {
         baseIgniteChance += 60;
         baseIgniteChance += level.getDifficulty().getId() * 7;
-        baseIgniteChance /= age + 10;
+        baseIgniteChance /= (2 * age) + 10;
         if (level.isHumidAt(pos)) {baseIgniteChance /= 2;}
         if (age == 15) {
-            baseIgniteChance /= 4;
+            baseIgniteChance /= 6;
         }
         return baseIgniteChance;
     }

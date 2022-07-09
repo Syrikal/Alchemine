@@ -3,6 +3,7 @@ package syric.alchemine.outputs.fire.effects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import syric.alchemine.outputs.fire.blocks.AbstractAlchemicalFireBlock;
 import syric.alchemine.outputs.general.alchemicaleffects.AlchemicalEffect;
 import syric.alchemine.outputs.general.alchemicaleffects.PlacementSet;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.PlacementPattern;
@@ -18,7 +19,7 @@ public class FlashfireEffect implements AlchemicalEffect {
         Level level = context.getLevel();
 
         PlacementPattern pattern = new SpherePattern(pos, 2F);
-        new PlacementSet(level).addPattern(pattern).cull(PlacementSet.AIR_ONLY).cull(PlacementSet.randomFilter(0.5F)).placeImmediate(AlchemineBlocks.FLASH_FIRE, false);
+        new PlacementSet(level).addPattern(pattern).cull(PlacementSet.AIR_ONLY).cull(PlacementSet.randomFilter(0.5F)).placeContextualFire((AbstractAlchemicalFireBlock) AlchemineBlocks.FLASH_FIRE.get());
 
 
     }

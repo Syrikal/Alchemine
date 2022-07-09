@@ -9,10 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import syric.alchemine.Alchemine;
 import syric.alchemine.outputs.bouncy.effects.CrashPadEffect;
 import syric.alchemine.outputs.bouncy.effects.InstantShelterEffect;
-import syric.alchemine.outputs.fire.effects.FireblossomEffect;
-import syric.alchemine.outputs.fire.effects.FlashfireEffect;
-import syric.alchemine.outputs.fire.effects.MagmaVeinEffect;
-import syric.alchemine.outputs.fire.effects.StonefireEffect;
+import syric.alchemine.outputs.fire.effects.*;
 import syric.alchemine.outputs.general.alchemicaleffects.testeffects.StoneBlobEffect;
 import syric.alchemine.outputs.general.alchemicaleffects.testeffects.StoneSphereEffect;
 import syric.alchemine.outputs.slippery.effects.OilSlickEffect;
@@ -65,6 +62,10 @@ public class AlchemicalEffects {
             FlashfireEffect::new);
     public static final RegistryObject<AlchemicalEffect> STONEFIRE = registerEffect("stonefire_effect",
             StonefireEffect::new);
+    public static final RegistryObject<AlchemicalEffect> FELLFIRE = registerEffect("fellfire_effect",
+            FellfireEffect::new);
+    public static final RegistryObject<AlchemicalEffect> SUNFIRE = registerEffect("sunfire_effect",
+            SunfireEffect::new);
     public static final RegistryObject<AlchemicalEffect> MAGMA_VEIN = registerEffect("magma_vein_effect",
             MagmaVeinEffect::new);
 

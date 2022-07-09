@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.RegistryObject;
+import syric.alchemine.outputs.fire.blocks.AbstractAlchemicalFireBlock;
 import syric.alchemine.outputs.general.alchemicaleffects.filters.PlacementFilter;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.PlacementPattern;
 import syric.alchemine.outputs.general.alchemicaleffects.filters.SimpleFilter;
@@ -77,6 +78,16 @@ public class PlacementSet {
             BlockState state = stateProvider.getState(level, pos, initialDirection);
             if (state.getBlock() != Blocks.AIR) {
                 level.destroyBlock(pos, drop);
+                level.setBlockAndUpdate(pos, state);
+            }
+        }
+    }
+
+    public void placeContextualFire(AbstractAlchemicalFireBlock firetype) {
+        for (BlockPos pos : placementMap.keySet()) {
+            BlockState state = firetype.getStateForPlacement(level, pos);
+            if (state.getBlock() != Blocks.AIR) {
+                level.destroyBlock(pos, false);
                 level.setBlockAndUpdate(pos, state);
             }
         }
