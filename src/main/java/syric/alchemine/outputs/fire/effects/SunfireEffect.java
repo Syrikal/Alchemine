@@ -19,7 +19,7 @@ public class SunfireEffect implements AlchemicalEffect {
         Level level = context.getLevel();
 
         PlacementPattern pattern = new SpherePattern(pos, 3F);
-        new PlacementSet(level).addPattern(pattern).cull(PlacementSet.AIR_ONLY).cull(PlacementSet.randomFilter(0.4F)).placeContextualFire((AbstractAlchemicalFireBlock) AlchemineBlocks.SUN_FIRE.get());
+        new PlacementSet(level).addPattern(pattern).cull(PlacementSet.AIR_ONLY).cull(PlacementSet.randomFilter(0.7F)).placeContextualFire((AbstractAlchemicalFireBlock) AlchemineBlocks.SUN_FIRE.get());
 
     }
 

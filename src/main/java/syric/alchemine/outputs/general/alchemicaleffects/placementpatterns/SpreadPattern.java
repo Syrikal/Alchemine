@@ -84,7 +84,7 @@ public class SpreadPattern implements PlacementPattern {
         //Check if any blocks failed to finish spreading. Also reduce block distance if necessary.
         for (BlockPos pos : blockFillingMap.keySet()) {
             if (blockFillingMap.get(pos) > 1) {
-                chatPrint("Returning a spread block with " + blockFillingMap.get(pos) + " blocks inside it!", level);
+//                chatPrint("Returning a spread block with " + blockFillingMap.get(pos) + " blocks inside it!", level);
             }
             //Set every block's distance to the minimum of its actual distance and its recorded distance
             blockDistanceMap.put(pos, Math.min(distance(pos), blockDistanceMap.get(pos)));

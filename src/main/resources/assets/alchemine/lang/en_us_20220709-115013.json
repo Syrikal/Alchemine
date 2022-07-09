@@ -2,6 +2,7 @@
     "itemGroup.alchemy": "Alchemy",
     "itemGroup.alchemycreations": "Alchemical Creations",
 
+
     "effect.alchemine.light_blindness": "Light Blindness",
     "sounds.alchemine.luminous_break": "Luminous Sludge Blinds",
 
@@ -146,15 +147,10 @@
     "block.alchemine.tidy_fire": "Tidy Fire",
     "block.alchemine.cozy_fire": "Cozy Fire",
     "block.alchemine.fell_fire": "Fell Fire",
-    "block.alchemine.abyssal_forgeflame": "Abyssal Forgeflame",
     "block.alchemine.sparks_block": "Sparks",
     "block.alchemine.emberstone": "Emberstone",
     "block.alchemine.cobbled_emberstone": "Cobbled Emberstone",
     "block.alchemine.dark_emberstone": "Dark Emberstone",
-    "item.alchemine.lifebane_ember": "Lifebane Ember",
-    "item.alchemine.tidy_ember": "Tidy Ember",
-    "item.alchemine.cozy_ember": "Cozy Ember",
-    "item.alchemine.abyssal_ember": "Abyssal Ember",
 
     "item.alchemine.glowing_slimeseed": "Glowing Slimeseed",
 
@@ -180,8 +176,6 @@
     "block.alchemine.hardened_sludge": "Hardened Sludge",
     "block.alchemine.foamy_sludge": "Foamy Sludge",
     "block.alchemine.volatile_sludge": "Volatile Sludge",
-    "block.alchemine.chaotic_sludge": "Chaotic Sludge",
-
-    "item.alchemine.forged_netherite_scrap": "Forged Netherite Scrap"
+    "block.alchemine.chaotic_sludge": "Chaotic Sludge"
 
 }

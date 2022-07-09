@@ -6,7 +6,10 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import syric.alchemine.Alchemine;
+import syric.alchemine.outputs.fire.blocks.AbstractAlchemicalFireBlock;
 import syric.alchemine.outputs.fire.items.EternalEmberItem;
+import syric.alchemine.outputs.fire.items.FirestarterItem;
+import syric.alchemine.outputs.fire.items.MagmaticSlimeseedItem;
 import syric.alchemine.outputs.fire.items.PrimalCoalItem;
 import syric.alchemine.outputs.general.items.FullFlaskItem;
 import syric.alchemine.outputs.bouncy.items.SlimeseedItem;
@@ -69,9 +72,19 @@ public class AlchemineItems {
     public static final RegistryObject<Item> ETERNAL_EMBER = ITEMS.register("eternal_ember",
             () -> new EternalEmberItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
     public static final RegistryObject<Item> MAGMATIC_SLIMESEED = ITEMS.register("magmatic_slimeseed",
-            () -> new SlimeseedItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+            () -> new MagmaticSlimeseedItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
     public static final RegistryObject<Item> FIERY_SLIMESEED = ITEMS.register("fiery_slimeseed",
             () -> new SlimeseedItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+    public static final RegistryObject<Item> LIFEBANE_EMBER = ITEMS.register("lifebane_ember",
+            () -> new FirestarterItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS), AlchemineBlocks.LIFEBANE_FIRE));
+    public static final RegistryObject<Item> TIDY_EMBER = ITEMS.register("tidy_ember",
+            () -> new FirestarterItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS), AlchemineBlocks.TIDY_FIRE));
+    public static final RegistryObject<Item> COZY_EMBER = ITEMS.register("cozy_ember",
+            () -> new FirestarterItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS), AlchemineBlocks.COZY_FIRE));
+    public static final RegistryObject<Item> ABYSSAL_EMBER = ITEMS.register("abyssal_ember",
+            () -> new FirestarterItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS), AlchemineBlocks.ABYSSAL_FORGEFLAME));
+    public static final RegistryObject<Item> FORGED_NETHERITE_SCRAP = ITEMS.register("forged_netherite_scrap",
+            () -> new Item(new Item.Properties().fireResistant().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
 
     //Ice
 

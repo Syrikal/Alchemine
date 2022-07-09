@@ -18,10 +18,12 @@ public class TidyFireBlock extends AbstractAlchemicalFireBlock {
         super(properties, damage);
     }
 
+    //Ticks slower
     public int getFireTickDelay(RandomSource randomSource) {
         return 100 + randomSource.nextInt(20);
     }
 
+    //Only burns items
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (!(entity instanceof ItemEntity)) {
@@ -36,10 +38,26 @@ public class TidyFireBlock extends AbstractAlchemicalFireBlock {
         super.entityInside(state, level, pos, entity);
     }
 
+    //Spreads slower
+    public int modifiedIgniteChance(int baseIgniteChance, int age, Level level, BlockPos pos) {
+        baseIgniteChance += 20;
+        baseIgniteChance /= (age * 3 + 30);
+        if (level.isHumidAt(pos)) {baseIgniteChance /= 3;}
+        if (age >= 7) {
+            baseIgniteChance /= 3;
+        }
+        if (age == 15) {
+            return 0;
+        }
+        baseIgniteChance /= 2;
+        return baseIgniteChance;
+    }
+
     public Block getSelf() {
         return AlchemineBlocks.TIDY_FIRE.get();
     }
 
+    //Doesn't burn things
     @Override
     public int getBlockBurnChance(Level level, BlockPos pos, Direction face) {
         return 0;

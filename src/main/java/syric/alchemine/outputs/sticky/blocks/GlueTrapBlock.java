@@ -18,9 +18,9 @@ public class GlueTrapBlock extends StickyFlatBlock {
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
     public static final BooleanProperty PRIMED = BooleanProperty.create("primed");
 
-    public GlueTrapBlock(Properties properties, int stick, int dur) {
-        super(properties, stick, dur);
-        this.registerDefaultState(this.defaultBlockState().setValue(ACTIVE, false).setValue(PRIMED, false).setValue(PossiblyPermanentBlock.PERMANENT, false));
+    public GlueTrapBlock(Properties properties, int stick) {
+        super(properties, stick);
+        this.registerDefaultState(this.defaultBlockState().setValue(ACTIVE, false).setValue(PRIMED, false).setValue(PossiblyPermanentBlock.PERMANENT, true));
     }
 
     public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {

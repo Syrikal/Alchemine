@@ -180,8 +180,6 @@
     "block.alchemine.hardened_sludge": "Hardened Sludge",
     "block.alchemine.foamy_sludge": "Foamy Sludge",
     "block.alchemine.volatile_sludge": "Volatile Sludge",
-    "block.alchemine.chaotic_sludge": "Chaotic Sludge",
-
-    "item.alchemine.forged_netherite_scrap": "Forged Netherite Scrap"
+    "block.alchemine.chaotic_sludge": "Chaotic Sludge"
 
 }

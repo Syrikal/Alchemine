@@ -56,6 +56,7 @@ public class BlockRendering {
         cutout(AlchemineBlocks.COZY_FIRE.get());
         cutout(AlchemineBlocks.SUN_FIRE.get());
         cutout(AlchemineBlocks.LIFEBANE_FIRE.get());
+        cutout(AlchemineBlocks.ABYSSAL_FORGEFLAME.get());
 
 
         cutout(AlchemineBlocks.FOAMY_SLUDGE.get());

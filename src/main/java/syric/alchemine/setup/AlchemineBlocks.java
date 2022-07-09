@@ -139,19 +139,19 @@ public class AlchemineBlocks {
     public static final RegistryObject<Block> TAR_STICK = register("tar_stick",
             () -> new StickyFlatBlock(BlockBehaviour.Properties.of(AlchemineBlockMaterials.TAR_DEC_MAT, MaterialColor.COLOR_BLACK)
                     .sound(SoundType.MUD).noOcclusion().strength(0.5F)
-                    .jumpFactor(0.1F), 1, 1200),
+                    .jumpFactor(0.1F), 1),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> GLUE_STICK = register("glue_stick",
             () -> new StickyFlatBlock(BlockBehaviour.Properties.of(AlchemineBlockMaterials.GLUE_MAT, MaterialColor.COLOR_LIGHT_GRAY)
                     .sound(SoundType.SLIME_BLOCK).noOcclusion().strength(2.0F)
-                    .jumpFactor(0.01F), 2, 1200),
+                    .jumpFactor(0.01F), 2),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> SUPER_GLUE_STICK = register("super_glue_stick",
             () -> new GlueTrapBlock(BlockBehaviour.Properties.of(AlchemineBlockMaterials.GLUE_MAT, MaterialColor.NONE)
                     .sound(SoundType.SLIME_BLOCK).noOcclusion().strength(6.0F)
-                    .jumpFactor(0.01F), 3, 0),
+                    .jumpFactor(0.01F), 3),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> FOAM_SNARE = register("foam_snare",
@@ -205,29 +205,40 @@ public class AlchemineBlocks {
             () -> new FlashfireBlock(BlockBehaviour.Properties.of(Material.FIRE)
                     .noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL), 1.0F),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
     public static final RegistryObject<Block> STONE_FIRE = register("stone_fire",
             () -> new StonefireBlock(BlockBehaviour.Properties.of(Material.FIRE)
                     .noCollission().instabreak().lightLevel((state) -> 8).sound(SoundType.WOOL), 1.0F),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
     public static final RegistryObject<Block> LIFEBANE_FIRE = register("lifebane_fire",
             () -> new LifebaneFireBlock(BlockBehaviour.Properties.of(Material.FIRE)
                     .noCollission().instabreak().lightLevel((state) -> 12).sound(SoundType.WOOL), 3.0F),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
     public static final RegistryObject<Block> SUN_FIRE = register("sun_fire",
             () -> new SunfireBlock(BlockBehaviour.Properties.of(Material.FIRE)
-                    .noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL), 4.0F),
+                    .noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL), 1.0F),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
     public static final RegistryObject<Block> TIDY_FIRE = register("tidy_fire",
             () -> new TidyFireBlock(BlockBehaviour.Properties.of(Material.FIRE)
                     .noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL), 0.5F),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
     public static final RegistryObject<Block> COZY_FIRE = register("cozy_fire",
             () -> new CozyFireBlock(BlockBehaviour.Properties.of(Material.FIRE)
                     .noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL), 0.0F),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
     public static final RegistryObject<Block> FELL_FIRE = register("fell_fire",
             () -> new FellfireBlock(BlockBehaviour.Properties.of(Material.FIRE)
                     .noCollission().instabreak().sound(SoundType.WOOL), 4.0F),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
+    public static final RegistryObject<Block> ABYSSAL_FORGEFLAME = register("abyssal_forgeflame",
+            () -> new AbyssalForgeflameBlock(BlockBehaviour.Properties.of(Material.FIRE)
+                    .noCollission().instabreak().sound(SoundType.WOOL), 6.0F),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     //What are post-processing and emissive rendering? Should I use them?
@@ -235,16 +246,19 @@ public class AlchemineBlocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.FIRE)
                     .sound(SoundType.WOOL).noLootTable().instabreak().noCollission().lightLevel((state) -> 15)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
     public static final RegistryObject<Block> EMBERSTONE = register("emberstone",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F)
                     .lightLevel((state) -> 10)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
     public static final RegistryObject<Block> COBBLED_EMBERSTONE = register("cobbled_emberstone",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F)
                     .lightLevel((state) -> 10)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
     public static final RegistryObject<Block> DARK_EMBERSTONE = register("dark_emberstone",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F)

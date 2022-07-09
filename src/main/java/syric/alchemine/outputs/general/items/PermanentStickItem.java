@@ -25,7 +25,7 @@ public class PermanentStickItem extends Item {
         Block block = level.getBlockState(pos).getBlock();
 
         if (block instanceof PossiblyPermanentBlock) {
-            LogUtils.getLogger().info("Detected possibly permanent block");
+//            LogUtils.getLogger().info("Detected possibly permanent block");
             ((PossiblyPermanentBlock) block).togglePermanent(level, pos, level.getBlockState(pos));
         }
 

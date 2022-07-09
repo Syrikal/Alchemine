@@ -27,12 +27,10 @@ import static syric.alchemine.util.ChatPrint.chatPrint;
 public class StickyFlatBlock extends Block implements PossiblyPermanentBlock {
     protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 1.0, 16.0);
     protected final int stickiness;
-    protected final int duration;
 
-    public StickyFlatBlock(Properties properties, int stick, int dur) {
+    public StickyFlatBlock(Properties properties, int stick) {
         super(properties);
         stickiness = stick;
-        duration = dur;
         this.registerDefaultState(this.defaultBlockState().setValue(PossiblyPermanentBlock.PERMANENT, false));
     }
 
@@ -122,13 +120,13 @@ public class StickyFlatBlock extends Block implements PossiblyPermanentBlock {
     @Override
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState state2, boolean bool) {
         if (!level.isClientSide) {
-            level.scheduleTick(pos, this, duration == 0 ? 10 : duration);
+            level.scheduleTick(pos, this, 1200);
         }
     }
     @Override
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
         super.tick(state, level, pos, source);
-        if (duration != 0) {
+        if (!state.getValue(PERMANENT)) {
             level.destroyBlock(pos, false);
         }
     }

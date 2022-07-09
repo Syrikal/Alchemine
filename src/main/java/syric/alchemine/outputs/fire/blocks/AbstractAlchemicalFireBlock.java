@@ -1,6 +1,7 @@
 package syric.alchemine.outputs.fire.blocks;
 
 import com.google.common.collect.ImmutableMap;
+import com.mojang.logging.LogUtils;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.Util;
@@ -27,6 +28,7 @@ import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jline.utils.Log;
 
 import java.util.Map;
 import java.util.Optional;
@@ -150,9 +152,13 @@ public class AbstractAlchemicalFireBlock extends Block {
     public boolean canBePlacedAt(Level level, BlockPos pos, Direction direction) {
         BlockState blockstate = level.getBlockState(pos);
         if (!blockstate.isAir()) {
+            LogUtils.getLogger().info("Can't place, not air");
             return false;
         } else {
-            return getState(level, pos).canSurvive(level, pos) || isPortal(level, pos, direction);
+            boolean a = getState(level, pos).canSurvive(level, pos);
+            boolean b = isPortal(level, pos, direction);
+            LogUtils.getLogger().info("canBePlacedAt: state is " + (a ? "" : "not") + " valid, portal is "+ b +", returning " + (a || b));
+            return a || b;
         }
     }
     //Only referenced in canBePlacedAt. Should return itself. Probably does?
