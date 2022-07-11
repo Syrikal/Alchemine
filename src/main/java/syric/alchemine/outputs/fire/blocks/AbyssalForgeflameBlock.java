@@ -12,6 +12,11 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import syric.alchemine.setup.AlchemineBlocks;
 import syric.alchemine.setup.AlchemineItems;
 
@@ -28,25 +33,39 @@ public class AbyssalForgeflameBlock extends AbstractAlchemicalFireBlock {
                 entity.setSecondsOnFire(16);
             }
         }
+
         if (entity instanceof ItemEntity itemEntity) {
-            if (itemEntity.getItem().getItem().isFireResistant()) {
-                return;
-            }
             if (itemEntity.getItem().getItem() == Items.NETHERITE_SCRAP) {
-                int quantity = itemEntity.getItem().getCount();
-                ItemStack popStack = new ItemStack(AlchemineItems.FORGED_NETHERITE_SCRAP.get(), quantity);
-                popResource(level, pos, popStack);
-                itemEntity.kill();
-            } else if (itemEntity.getItem().getItem() == AlchemineItems.FORGED_NETHERITE_SCRAP.get()) {
-                LogUtils.getLogger().info("Detected forged scrap in the forgeflame");
+
+                Vec3 itemCenter = itemEntity.getBoundingBox().getCenter();
+                boolean xContained = (itemCenter.x <= pos.getX()+1 && itemCenter.x > pos.getX());
+                boolean yContained = (itemCenter.y <= pos.getY()+1 && itemCenter.y > pos.getY());
+                boolean zContained = (itemCenter.z <= pos.getZ()+1 && itemCenter.z > pos.getZ());
+
+                boolean contained = xContained && yContained && zContained;
+
+                if (contained && level.getRandom().nextDouble() < 0.2) {
+                    int quantity = itemEntity.getItem().getCount();
+                    ItemStack popStack = new ItemStack(AlchemineItems.FORGED_NETHERITE_SCRAP.get(), quantity);
+                    itemEntity.discard();
+                    popResource(level, pos, popStack);
+                }
+
             }
         }
+
 
         float multiplier = entity.fireImmune() ? 1.5F : 1F;
         float damage = this.getFireDamage() / multiplier;
 
-        entity.hurt(DamageSource.MAGIC, damage / 2F);
-        entity.hurt(DamageSource.IN_FIRE, damage / 2F);
+        if (entity instanceof ItemEntity) {
+            entity.hurt(DamageSource.IN_FIRE, damage);
+        } else {
+            entity.hurt(DamageSource.MAGIC, damage / 2F);
+            entity.hurt(DamageSource.IN_FIRE, damage / 2F);
+        }
+
+
 
     }
 

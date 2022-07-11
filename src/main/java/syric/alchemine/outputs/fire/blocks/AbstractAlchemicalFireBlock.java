@@ -1,7 +1,6 @@
 package syric.alchemine.outputs.fire.blocks;
 
 import com.google.common.collect.ImmutableMap;
-import com.mojang.logging.LogUtils;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.Util;
@@ -28,7 +27,6 @@ import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jline.utils.Log;
 
 import java.util.Map;
 import java.util.Optional;
@@ -37,7 +35,7 @@ import java.util.stream.Collectors;
 
 import static syric.alchemine.util.ChatPrint.chatPrint;
 
-public class AbstractAlchemicalFireBlock extends Block {
+public class AbstractAlchemicalFireBlock extends BaseFireBlock {
     //Max age is 15.
     //Ignition chances: Instant-60, easy-30, medium-15, hard-5.
     //Burn chances: Instant-100, easy-60, medium-20, hard-5.
@@ -69,11 +67,9 @@ public class AbstractAlchemicalFireBlock extends Block {
 
 
     public AbstractAlchemicalFireBlock(BlockBehaviour.Properties properties, float damage) {
-        super(properties);
+        super(properties, damage);
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(NORTH, Boolean.FALSE).setValue(EAST, Boolean.FALSE).setValue(SOUTH, Boolean.FALSE).setValue(WEST, Boolean.FALSE).setValue(UP, Boolean.FALSE));
-        this.shapesCache = ImmutableMap.copyOf(this.stateDefinition.getPossibleStates().stream().filter((state) -> {
-            return state.getValue(AGE) == 0;
-        }).collect(Collectors.toMap(Function.identity(), AbstractAlchemicalFireBlock::calculateShape)));
+        this.shapesCache = ImmutableMap.copyOf(this.stateDefinition.getPossibleStates().stream().filter((state) -> state.getValue(AGE) == 0).collect(Collectors.toMap(Function.identity(), AbstractAlchemicalFireBlock::calculateShape)));
         this.fireDamage = damage;
     }
 
@@ -132,6 +128,7 @@ public class AbstractAlchemicalFireBlock extends Block {
         }
     }
     //The standard gSFP takes a context. We redirect it to the custom one.
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return getStateForPlacement(context.getLevel(), context.getClickedPos());
     }
@@ -149,24 +146,17 @@ public class AbstractAlchemicalFireBlock extends Block {
     }
 
     //For direct placement, as with flint and steel or a fire charge.
-    public boolean canBePlacedAt(Level level, BlockPos pos, Direction direction) {
+    public boolean canDirectPlaceAt(Level level, BlockPos pos, Direction direction) {
         BlockState blockstate = level.getBlockState(pos);
         if (!blockstate.isAir()) {
-            LogUtils.getLogger().info("Can't place, not air");
+//            LogUtils.getLogger().info("Can't place, not air");
             return false;
         } else {
-            boolean a = getState(level, pos).canSurvive(level, pos);
+            boolean a = getStateForPlacement(level, pos).canSurvive(level, pos);
             boolean b = isPortal(level, pos, direction);
-            LogUtils.getLogger().info("canBePlacedAt: state is " + (a ? "" : "not") + " valid, portal is "+ b +", returning " + (a || b));
+//            LogUtils.getLogger().info("canBePlacedAt: state is " + (a ? "" : "not") + " valid, portal is "+ b +", returning " + (a || b));
             return a || b;
         }
-    }
-    //Only referenced in canBePlacedAt. Should return itself. Probably does?
-    public BlockState getState(BlockGetter getter, BlockPos pos) {
-        BlockPos blockpos = pos.below();
-        BlockState blockstate = getter.getBlockState(blockpos);
-        return getStateForPlacement(getter, pos);
-//        return SoulFireBlock.canSurviveOnBlock(blockstate) ? Blocks.SOUL_FIRE.defaultBlockState() : Blocks.FIRE.defaultBlockState();
     }
 
 
@@ -237,68 +227,20 @@ public class AbstractAlchemicalFireBlock extends Block {
                 level.addParticle(ParticleTypes.LARGE_SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
             }
         }
-
-
-        //OLD VERSION!!!
-//        if (!this.canIgniteStored(belowState) && !belowState.isFaceSturdy(level, belowPos, Direction.UP)) {
-//            if (this.canIgniteStored(level.getBlockState(pos.west()))) {
-//                for(int j = 0; j < 2; ++j) {
-//                    double d3 = (double)pos.getX() + source.nextDouble() * (double)0.1F;
-//                    double d8 = (double)pos.getY() + source.nextDouble();
-//                    double d13 = (double)pos.getZ() + source.nextDouble();
-//                    level.addParticle(ParticleTypes.LARGE_SMOKE, d3, d8, d13, 0.0D, 0.0D, 0.0D);
-//                }
-//            }
-//
-//            if (this.canIgniteStored(level.getBlockState(pos.east()))) {
-//                for(int k = 0; k < 2; ++k) {
-//                    double d4 = (double)(pos.getX() + 1) - source.nextDouble() * (double)0.1F;
-//                    double d9 = (double)pos.getY() + source.nextDouble();
-//                    double d14 = (double)pos.getZ() + source.nextDouble();
-//                    level.addParticle(ParticleTypes.LARGE_SMOKE, d4, d9, d14, 0.0D, 0.0D, 0.0D);
-//                }
-//            }
-//
-//            if (this.canIgniteStored(level.getBlockState(pos.north()))) {
-//                for(int l = 0; l < 2; ++l) {
-//                    double d5 = (double)pos.getX() + source.nextDouble();
-//                    double d10 = (double)pos.getY() + source.nextDouble();
-//                    double d15 = (double)pos.getZ() + source.nextDouble() * (double)0.1F;
-//                    level.addParticle(ParticleTypes.LARGE_SMOKE, d5, d10, d15, 0.0D, 0.0D, 0.0D);
-//                }
-//            }
-//
-//            if (this.canIgniteStored(level.getBlockState(pos.south()))) {
-//                for(int i1 = 0; i1 < 2; ++i1) {
-//                    double d6 = (double)pos.getX() + source.nextDouble();
-//                    double d11 = (double)pos.getY() + source.nextDouble();
-//                    double d16 = (double)(pos.getZ() + 1) - source.nextDouble() * (double)0.1F;
-//                    level.addParticle(ParticleTypes.LARGE_SMOKE, d6, d11, d16, 0.0D, 0.0D, 0.0D);
-//                }
-//            }
-//
-//            if (this.canIgniteStored(level.getBlockState(pos.above()))) {
-//                for(int j1 = 0; j1 < 2; ++j1) {
-//                    double d7 = (double)pos.getX() + source.nextDouble();
-//                    double d12 = (double)(pos.getY() + 1) - source.nextDouble() * (double)0.1F;
-//                    double d17 = (double)pos.getZ() + source.nextDouble();
-//                    level.addParticle(ParticleTypes.LARGE_SMOKE, d7, d12, d17, 0.0D, 0.0D, 0.0D);
-//                }
-//            }
-//        } else {
-//            for(int i = 0; i < 3; ++i) {
-//                double d0 = (double)pos.getX() + source.nextDouble();
-//                double d1 = (double)pos.getY() + source.nextDouble() * 0.5D + 0.5D;
-//                double d2 = (double)pos.getZ() + source.nextDouble();
-//                level.addParticle(ParticleTypes.LARGE_SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
-//            }
-//        }
-
     }
-    //Doesn't make particles when broken
+
+    //    Doesn't make particles when broken
     @Override
     public void spawnDestroyParticles(Level level, Player player, BlockPos pos, BlockState state) {
     }
+
+    //Is never called. Needs to be implemented anyway. Gets called in the overridden version of animateTick.
+    @Override
+    protected boolean canBurn(BlockState state) {
+        return this.canIgniteStored(state);
+    }
+
+
 
 
     //BURNING ENTITIES
@@ -472,7 +414,7 @@ public class AbstractAlchemicalFireBlock extends Block {
         if (source.nextInt(baseRollCap) < burnChance) {
             BlockState blockstate = level.getBlockState(pos);
             if (source.nextInt(baseRollCap + 10) < 5 && !level.isRainingAt(pos)) {
-//                chatPrint("Successfully spread fire adjacent, placing", level);
+                //chatPrint("Successfully spread fire adjacent, placing", level);
                 //Spread fire to the position.
                 int ageForPlacement = Math.min(baseRollCap + source.nextInt(5) / 4, 15);
                 level.setBlock(pos, this.getStateWithAge(level, pos, ageForPlacement), 3);
@@ -584,9 +526,6 @@ public class AbstractAlchemicalFireBlock extends Block {
 
 
 
-
-
-
     //PLACEMENT AND DESTRUCTION
     //CanSurvive: either the block below must be sturdy, or the block's position must be igniteable.
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
@@ -594,6 +533,7 @@ public class AbstractAlchemicalFireBlock extends Block {
         return level.getBlockState(blockpos).isFaceSturdy(level, blockpos, Direction.UP) || this.canPositionIgnite(level, pos);
     }
     //Does a level event when player destroys it
+    @Override
     public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         if (!level.isClientSide()) {
             level.levelEvent((Player)null, 1009, pos, 0);
@@ -601,6 +541,7 @@ public class AbstractAlchemicalFireBlock extends Block {
 
         super.playerWillDestroy(level, pos, state, player);
     }
+
 
 
 
@@ -770,6 +711,5 @@ public class AbstractAlchemicalFireBlock extends Block {
     public Block getSelf() {
         return Blocks.FIRE;
     }
-
 
 }

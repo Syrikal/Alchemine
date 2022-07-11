@@ -35,19 +35,21 @@ public class FirestarterItem extends Item implements IForgeItem {
     }
 
     public InteractionResult useOn(UseOnContext context) {
-        LogUtils.getLogger().info("FirestarterItem triggered");
+//        LogUtils.getLogger().info("FirestarterItem triggered");
         Level level = context.getLevel();
         BlockPos blockpos = context.getClickedPos().relative(context.getClickedFace());
         boolean consume = false;
-        if (firetype.canBePlacedAt(level, blockpos, context.getHorizontalDirection())) {
-            LogUtils.getLogger().info("Can place fire, placing!");
+        if (firetype.canDirectPlaceAt(level, blockpos, context.getHorizontalDirection())) {
+//            LogUtils.getLogger().info("Can place fire, placing!");
             this.playSound(level, blockpos);
             level.setBlockAndUpdate(blockpos, firetype.getStateForPlacement(level, blockpos));
             level.gameEvent(context.getPlayer(), GameEvent.BLOCK_PLACE, blockpos);
             consume = true;
-        } else {LogUtils.getLogger().info("Can't place fire");}
+        } else {
+            //LogUtils.getLogger().info("Can't place fire");
+        }
         if (consume) {
-            LogUtils.getLogger().info("Consuming.");
+//            LogUtils.getLogger().info("Consuming.");
             context.getItemInHand().shrink(1);
             return InteractionResult.sidedSuccess(level.isClientSide);
         } else {
