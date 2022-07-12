@@ -26,7 +26,6 @@ import syric.alchemine.outputs.slippery.blocks.GroovedIceBlock;
 import syric.alchemine.outputs.slippery.blocks.OilSlickBlock;
 import syric.alchemine.outputs.slippery.blocks.WallSlideBlock;
 import syric.alchemine.outputs.sticky.blocks.*;
-import net.minecraft.world.level.block.Blocks;
 
 
 import java.util.function.Supplier;
@@ -263,6 +262,21 @@ public class AlchemineBlocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F)
                     .lightLevel((state) -> 10)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
+    public static final RegistryObject<Block> SMOKE_CLOUD = register("smoke_cloud",
+            () -> new SmokeCloudBlock(BlockBehaviour.Properties.of(Material.AIR)
+                    .sound(SoundType.WOOL)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
+    public static final RegistryObject<Block> ASH_CLOUD = register("ash_cloud",
+            () -> new AshCloudBlock(BlockBehaviour.Properties.of(Material.AIR)
+                    .sound(SoundType.WOOL)),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
+    public static final RegistryObject<Block> INCENDIARY_CLOUD = register("incendiary_cloud",
+            () -> new IncendiaryCloudBlock(BlockBehaviour.Properties.of(Material.AIR)
+                    .sound(SoundType.WOOL).lightLevel((state) -> 15)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
 

@@ -28,12 +28,12 @@ public class FogEffects {
 
         //Vita-slime fog and overlay
         if (event.getCamera().getBlockAtCamera().getBlock().equals(AlchemineBlocks.VITA_SLIME.get()) && event.isCancelable()) {
-//            event.setCanceled(true);
 //            event.setNearPlaneDistance(1.5F);
 //            event.setFarPlaneDistance(6.0F);
-//            event.setCanceled(false);
+//            event.setCanceled(true);
             OverlayRegistry.enableOverlay(vita_slime_overlay, true);
-        } else {
+        }
+        else {
             if (Objects.requireNonNull(OverlayRegistry.getEntry(vita_slime_overlay)).isEnabled()) {
                 OverlayRegistry.enableOverlay(vita_slime_overlay, false);
             }
@@ -43,9 +43,7 @@ public class FogEffects {
         if (event.getCamera().getBlockAtCamera().getBlock().equals(AlchemineBlocks.BERSERKERS_RESIN.get()) && event.isCancelable()) {
             event.setNearPlaneDistance(0.0F);
             event.setFarPlaneDistance(4.0F);
-//            LogUtils.getLogger().info("Resin fog shape: " + event.getFogShape()+ ", near: " + event.getNearPlaneDistance() + ", far: " + event.getFarPlaneDistance());
             event.setCanceled(true);
-//            event.setCanceled(false);
             OverlayRegistry.enableOverlay(berserkers_resin_overlay, true);
         }
         else {
@@ -82,6 +80,26 @@ public class FogEffects {
         }
 
 
+        //Smoke Grenades
+        if (event.getCamera().getBlockAtCamera().getBlock().equals(AlchemineBlocks.SMOKE_CLOUD.get()) && event.isCancelable()) {
+            event.setNearPlaneDistance(0.0F);
+            event.setFarPlaneDistance(6.0F);
+            event.setCanceled(true);
+        }
+        if (event.getCamera().getBlockAtCamera().getBlock().equals(AlchemineBlocks.ASH_CLOUD.get()) && event.isCancelable()) {
+            event.setNearPlaneDistance(0.0F);
+            event.setFarPlaneDistance(4.0F);
+            event.setCanceled(true);
+        }
+        if (event.getCamera().getBlockAtCamera().getBlock().equals(AlchemineBlocks.INCENDIARY_CLOUD.get()) && event.isCancelable()) {
+            event.setNearPlaneDistance(0.0F);
+            event.setFarPlaneDistance(4.0F);
+            event.setCanceled(true);
+        }
+
+
+
+
     }
 
 
@@ -109,6 +127,23 @@ public class FogEffects {
             }
         }
 
+
+        //Smoke grenades
+        if (event.getCamera().getBlockAtCamera().getBlock().equals(AlchemineBlocks.SMOKE_CLOUD.get())) {
+            event.setBlue(0.5F);
+            event.setGreen(0.5F);
+            event.setRed(0.5F);
+        }
+        if (event.getCamera().getBlockAtCamera().getBlock().equals(AlchemineBlocks.ASH_CLOUD.get())) {
+            event.setBlue(0.7F);
+            event.setGreen(0.7F);
+            event.setRed(0.7F);
+        }
+        if (event.getCamera().getBlockAtCamera().getBlock().equals(AlchemineBlocks.INCENDIARY_CLOUD.get())) {
+            event.setBlue(0.3F);
+            event.setGreen(0.5F);
+            event.setRed(0.7F);
+        }
     }
 
 }

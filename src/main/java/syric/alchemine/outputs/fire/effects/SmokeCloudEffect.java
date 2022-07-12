@@ -3,33 +3,33 @@ package syric.alchemine.outputs.fire.effects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import syric.alchemine.outputs.general.alchemicaleffects.AlchemicalEffect;
 import syric.alchemine.outputs.general.alchemicaleffects.PlacementSet;
 import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.PlacementPattern;
-import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.SpherePattern;
+import syric.alchemine.outputs.general.alchemicaleffects.placementpatterns.SpreadPattern;
+import syric.alchemine.setup.AlchemineBlocks;
 
-public class FireblossomEffect implements AlchemicalEffect{
-
+public class SmokeCloudEffect implements AlchemicalEffect {
 
     @Override
     public void detonate(UseOnContext context) {
         BlockPos pos = AlchemicalEffect.getOrigin(context);
         Level level = context.getLevel();
 
-        //Fire and/or explosion sound
+        //Play a sound?
 
-        //Particle burst
+        //Spread pattern should be flatter
 
-        PlacementPattern pattern = new SpherePattern(pos, 4F);
-        new PlacementSet(level).addPattern(pattern).cull(PlacementSet.AIR_ONLY).cull(PlacementSet.randomFilter(0.4F)).placeImmediate(Blocks.FIRE, false);
+        PlacementPattern pattern = new SpreadPattern(level, pos, 80, PlacementSet.AIR_ONLY);
+        new PlacementSet(level).addPattern(pattern).cull(PlacementSet.AIR_ONLY).placeImmediate(AlchemineBlocks.SMOKE_CLOUD, true);
 
-        //Damage and ignite entities
+        //Turn the player invisible if they're in that space
 
 
     }
 
     @Override
-    public String toString() { return "Fireblossom"; }
+    public String toString() { return "Smoke Cloud"; }
+
 
 }

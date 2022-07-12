@@ -20,6 +20,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.Vec3;
 import syric.alchemine.setup.AlchemineBlocks;
 
+import java.util.Objects;
+
 public class VitaSlimeBlock extends AbstractImmersionBlock {
 
     //Variables
@@ -69,7 +71,7 @@ public class VitaSlimeBlock extends AbstractImmersionBlock {
         if (entity instanceof LivingEntity live) {
             if (live.hasEffect(MobEffects.REGENERATION)) {
 //                chatPrint("Regen detected", entity);
-                if (live.getEffect(MobEffects.REGENERATION).getDuration() <= 10) {
+                if (Objects.requireNonNull(live.getEffect(MobEffects.REGENERATION)).getDuration() <= 10) {
                     live.addEffect(getRegen());
                 }
                 if (isCharged) {
