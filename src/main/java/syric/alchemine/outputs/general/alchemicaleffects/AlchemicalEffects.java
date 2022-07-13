@@ -68,6 +68,12 @@ public class AlchemicalEffects {
             SunfireEffect::new);
     public static final RegistryObject<AlchemicalEffect> MAGMA_VEIN = registerEffect("magma_vein_effect",
             MagmaVeinEffect::new);
+    public static final RegistryObject<AlchemicalEffect> SMOKE_CLOUD = registerEffect("smoke_cloud_effect",
+            SmokeCloudEffect::new);
+    public static final RegistryObject<AlchemicalEffect> ASH_CLOUD = registerEffect("ash_cloud_effect",
+            AshCloudEffect::new);
+    public static final RegistryObject<AlchemicalEffect> INCENDIARY_CLOUD = registerEffect("incendiary_cloud_effect",
+            IncendiaryCloudEffect::new);
 
 
     //Misc

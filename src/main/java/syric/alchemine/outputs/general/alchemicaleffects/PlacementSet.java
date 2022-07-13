@@ -26,6 +26,7 @@ public class PlacementSet {
     public final Map<BlockPos, Double> placementMap;
 
     public static SimpleFilter AIR_ONLY = (c) -> c.getMaterial().equals(Material.AIR);
+    public static SimpleFilter AIR_OR_FIRE = (c) -> c.getMaterial().equals(Material.AIR) || c.getMaterial().equals(Material.FIRE);
     public static SimpleFilter BREAK_ON_PUSH = (c) -> c.getMaterial().getPushReaction() == PushReaction.DESTROY || c.getMaterial().equals(Material.AIR);;
     public static SimpleFilter BLOCK_REPLACEABLE = (c) -> c.getMaterial().isReplaceable();
     public static SimpleFilter STRONG = (c) -> c.getMaterial().isReplaceable() || c.getMaterial().getPushReaction() == PushReaction.DESTROY;

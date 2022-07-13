@@ -83,17 +83,17 @@ public class FogEffects {
         //Smoke Grenades
         if (event.getCamera().getBlockAtCamera().getBlock().equals(AlchemineBlocks.SMOKE_CLOUD.get()) && event.isCancelable()) {
             event.setNearPlaneDistance(0.0F);
-            event.setFarPlaneDistance(6.0F);
+            event.setFarPlaneDistance(3.0F);
             event.setCanceled(true);
         }
         if (event.getCamera().getBlockAtCamera().getBlock().equals(AlchemineBlocks.ASH_CLOUD.get()) && event.isCancelable()) {
             event.setNearPlaneDistance(0.0F);
-            event.setFarPlaneDistance(4.0F);
+            event.setFarPlaneDistance(2.0F);
             event.setCanceled(true);
         }
         if (event.getCamera().getBlockAtCamera().getBlock().equals(AlchemineBlocks.INCENDIARY_CLOUD.get()) && event.isCancelable()) {
             event.setNearPlaneDistance(0.0F);
-            event.setFarPlaneDistance(4.0F);
+            event.setFarPlaneDistance(2.0F);
             event.setCanceled(true);
         }
 
@@ -130,19 +130,19 @@ public class FogEffects {
 
         //Smoke grenades
         if (event.getCamera().getBlockAtCamera().getBlock().equals(AlchemineBlocks.SMOKE_CLOUD.get())) {
-            event.setBlue(0.5F);
-            event.setGreen(0.5F);
-            event.setRed(0.5F);
+            event.setBlue(0.6F);
+            event.setGreen(0.6F);
+            event.setRed(0.6F);
         }
         if (event.getCamera().getBlockAtCamera().getBlock().equals(AlchemineBlocks.ASH_CLOUD.get())) {
-            event.setBlue(0.7F);
-            event.setGreen(0.7F);
-            event.setRed(0.7F);
+            event.setBlue(0.15F);
+            event.setGreen(0.15F);
+            event.setRed(0.15F);
         }
         if (event.getCamera().getBlockAtCamera().getBlock().equals(AlchemineBlocks.INCENDIARY_CLOUD.get())) {
-            event.setBlue(0.3F);
-            event.setGreen(0.5F);
-            event.setRed(0.7F);
+            event.setBlue(0.0F);
+            event.setGreen(0.12F);
+            event.setRed(0.3F);
         }
     }
 

@@ -265,17 +265,17 @@ public class AlchemineBlocks {
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> SMOKE_CLOUD = register("smoke_cloud",
-            () -> new SmokeCloudBlock(BlockBehaviour.Properties.of(Material.AIR)
+            () -> new SmokeCloudBlock(BlockBehaviour.Properties.of(AlchemineBlockMaterials.SMOKE_MAT)
                     .sound(SoundType.WOOL)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> ASH_CLOUD = register("ash_cloud",
-            () -> new AshCloudBlock(BlockBehaviour.Properties.of(Material.AIR)
+            () -> new AshCloudBlock(BlockBehaviour.Properties.of(AlchemineBlockMaterials.SMOKE_MAT)
                     .sound(SoundType.WOOL)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> INCENDIARY_CLOUD = register("incendiary_cloud",
-            () -> new IncendiaryCloudBlock(BlockBehaviour.Properties.of(Material.AIR)
+            () -> new IncendiaryCloudBlock(BlockBehaviour.Properties.of(AlchemineBlockMaterials.SMOKE_MAT)
                     .sound(SoundType.WOOL).lightLevel((state) -> 15)),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 

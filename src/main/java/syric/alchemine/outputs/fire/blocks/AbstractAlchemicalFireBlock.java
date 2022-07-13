@@ -433,7 +433,7 @@ public class AbstractAlchemicalFireBlock extends BaseFireBlock {
         if (level.isHumidAt(pos)) {baseIgniteChance /= 2;}
         return baseIgniteChance;
     }
-    protected boolean isNearRain(Level level, BlockPos pos) {
+    protected static boolean isNearRain(Level level, BlockPos pos) {
         return level.isRainingAt(pos) || level.isRainingAt(pos.west()) || level.isRainingAt(pos.east()) || level.isRainingAt(pos.north()) || level.isRainingAt(pos.south());
     }
 
