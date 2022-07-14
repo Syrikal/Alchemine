@@ -29,21 +29,6 @@ public class AshCloudEffect implements AlchemicalEffect {
 
         PlacementPattern pattern = new FlattenedSpreadPattern(level, pos, 300, PlacementSet.AIR_ONLY, 0.3);
         new PlacementSet(level).addPattern(pattern).cull(PlacementSet.AIR_ONLY).placeImmediate(AlchemineBlocks.ASH_CLOUD, true);
-
-        Player player = context.getPlayer();
-        //Turn the player invisible if they're in that space
-        if (player != null) {
-            AABB playerBox = player.getBoundingBox();
-            for (BlockPos pos1 : pattern.blockMap().keySet()) {
-                AABB blockBox = AABB.unitCubeFromLowerCorner(Vec3.atLowerCornerOf(pos1));
-                if (playerBox.intersects(blockBox)) {
-                    player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 200, 0, true, true));
-                    break;
-                }
-            }
-        }
-
-
     }
 
     private void playSound(Level level, BlockPos pos) {

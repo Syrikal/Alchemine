@@ -3,6 +3,8 @@ package syric.alchemine.outputs.fire.blocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -15,6 +17,20 @@ public class StonefireBlock extends AbstractAlchemicalFireBlock {
 
     public StonefireBlock(Properties properties, float damage) {
         super(properties, damage);
+    }
+
+    //BURNING ENTITIES
+    //Damages entities and sets them on fire
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+        if (!entity.fireImmune()) {
+            entity.setRemainingFireTicks(entity.getRemainingFireTicks() + 1);
+            if (entity.getRemainingFireTicks() == 0) {
+                entity.setSecondsOnFire(4);
+            }
+        }
+
+        entity.hurt(DamageSource.IN_FIRE, this.getFireDamage());
+        super.entityInside(state, level, pos, entity);
     }
 
     public static void bootStrap() {

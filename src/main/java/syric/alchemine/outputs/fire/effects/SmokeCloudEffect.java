@@ -1,5 +1,6 @@
 package syric.alchemine.outputs.fire.effects;
 
+import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -33,20 +34,6 @@ public class SmokeCloudEffect implements AlchemicalEffect {
 
         PlacementPattern pattern = new FlattenedSpreadPattern(level, pos, 350, PlacementSet.AIR_ONLY, 0.4);
         new PlacementSet(level).addPattern(pattern).cull(PlacementSet.AIR_ONLY).placeImmediate(AlchemineBlocks.SMOKE_CLOUD, true);
-
-        Player player = context.getPlayer();
-        //Turn the player invisible if they're in that space
-        if (player != null) {
-            AABB playerBox = player.getBoundingBox();
-            for (BlockPos pos1 : pattern.blockMap().keySet()) {
-                AABB blockBox = AABB.unitCubeFromLowerCorner(Vec3.atLowerCornerOf(pos1));
-                if (playerBox.intersects(blockBox)) {
-                    player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 200, 0, true, true));
-                    break;
-                }
-            }
-        }
-
 
     }
 

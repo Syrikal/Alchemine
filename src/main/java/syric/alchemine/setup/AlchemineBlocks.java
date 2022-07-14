@@ -207,7 +207,7 @@ public class AlchemineBlocks {
 
     public static final RegistryObject<Block> STONE_FIRE = register("stone_fire",
             () -> new StonefireBlock(BlockBehaviour.Properties.of(Material.FIRE)
-                    .noCollission().instabreak().lightLevel((state) -> 8).sound(SoundType.WOOL), 1.0F),
+                    .noCollission().instabreak().lightLevel((state) -> 8).sound(SoundType.WOOL), 0.5F),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> LIFEBANE_FIRE = register("lifebane_fire",
@@ -233,6 +233,11 @@ public class AlchemineBlocks {
     public static final RegistryObject<Block> FELL_FIRE = register("fell_fire",
             () -> new FellfireBlock(BlockBehaviour.Properties.of(Material.FIRE)
                     .noCollission().instabreak().sound(SoundType.WOOL), 4.0F),
+            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+
+    public static final RegistryObject<Block> WARDING_FIRE = register("warding_fire",
+            () -> new WardingFireBlock(BlockBehaviour.Properties.of(Material.FIRE)
+                    .noCollission().instabreak().sound(SoundType.WOOL), 3.0F),
             AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
 
     public static final RegistryObject<Block> ABYSSAL_FORGEFLAME = register("abyssal_forgeflame",

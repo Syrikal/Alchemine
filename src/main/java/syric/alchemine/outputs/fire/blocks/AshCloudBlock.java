@@ -10,6 +10,7 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -33,6 +34,8 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.portal.PortalShape;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -99,6 +102,11 @@ public class AshCloudBlock extends Block implements PossiblyPermanentBlock {
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState state2, boolean bool) {
         if (!level.isClientSide) {
             level.scheduleTick(pos, this, this.getDuration());
+            for (Entity entity : level.getEntities(null, AABB.unitCubeFromLowerCorner(Vec3.atLowerCornerOf(pos)))) {
+                if (entity instanceof Player player) {
+                    player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 200, 0, true, true));
+                }
+            }
         }
     }
     @Override
