@@ -11,9 +11,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import syric.alchemine.setup.AlchemineBlocks;
 
 public class WardingFireBlock extends AbstractAlchemicalFireBlock {
+    protected static final VoxelShape SHAPE1 = Block.box(7.9, 0.0, 0.0, 8.1, 24.0, 16.0);
+    protected static final VoxelShape SHAPE2 = Block.box(0.0, 0.0, 7.9, 16.0, 24.0, 8.1);
+
 
     public WardingFireBlock(Properties properties, float damage) {
         super(properties, damage);
@@ -37,6 +43,10 @@ public class WardingFireBlock extends AbstractAlchemicalFireBlock {
         //Make things flee?
 
         super.entityInside(state, level, pos, entity);
+    }
+
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
+        return Shapes.or(SHAPE1, SHAPE2);
     }
 
 

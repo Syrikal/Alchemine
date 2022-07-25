@@ -1,0 +1,5 @@
+sun_ember, "Sun Ember", item
+flash_ember, "Flash Ember", item
+fell_ember, "Fell Ember", item
+stone_ember, "Stone Ember", item
+warding_ember, "Warding Ember", item

@@ -156,15 +156,6 @@
     "item.alchemine.tidy_ember": "Tidy Ember",
     "item.alchemine.cozy_ember": "Cozy Ember",
     "item.alchemine.abyssal_ember": "Abyssal Ember",
-    "item.alchemine.sun_ember": "Sun Ember",
-    "item.alchemine.flash_ember": "Flash Ember",
-    "item.alchemine.fell_ember": "Fell Ember",
-    "item.alchemine.stone_ember": "Stone Ember",
-    "item.alchemine.warding_ember": "Warding Ember",
-    "item.alchemine.forged_netherite_scrap": "Forged Netherite Scrap",
-    "block.alchemine.smoke_cloud": "Smoke Cloud",
-    "block.alchemine.ash_cloud": "Ash Cloud",
-    "block.alchemine.incendiary_cloud": "Incendiary Cloud",
 
     "item.alchemine.glowing_slimeseed": "Glowing Slimeseed",
 
@@ -190,6 +181,12 @@
     "block.alchemine.hardened_sludge": "Hardened Sludge",
     "block.alchemine.foamy_sludge": "Foamy Sludge",
     "block.alchemine.volatile_sludge": "Volatile Sludge",
-    "block.alchemine.chaotic_sludge": "Chaotic Sludge"
+    "block.alchemine.chaotic_sludge": "Chaotic Sludge",
+
+    "item.alchemine.forged_netherite_scrap": "Forged Netherite Scrap",
+
+    "block.alchemine.smoke_cloud": "Smoke Cloud",
+    "block.alchemine.ash_cloud": "Ash Cloud",
+    "block.alchemine.incendiary_cloud": "Incendiary Cloud"
 
 }

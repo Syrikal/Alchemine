@@ -200,50 +200,41 @@ public class AlchemineBlocks {
 
 
     //Fire
-    public static final RegistryObject<Block> FLASH_FIRE = register("flash_fire",
+    public static final RegistryObject<Block> FLASH_FIRE = registerNoItem("flash_fire",
             () -> new FlashfireBlock(BlockBehaviour.Properties.of(Material.FIRE)
-                    .noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL), 1.0F),
-            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+                    .noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL), 1.0F));
 
-    public static final RegistryObject<Block> STONE_FIRE = register("stone_fire",
+    public static final RegistryObject<Block> STONE_FIRE = registerNoItem("stone_fire",
             () -> new StonefireBlock(BlockBehaviour.Properties.of(Material.FIRE)
-                    .noCollission().instabreak().lightLevel((state) -> 8).sound(SoundType.WOOL), 0.5F),
-            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+                    .noCollission().instabreak().lightLevel((state) -> 8).sound(SoundType.WOOL), 0.5F));
 
-    public static final RegistryObject<Block> LIFEBANE_FIRE = register("lifebane_fire",
+    public static final RegistryObject<Block> LIFEBANE_FIRE = registerNoItem("lifebane_fire",
             () -> new LifebaneFireBlock(BlockBehaviour.Properties.of(Material.FIRE)
-                    .noCollission().instabreak().lightLevel((state) -> 12).sound(SoundType.WOOL), 3.0F),
-            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+                    .noCollission().instabreak().lightLevel((state) -> 12).sound(SoundType.WOOL), 3.0F));
 
-    public static final RegistryObject<Block> SUN_FIRE = register("sun_fire",
+    public static final RegistryObject<Block> SUN_FIRE = registerNoItem("sun_fire",
             () -> new SunfireBlock(BlockBehaviour.Properties.of(Material.FIRE)
-                    .noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL), 1.0F),
-            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+                    .noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL), 1.0F));
 
-    public static final RegistryObject<Block> TIDY_FIRE = register("tidy_fire",
+    public static final RegistryObject<Block> TIDY_FIRE = registerNoItem("tidy_fire",
             () -> new TidyFireBlock(BlockBehaviour.Properties.of(Material.FIRE)
-                    .noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL), 0.5F),
-            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+                    .noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL), 0.5F));
 
-    public static final RegistryObject<Block> COZY_FIRE = register("cozy_fire",
+    public static final RegistryObject<Block> COZY_FIRE = registerNoItem("cozy_fire",
             () -> new CozyFireBlock(BlockBehaviour.Properties.of(Material.FIRE)
-                    .noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL), 0.0F),
-            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+                    .noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL), 0.0F));
 
-    public static final RegistryObject<Block> FELL_FIRE = register("fell_fire",
+    public static final RegistryObject<Block> FELL_FIRE = registerNoItem("fell_fire",
             () -> new FellfireBlock(BlockBehaviour.Properties.of(Material.FIRE)
-                    .noCollission().instabreak().sound(SoundType.WOOL), 4.0F),
-            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+                    .noCollission().instabreak().sound(SoundType.WOOL), 4.0F));
 
-    public static final RegistryObject<Block> WARDING_FIRE = register("warding_fire",
+    public static final RegistryObject<Block> WARDING_FIRE = registerNoItem("warding_fire",
             () -> new WardingFireBlock(BlockBehaviour.Properties.of(Material.FIRE)
-                    .noCollission().instabreak().sound(SoundType.WOOL), 3.0F),
-            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+                    .noCollission().instabreak().sound(SoundType.WOOL), 3.0F));
 
-    public static final RegistryObject<Block> ABYSSAL_FORGEFLAME = register("abyssal_forgeflame",
+    public static final RegistryObject<Block> ABYSSAL_FORGEFLAME = registerNoItem("abyssal_forgeflame",
             () -> new AbyssalForgeflameBlock(BlockBehaviour.Properties.of(Material.FIRE)
-                    .noCollission().instabreak().sound(SoundType.WOOL), 6.0F),
-            AlchemineCreativeTabs.ALCHEMICAL_CREATIONS);
+                    .noCollission().instabreak().sound(SoundType.WOOL), 6.0F));
 
     //What are post-processing and emissive rendering? Should I use them?
     public static final RegistryObject<Block> SPARKS = register("sparks_block",

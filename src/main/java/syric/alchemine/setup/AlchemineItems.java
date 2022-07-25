@@ -75,6 +75,16 @@ public class AlchemineItems {
             () -> new MagmaticSlimeseedItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
     public static final RegistryObject<Item> FIERY_SLIMESEED = ITEMS.register("fiery_slimeseed",
             () -> new SlimeseedItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS)));
+    public static final RegistryObject<Item> FLASH_EMBER = ITEMS.register("flash_ember",
+            () -> new FirestarterItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS), AlchemineBlocks.FLASH_FIRE));
+    public static final RegistryObject<Item> WARDING_EMBER = ITEMS.register("warding_ember",
+            () -> new FirestarterItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS), AlchemineBlocks.WARDING_FIRE));
+    public static final RegistryObject<Item> STONE_EMBER = ITEMS.register("stone_ember",
+            () -> new FirestarterItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS), AlchemineBlocks.STONE_FIRE));
+    public static final RegistryObject<Item> FELL_EMBER = ITEMS.register("fell_ember",
+            () -> new FirestarterItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS), AlchemineBlocks.FELL_FIRE));
+    public static final RegistryObject<Item> SUN_EMBER = ITEMS.register("sun_ember",
+            () -> new FirestarterItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS), AlchemineBlocks.SUN_FIRE));
     public static final RegistryObject<Item> LIFEBANE_EMBER = ITEMS.register("lifebane_ember",
             () -> new FirestarterItem(new Item.Properties().tab(AlchemineCreativeTabs.ALCHEMICAL_CREATIONS), AlchemineBlocks.LIFEBANE_FIRE));
     public static final RegistryObject<Item> TIDY_EMBER = ITEMS.register("tidy_ember",
